@@ -1,6 +1,6 @@
 import { env } from '$env/dynamic/private';
 import type { RequestEvent } from '@sveltejs/kit';
-import type { YoutubeCommentThreads } from 'src/routes/youtube/[videoId]/page';
+import type { YoutubeCommentThreads } from '../../../youtube/[videoId]/page';
 
 export async function GET({ params }: RequestEvent) {
 	const apiKey = env.GOOGLE_API_KEY;
