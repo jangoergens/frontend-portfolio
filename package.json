@@ -16,11 +16,11 @@
     "all": "git pull --rebase && pnpm install && pnpm build && pnpm check && pnpm format && pnpm lint && pnpm test"
   },
   "devDependencies": {
-    "prettier": "latest",
-    "turbo": "latest"
+    "prettier": "2.8.4",
+    "turbo": "1.8.3"
   },
   "engines": {
-    "node": ">=16.14.0 < 17"
+    "node": ">=16.14.0 < 19"
   },
   "dependencies": {},
   "packageManager": "pnpm@7.18.2"

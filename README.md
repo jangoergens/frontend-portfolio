@@ -1,7 +1,3 @@
-# Turborepo starter
-
-This is an official pnpm starter turborepo.
-
 ## What's inside?
 
 This turborepo uses [pnpm](https://pnpm.io) as a package manager. It includes the following packages/apps:
@@ -13,6 +9,10 @@ This turborepo has some additional tools already setup for you:
 - [TypeScript](https://www.typescriptlang.org/) for static type checking
 - [ESLint](https://eslint.org/) for code linting
 - [Prettier](https://prettier.io) for code formatting
+
+### Test
+
+Install Playwright browsers with `pnpm exec playwright install` inside of `apps/frontend` folder.
 
 ### Build
 
