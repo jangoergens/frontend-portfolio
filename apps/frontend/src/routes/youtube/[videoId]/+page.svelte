@@ -9,8 +9,8 @@
 	};
 </script>
 
-<div>
-	<h2>Selected Video</h2>
+<div class="flex justify-center items-center flex-col">
+	<h1>Selected Video</h1>
 	<iframe
 		width="560"
 		height="315"
@@ -34,15 +34,3 @@
 		<p>{error.message}</p>
 	{/await}
 </div>
-
-<style>
-	div {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		flex-direction: column;
-	}
-	h2 {
-		font-size: 1.6rem;
-	}
-</style>

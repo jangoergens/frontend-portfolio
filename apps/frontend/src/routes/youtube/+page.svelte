@@ -15,21 +15,22 @@
 	<meta name="description" content="Youtube Video Selection" />
 </svelte:head>
 
-<div class="content">
-	<h1>Youtube Video Selector</h1>
-	<p>You can submit the link to a youtube video of which you want to see the top comments.</p>
-	<h2>Selection</h2>
+<section class="flex flex-col justify-center items-center gap-12">
+	<div class="flex flex-col items-center">
+		<h1>Youtube Video Selector</h1>
+		<p>You can submit the link to a youtube video of which you want to see the top comments.</p>
+	</div>
 	<form on:submit|preventDefault={handleSubmit}>
-		<input type="text" bind:value={videoURL} />
+		<label for="videoSearch">Video URL: </label>
+		<input
+			class="border-2 border-black rounded"
+			type="text"
+			name="videoSearch"
+			id="videoSearch"
+			bind:value={videoURL}
+		/>
 		<button type="submit">Search</button>
 	</form>
-	<p>As an example, use this url: https://www.youtube.com/watch?v=Y4iXIdg8b10</p>
-</div>
 
-<style>
-	.content {
-		width: 100%;
-		max-width: var(--column-width);
-		margin: var(--column-margin-top) auto 0 auto;
-	}
-</style>
+	<a href="/youtube/Y4iXIdg8b10"><button type="button">Example Video</button></a>
+</section>
