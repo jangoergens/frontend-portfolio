@@ -26,7 +26,7 @@ importers:
       prettier-plugin-svelte: 2.9.0
       svelte: 3.57.0
       svelte-check: 3.1.4
-      svelte-preprocess: 5.0.2
+      svelte-preprocess: 5.0.3
       tslib: 2.5.0
       typescript: 4.9.5
       vite: 4.2.0
@@ -46,7 +46,7 @@ importers:
       prettier-plugin-svelte: 2.9.0_k23gl6auqwrxgr3e6o2bajswou
       svelte: 3.57.0
       svelte-check: 3.1.4_svelte@3.57.0
-      svelte-preprocess: 5.0.2_wkdgp32a7s6524odeddpfzb52q
+      svelte-preprocess: 5.0.3_wkdgp32a7s6524odeddpfzb52q
       tslib: 2.5.0
       typescript: 4.9.5
       vite: 4.2.0
@@ -1584,7 +1584,7 @@ packages:
       picocolors: 1.0.0
       sade: 1.8.1
       svelte: 3.57.0
-      svelte-preprocess: 5.0.2_wkdgp32a7s6524odeddpfzb52q
+      svelte-preprocess: 5.0.3_wkdgp32a7s6524odeddpfzb52q
       typescript: 4.9.5
     transitivePeerDependencies:
       - '@babel/core'
@@ -1607,8 +1607,8 @@ packages:
       svelte: 3.57.0
     dev: true
 
-  /svelte-preprocess/5.0.2_wkdgp32a7s6524odeddpfzb52q:
-    resolution: {integrity: sha512-iXpIoa43VdF7fPkBdoodztZd4H+3EP/GYA66tbuLVtQnM3sWCpsOtc7HjfA7BDR+6VTpqlEnpDmPoXk0dgUa0g==}
+  /svelte-preprocess/5.0.3_wkdgp32a7s6524odeddpfzb52q:
+    resolution: {integrity: sha512-GrHF1rusdJVbOZOwgPWtpqmaexkydznKzy5qIC2FabgpFyKN57bjMUUUqPRfbBXK5igiEWn1uO/DXsa2vJ5VHA==}
     engines: {node: '>= 14.10.0'}
     requiresBuild: true
     peerDependencies:
