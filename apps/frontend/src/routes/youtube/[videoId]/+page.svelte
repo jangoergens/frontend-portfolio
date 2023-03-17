@@ -9,7 +9,7 @@
 	};
 </script>
 
-<div class="flex justify-center items-center flex-col">
+<div class="flex justify-center items-center flex-col gap-4">
 	<h1>Selected Video</h1>
 	<iframe
 		width="560"
@@ -23,10 +23,10 @@
 	{#await fetchComments()}
 		<p>...loading comments</p>
 	{:then comments}
-		<h3>{comments.length} comments found</h3>
-		<ol>
+		<h2>{comments.length} comments found</h2>
+		<ol class="flex flex-col gap-4">
 			{#each comments as comment}
-				<li>{comment.textDisplay}</li>
+				<li class="border-2 rounded-md p-2">{comment.textDisplay}</li>
 			{/each}
 		</ol>
 	{:catch error}
