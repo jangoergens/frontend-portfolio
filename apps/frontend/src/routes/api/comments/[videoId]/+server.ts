@@ -3,7 +3,7 @@ import type { RequestEvent } from '@sveltejs/kit';
 import type { TopLevelCommentInfo, YoutubeCommentThreads } from '../../../youtube/[videoId]/page';
 
 export async function GET({ params }: RequestEvent) {
-	if (env.NODE_ENV === 'production') {
+	if (env.GOOGLE_API_MODE === 'production') {
 		const apiKey = env.GOOGLE_API_KEY;
 
 		const response = await fetch(
@@ -21,7 +21,7 @@ export async function GET({ params }: RequestEvent) {
 			return new Response(JSON.stringify(response.text()));
 		}
 	}
-	if (env.NODE_ENV === 'development') {
+	if (env.GOOGLE_API_MODE === 'development') {
 		const randomComments: TopLevelCommentInfo[] = [
 			{
 				videoId: 'Y4iXIdg8b10',
