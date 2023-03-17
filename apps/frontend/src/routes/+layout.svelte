@@ -13,7 +13,7 @@
 	<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
 </footer>
 
-<style>
+<style lang="postcss">
 	main {
 		flex: 1;
 		display: flex;
