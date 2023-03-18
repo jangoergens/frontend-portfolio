@@ -1,6 +1,6 @@
 import { env } from '$env/dynamic/private';
 import type { RequestEvent } from '@sveltejs/kit';
-import type { TopLevelCommentInfo, YoutubeCommentThreads } from '../../../youtube/[videoId]/page';
+import type { RequiredCommentInfo, YoutubeCommentThreads } from '../../../youtube/[videoId]/page';
 
 export async function GET({ params }: RequestEvent) {
 	if (env.GOOGLE_API_MODE === 'production') {
@@ -12,9 +12,16 @@ export async function GET({ params }: RequestEvent) {
 
 		if (response.ok) {
 			const commentThreads: YoutubeCommentThreads = await response.json();
-			const topLevelComments = commentThreads.items.map(
-				(comment) => comment.snippet.topLevelComment.snippet
-			);
+			const topLevelComments: RequiredCommentInfo[] = commentThreads.items.map((comment) => {
+				return {
+					textDisplay: comment.snippet.topLevelComment.snippet.textDisplay,
+					authorDisplayName: comment.snippet.topLevelComment.snippet.authorDisplayName,
+					authorProfileImageUrl: comment.snippet.topLevelComment.snippet.authorProfileImageUrl,
+					authorChannelUrl: comment.snippet.topLevelComment.snippet.authorChannelUrl,
+					likeCount: comment.snippet.topLevelComment.snippet.likeCount,
+					publishedAt: comment.snippet.topLevelComment.snippet.publishedAt
+				};
+			});
 
 			return new Response(JSON.stringify(topLevelComments));
 		} else {
@@ -22,53 +29,35 @@ export async function GET({ params }: RequestEvent) {
 		}
 	}
 	if (env.GOOGLE_API_MODE === 'development') {
-		const randomComments: TopLevelCommentInfo[] = [
+		const randomComments: RequiredCommentInfo[] = [
 			{
-				videoId: 'Y4iXIdg8b10',
 				textDisplay: 'This video was so informative, thank you for sharing!',
-				textOriginal: 'This video was so informative, thank you for sharing!',
 				authorDisplayName: 'InfoSeeker',
 				authorProfileImageUrl:
 					'https://yt3.ggpht.com/ytc/AL5GRJUHXLtTVSMbXWeiP721qiXcmdKuxt6aoy5auNO8=s48-c-k-c0x00ffffff-no-rj',
 				authorChannelUrl: 'http://www.youtube.com/channel/UClLFg97nBIWbLdT2VZPQELg',
-				authorChannelId: { value: 'UClLFg97nBIWbLdT2VZPQELg' },
-				canRate: true,
-				viewerRating: 'none',
-				likeCount: 0,
-				publishedAt: new Date('2023-03-17T09:22:07Z'),
-				updatedAt: new Date('2023-03-17T09:22:07Z')
+				likeCount: '0',
+				publishedAt: '2023-03-17T09:22:07Z'
 			},
 			{
-				videoId: 'Y4iXIdg8b10',
 				textDisplay: 'The cinematography in this video is stunning!',
-				textOriginal: 'The cinematography in this video is stunning!',
 				authorDisplayName: 'VisualAdmirer',
 				authorProfileImageUrl:
 					'https://yt3.ggpht.com/ytc/AL5GRJVrLn0_v6na09Xgcihe3cozSusC1pWdLbLm=s48-c-k-c0x00ffffff-no-rj',
 				authorChannelUrl: 'http://www.youtube.com/channel/UCgV0uu8xZaMvHh2KCkuxM9Q',
-				authorChannelId: { value: 'UCgV0uu8xZaMvHh2KCkuxM9Q' },
-				canRate: true,
-				viewerRating: 'none',
-				likeCount: 1,
-				publishedAt: new Date('2023-03-17T11:26:02Z'),
-				updatedAt: new Date('2023-03-17T11:26:02Z')
+				likeCount: '1',
+				publishedAt: '2023-03-17T11:26:02Z'
 			},
 			{
-				videoId: 'Y4iXIdg8b10',
 				textDisplay: 'I just found your channel and I love your content!',
-				textOriginal: 'I just found your channel and I love your content!',
 				authorDisplayName: 'NewSubscriber',
 				authorProfileImageUrl:
 					'https://yt3.ggpht.com/ytc/AL5GRJUHXLtTVSMbXWeiP721qiXcmdKuxt6aoy5auNO8=s48-c-k-c0x00ffffff-no-rj',
 				authorChannelUrl: 'http://www.youtube.com/channel/UClLFg97nBIWbLdT2VZPQELg',
-				authorChannelId: { value: 'UClLFg97nBIWbLdT2VZPQELg' },
-				canRate: true,
-				viewerRating: 'none',
-				likeCount: 3,
-				publishedAt: new Date('2023-03-17T12:45:00Z'),
-				updatedAt: new Date('2023-03-17T12:45:00Z')
+				likeCount: '3',
+				publishedAt: '2023-03-17T12:45:00Z'
 			}
-		];
+		].sort((a, b) => (Number(a.likeCount) < Number(b.likeCount) ? 1 : -1));
 		return new Response(JSON.stringify(randomComments));
 	}
 }
