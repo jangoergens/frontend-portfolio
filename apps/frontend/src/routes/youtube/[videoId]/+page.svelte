@@ -12,11 +12,9 @@
 <div class="flex justify-center items-center flex-col gap-4">
 	<h1>Selected Video</h1>
 	<iframe
-		width="560"
-		height="315"
+		class="aspect-video w-full md:max-w-xl"
 		src={'https://www.youtube.com/embed/' + videoId}
 		title="YouTube video player"
-		frameborder="0"
 		allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 		allowfullscreen
 	/>
