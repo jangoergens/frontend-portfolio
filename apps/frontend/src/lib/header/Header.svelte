@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import logo from '../../images/YoutubeTopCommentsLogo.svg';
+	import logo from '../../images/youtubeTopCommentsLogo.svg';
 </script>
 
 <header class="flex justify-center items-center h-16">
