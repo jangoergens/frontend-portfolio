@@ -40,7 +40,7 @@
 		</div>
 		<ol class="flex flex-col gap-4 items-center w-full">
 			{#each comments as comment}
-				<li class="border-2 rounded-md p-2 flex gap-2 w-1/2 items-center">
+				<li class="border-2 rounded-md p-2 flex gap-2 w-full md:w-1/2 items-center">
 					<a href={comment.authorChannelUrl} class="w-8">
 						<object
 							data={comment.authorProfileImageUrl}
