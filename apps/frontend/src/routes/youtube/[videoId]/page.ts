@@ -1,18 +1,21 @@
-export interface TopLevelCommentInfo {
-	videoId: string;
+export interface RequiredCommentInfo {
 	textDisplay: string;
-	textOriginal: string;
 	authorDisplayName: string;
 	authorProfileImageUrl: string;
 	authorChannelUrl: string;
+	likeCount: string;
+	publishedAt: string;
+}
+
+export interface TopLevelCommentInfo extends RequiredCommentInfo {
+	videoId: string;
+	textOriginal: string;
 	authorChannelId: {
 		value: string;
 	};
-	canRate: boolean;
+	canRate: string;
 	viewerRating: string;
-	likeCount: number;
-	publishedAt: Date;
-	updatedAt: Date;
+	updatedAt: string;
 }
 
 export interface TopLevelComment {
@@ -25,9 +28,9 @@ export interface TopLevelComment {
 export interface Snippet {
 	videoId: string;
 	topLevelComment: TopLevelComment;
-	canReply: boolean;
+	canReply: string;
 	totalReplyCount: number;
-	isPublic: boolean;
+	isPublic: string;
 }
 
 export interface Item {
