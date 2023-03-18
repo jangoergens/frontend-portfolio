@@ -2,6 +2,7 @@
 	import { page } from '$app/stores';
 	import type { RequiredCommentInfo } from './page';
 	import thumbsUp from '../../../images/thumbsUp.svg';
+	import avatar from '../../../images/avatar.svg';
 
 	const videoId = $page.params.videoId;
 	const fetchComments = async (): Promise<RequiredCommentInfo[]> => {
@@ -9,6 +10,16 @@
 
 		return await response.json();
 	};
+
+	function shortenNumber(num: number): string {
+		if (num >= 1_000_000) {
+			return (num / 1_000_000).toFixed(1) + 'M';
+		} else if (num >= 1_000) {
+			return (num / 1_000).toFixed(1) + 'K';
+		} else {
+			return num.toString();
+		}
+	}
 </script>
 
 <div class="flex justify-center items-center flex-col gap-4">
@@ -21,18 +32,24 @@
 		allowfullscreen
 	/>
 	{#await fetchComments()}
-		<p>...loading comments</p>
+		<p class="animate-pulse">...loading comments</p>
 	{:then comments}
-		<h2>{comments.length} comments found</h2>
+		<div class="flex flex-col items-center">
+			<h2>Top Comments for this Video</h2>
+			<h3>{comments.length}/20 comments</h3>
+		</div>
 		<ol class="flex flex-col gap-4 items-center w-full">
 			{#each comments as comment}
 				<li class="border-2 rounded-md p-2 flex gap-2 w-1/2 items-center">
 					<a href={comment.authorChannelUrl} class="w-8">
-						<img
-							src={comment.authorProfileImageUrl}
-							alt={'Profile Picture of ' + comment.authorDisplayName}
-							class="rounded-full"
-						/>
+						<object
+							data={comment.authorProfileImageUrl}
+							type="image/jpeg"
+							title={'Profile Picture of ' + comment.authorDisplayName}
+							class="rounded-full w-full"
+						>
+							<img src={avatar} alt="generic user avatar" class="rounded-full" />
+						</object>
 					</a>
 					<div class="flex flex-col break-words w-5/6">
 						<span>{comment.textDisplay}</span>
@@ -45,9 +62,9 @@
 							>
 						</div>
 					</div>
-					<div class="flex flex-col justify-center ml-auto w-6 items-center">
+					<div class="flex flex-col justify-center ml-auto w-8 items-center">
 						<img src={thumbsUp} alt="Thumbs Up" class="w-4 max-w-none" />
-						<span>{comment.likeCount}</span>
+						<span>{shortenNumber(Number(comment.likeCount))}</span>
 					</div>
 				</li>
 			{/each}

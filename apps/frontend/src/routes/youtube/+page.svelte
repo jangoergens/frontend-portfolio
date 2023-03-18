@@ -32,5 +32,6 @@
 		<button type="submit">Search</button>
 	</form>
 
-	<a href="/youtube/Y4iXIdg8b10"><button type="button">Example Video</button></a>
+	<a href="/youtube/Y4iXIdg8b10"><button type="button">Example Video (few comments)</button></a>
+	<a href="/youtube/2L2wEs2Cbdk"><button type="button">Example Video (many comments)</button></a>
 </section>

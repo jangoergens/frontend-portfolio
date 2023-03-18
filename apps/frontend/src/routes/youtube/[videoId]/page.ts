@@ -33,7 +33,7 @@ export interface Snippet {
 	isPublic: string;
 }
 
-export interface Item {
+export interface CommentThread {
 	kind: string;
 	etag: string;
 	id: string;
@@ -48,5 +48,5 @@ export interface YoutubeCommentThreads {
 		totalResults: number;
 		resultsPerPage: number;
 	};
-	items: Item[];
+	items: CommentThread[];
 }

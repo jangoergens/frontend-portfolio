@@ -5,30 +5,55 @@ import type { RequiredCommentInfo, YoutubeCommentThreads } from '../../../youtub
 export async function GET({ params }: RequestEvent) {
 	if (env.GOOGLE_API_MODE === 'production') {
 		const apiKey = env.GOOGLE_API_KEY;
+		const MAX_RESULTS = 20;
+		const MAX_COMMENT_THREAD_PAGES = 10;
 
-		const response = await fetch(
-			`https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=${params.videoId}&key=${apiKey}&textFormat=plainText&maxResults=100`
-		);
+		const fetchCommentThread = async (pageToken?: string) => {
+			return await fetch(
+				`https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&order=relevance&videoId=${
+					params.videoId
+				}&key=${apiKey}&textFormat=plainText&maxResults=100${
+					pageToken ? `&pageToken=${pageToken}` : ''
+				}`
+			);
+		};
 
-		if (response.ok) {
-			const commentThreads: YoutubeCommentThreads = await response.json();
-			const topLevelComments: RequiredCommentInfo[] = commentThreads.items.map((comment) => {
-				return {
-					textDisplay: comment.snippet.topLevelComment.snippet.textDisplay,
-					authorDisplayName: comment.snippet.topLevelComment.snippet.authorDisplayName,
-					authorProfileImageUrl: comment.snippet.topLevelComment.snippet.authorProfileImageUrl,
-					authorChannelUrl: comment.snippet.topLevelComment.snippet.authorChannelUrl,
-					likeCount: comment.snippet.topLevelComment.snippet.likeCount,
-					publishedAt: comment.snippet.topLevelComment.snippet.publishedAt
-				};
-			});
+		let commentThreads: YoutubeCommentThreads | undefined;
+		let currentCommentThreadPage = 0;
+		const topComments: RequiredCommentInfo[] = [];
 
-			return new Response(JSON.stringify(topLevelComments));
-		} else {
-			return new Response(JSON.stringify(response.text()));
-		}
-	}
-	if (env.GOOGLE_API_MODE === 'development') {
+		do {
+			const response = await fetchCommentThread(commentThreads?.nextPageToken);
+			currentCommentThreadPage++;
+
+			if (response.ok) {
+				commentThreads = await response.json();
+				commentThreads?.items.map((commentThread) => {
+					const topComment: RequiredCommentInfo = {
+						textDisplay: commentThread.snippet.topLevelComment.snippet.textDisplay,
+						authorDisplayName: commentThread.snippet.topLevelComment.snippet.authorDisplayName,
+						authorProfileImageUrl:
+							commentThread.snippet.topLevelComment.snippet.authorProfileImageUrl,
+						authorChannelUrl: commentThread.snippet.topLevelComment.snippet.authorChannelUrl,
+						likeCount: commentThread.snippet.topLevelComment.snippet.likeCount,
+						publishedAt: commentThread.snippet.topLevelComment.snippet.publishedAt
+					};
+					if (topComments.length < MAX_RESULTS) {
+						topComments.push(topComment);
+						topComments.sort((a, b) => Number(b.likeCount) - Number(a.likeCount));
+					} else if (topComment.likeCount > topComments[MAX_RESULTS - 1].likeCount) {
+						topComments.pop();
+						topComments.push(topComment);
+						topComments.sort((a, b) => Number(b.likeCount) - Number(a.likeCount));
+					}
+				});
+			} else {
+				return new Response(JSON.stringify(response.text()));
+			}
+		} while (commentThreads?.nextPageToken && currentCommentThreadPage < MAX_COMMENT_THREAD_PAGES);
+
+		return new Response(JSON.stringify(topComments));
+	} else if (env.GOOGLE_API_MODE === 'development') {
 		const randomComments: RequiredCommentInfo[] = [
 			{
 				textDisplay: 'This video was so informative, thank you for sharing!',
@@ -57,7 +82,7 @@ export async function GET({ params }: RequestEvent) {
 				likeCount: '3',
 				publishedAt: '2023-03-17T12:45:00Z'
 			}
-		].sort((a, b) => (Number(a.likeCount) < Number(b.likeCount) ? 1 : -1));
+		].sort((a, b) => Number(b.likeCount) - Number(a.likeCount));
 		return new Response(JSON.stringify(randomComments));
 	}
 }
