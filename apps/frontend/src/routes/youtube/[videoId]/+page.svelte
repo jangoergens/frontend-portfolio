@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import type { RequiredCommentInfo } from './page';
-	import thumbsUp from '../../../images/thumbsUp.svg';
-	import avatar from '../../../images/avatar.svg';
+	import thumbsUp from '$lib/assets/thumbsUp.svg';
+	import avatar from '$lib/assets/avatar.svg';
 
 	const videoId = $page.params.videoId;
 	const fetchComments = async (): Promise<RequiredCommentInfo[]> => {

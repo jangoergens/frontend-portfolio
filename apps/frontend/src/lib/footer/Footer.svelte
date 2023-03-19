@@ -1,5 +1,5 @@
 <script lang="ts">
-	import githubLogo from '../../images/github.svg';
+	import githubLogo from '$lib/assets/github.svg';
 </script>
 
 <footer class="flex justify-center gap-2">
