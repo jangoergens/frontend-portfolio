@@ -26,7 +26,7 @@ export async function GET({ params }: RequestEvent) {
 			await supabase.from('videos').insert({ video_id: params.videoId });
 			const apiKey = env.GOOGLE_API_KEY;
 			const MAX_RESULTS = 20;
-			const MAX_COMMENT_THREAD_PAGES = 10;
+			const MAX_COMMENT_THREAD_PAGES = 100;
 
 			const fetchCommentThread = async (pageToken?: string) => {
 				return await fetch(
