@@ -3,7 +3,7 @@
 </script>
 
 <footer class="flex justify-center gap-2">
-	<span>Copyright © 2021</span>
+	<span>Copyright © {new Date().getFullYear()}</span>
 	<a
 		target="_blank"
 		rel="noopener noreferrer"
