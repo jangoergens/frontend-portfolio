@@ -26,7 +26,10 @@
 
 <section class="flex flex-col justify-center items-center">
 	<h1 class="font-extrabold text-2xl sm:text-3xl lg:text-4xl tracking-tight text-center">
-		TopCommentFinder - Beyond the Algorithm
+		TopCommentFinder - <span
+			class="from-orange-500 via-yellow-500 to-green-500 text-transparent bg-clip-text bg-gradient-to-r"
+			>Beyond the Algorithm</span
+		>
 	</h1>
 	<h2 class="text-center italic text-slate-500">
 		Access top comments without YouTube's limitations
@@ -51,12 +54,12 @@
 	<div class="flex flex-col sm:w-2/3 md:w-1/2 xl:w-2/5  gap-4 text-center font-semibold ">
 		<p>
 			The existing YouTube comment-sorting algorithm may not cater to everyone's preferences,
-			especially when browsing older videos.
+			particularly when browsing older videos.
 		</p>
 		<p>
-			To address this, we've developed a user-friendly platform that enables you to effortlessly
-			access the genuine top comments from any YouTube video. All you need to do is enter the
-			video's link.
+			To address this issue, I've developed a user-friendly platform that enables you to
+			effortlessly access the genuine top comments from any YouTube video. All you need to do is
+			enter the video's link.
 		</p>
 	</div>
 

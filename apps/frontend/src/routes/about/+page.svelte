@@ -1,15 +1,25 @@
 <svelte:head>
 	<title>About</title>
-	<meta name="description" content="About this app" />
+	<meta name="description" content="About this project" />
 </svelte:head>
 
 <section class="flex flex-col items-center">
 	<h1>About</h1>
-
-	<p>
-		This is a <a href="https://kit.svelte.dev">SvelteKit</a> app. You can make your own by typing the
-		following into your command line and following the prompts:
-	</p>
-
-	<pre>npm create svelte@latest</pre>
+	<div class="sm:w-2/3 xl:w-1/2 px-4 my-8 flex flex-col gap-3">
+		<p>
+			Welcome to the About page of my project, dedicated to putting the power of comment sorting
+			back into the hands of the YouTube community.
+		</p>
+		<p>
+			YouTube's current algorithm doesn't suit everyone's preferences, especially when it comes to
+			comments under older videos. It has a strong recency bias, often promoting new comments with
+			very few likes and overshadowing valuable older comments.
+		</p>
+		<p>
+			With this in mind, I have created a platform that allows you to easily access the top 20
+			comments from any YouTube video simply by entering its link. This user-friendly and unbiased
+			solution saves you time and ensures you can enjoy the most relevant and engaging comments
+			without the influence of YouTube's recency bias.
+		</p>
+	</div>
 </section>
