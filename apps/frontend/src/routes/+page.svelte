@@ -4,10 +4,14 @@
 	let videoURL = '';
 
 	const handleSubmit = () => {
-		const url = new URL(videoURL);
-		const videoId = url.searchParams.get('v');
+		const formatedURL =
+			videoURL.startsWith('https://') || videoURL.startsWith('http://')
+				? videoURL
+				: 'https://' + videoURL;
+		const url = new URL(formatedURL);
 
-		videoId ? goto(`/${videoId}`) : goto(url.pathname);
+		const videoId = url.searchParams.get('v');
+		videoId ? goto(`/${videoId}`) : goto(`/${url.pathname.replaceAll('/', '')}`);
 	};
 </script>
 
