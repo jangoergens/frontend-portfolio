@@ -12,6 +12,8 @@ jobs:
     env:
       TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
       TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
+      PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.PUBLIC_SUPABASE_ANON_KEY }}
+      PUBLIC_SUPABASE_URL: ${{ secrets.PUBLIC_SUPABASE_URL }}
 
     steps:
       - name: Check out code
@@ -32,14 +34,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Build
-        run: pnpm build
-
       - name: Lint
         run: pnpm lint
 
       - name: Typecheck
         run: pnpm check
+
+      - name: Build
+        run: pnpm build
 
       - name: Install Playwright Browsers
         run: npx playwright install chromium
