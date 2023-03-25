@@ -16,7 +16,7 @@
     "all": "git pull --rebase && pnpm install && pnpm build && pnpm check && pnpm format && pnpm lint && pnpm test"
   },
   "devDependencies": {
-    "prettier": "2.8.4",
+    "prettier": "2.8.7",
     "turbo": "1.8.3"
   },
   "engines": {
