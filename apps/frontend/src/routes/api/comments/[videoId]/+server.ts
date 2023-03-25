@@ -1,7 +1,7 @@
 import { env } from '$env/dynamic/private';
 import { supabase } from '$lib/supabaseClient';
 import type { RequestEvent } from '@sveltejs/kit';
-import type { RequiredCommentInfo, YoutubeCommentThreads } from '../../../youtube/[videoId]/page';
+import type { RequiredCommentInfo, YoutubeCommentThreads } from '../../../[videoId]/page';
 
 export async function GET({ params }: RequestEvent) {
 	if (env.GOOGLE_API_MODE === 'production') {
