@@ -13,7 +13,7 @@ importers:
   apps/frontend:
     specifiers:
       '@playwright/test': 1.32.1
-      '@supabase/supabase-js': 2.12.1
+      '@supabase/supabase-js': 2.13.0
       '@sveltejs/adapter-auto': 2.0.0
       '@sveltejs/kit': 1.14.0
       '@types/cookie': 0.5.1
@@ -34,7 +34,7 @@ importers:
       typescript: 5.0.2
       vite: 4.2.1
     dependencies:
-      '@supabase/supabase-js': 2.12.1
+      '@supabase/supabase-js': 2.13.0
     devDependencies:
       '@playwright/test': 1.32.1
       '@sveltejs/adapter-auto': 2.0.0_@sveltejs+kit@1.14.0
@@ -408,8 +408,8 @@ packages:
       - encoding
     dev: false
 
-  /@supabase/supabase-js/2.12.1:
-    resolution: {integrity: sha512-sni5tYUCjLd57xuFbL8iGP/hAq2rS/Bxh3StrGjO0v78bMcS+WPh6E/WV5SstvOrxS78RKI8fASm3jk8/UjVXA==}
+  /@supabase/supabase-js/2.13.0:
+    resolution: {integrity: sha512-D37k5BIwYa4/XNe9eEPz8W0L8MS5w0j16wFDd0twClJC/z+wA4tbcaeWm5Q8IsMeExPa0LrdSrQwPI5bBg6trg==}
     dependencies:
       '@supabase/functions-js': 2.1.0
       '@supabase/gotrue-js': 2.16.0
