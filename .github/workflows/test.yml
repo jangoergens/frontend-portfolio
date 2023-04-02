@@ -1,12 +1,11 @@
-name: Build -> Test
+name: Test
 
 on:
   pull_request:
     types: [opened, synchronize]
 
 jobs:
-  build:
-    name: Build and Test
+  test:
     timeout-minutes: 15
     runs-on: ubuntu-latest
     env:
@@ -28,7 +27,7 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
           cache: "pnpm"
 
       - name: Install dependencies
