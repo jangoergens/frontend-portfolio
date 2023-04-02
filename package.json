@@ -13,7 +13,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint",
     "test": "turbo run test",
-    "all": "git pull --rebase && pnpm install && pnpm build && pnpm check && pnpm format && pnpm lint && pnpm test"
+    "all": "pnpm install && pnpm lint && pnpm check && pnpm build && pnpm test"
   },
   "devDependencies": {
     "prettier": "2.8.7",
@@ -23,5 +23,5 @@
     "node": ">=16.14.0 < 19"
   },
   "dependencies": {},
-  "packageManager": "pnpm@7.30.5"
+  "packageManager": "pnpm@8.0.0"
 }
