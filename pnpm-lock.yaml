@@ -14,8 +14,8 @@ importers:
   apps/frontend:
     dependencies:
       '@supabase/supabase-js':
-        specifier: 2.13.1
-        version: 2.13.1
+        specifier: 2.19.0
+        version: 2.19.0
     devDependencies:
       '@playwright/test':
         specifier: 1.32.3
@@ -395,8 +395,8 @@ packages:
       - encoding
     dev: false
 
-  /@supabase/gotrue-js@2.16.0:
-    resolution: {integrity: sha512-k7curH5xxnQmUiG8AeFW7KEJST99vhFnBCidWFhuSSyLP1Ja8Ix3g4bmLUv209mhX8LmAaDMGKNQs8gG0MOKCw==}
+  /@supabase/gotrue-js@2.22.0:
+    resolution: {integrity: sha512-YBxg1AoMgXSFbEuamMyuJhKwscmK/eCkL8K7CenCjJJRVKfNHDYkM9F7VX9+atDDY6ejufdYz1auVfsqRrt9pQ==}
     dependencies:
       cross-fetch: 3.1.5
     transitivePeerDependencies:
@@ -411,8 +411,8 @@ packages:
       - encoding
     dev: false
 
-  /@supabase/realtime-js@2.7.1:
-    resolution: {integrity: sha512-WC0yPArBF/wPXwxKWTrRSMWWnFQCbhhUsX0u42x4OqUdDJtow6rzvDIZHWFZLh85UUBYIQ2++AabSNgzd3ubQg==}
+  /@supabase/realtime-js@2.7.2:
+    resolution: {integrity: sha512-Fi6xAl5PUkqnjl3wo4rdcQIbMG3+yTRX1aUZe/yfvTG84RMvmCXJ1yN6MmafVLeZpU1xkaz5Vx4L0tnHcLiy6w==}
     dependencies:
       '@types/phoenix': 1.5.5
       '@types/websocket': 1.0.5
@@ -421,22 +421,22 @@ packages:
       - supports-color
     dev: false
 
-  /@supabase/storage-js@2.3.1:
-    resolution: {integrity: sha512-BaPIvyvjuZW1V0CnfGKUZyzpBUXnsh0XD8eqTOYd+MdiGPmIPI0vtwnT4fAoK8mipp1vpcN62EVQaqeUnWXPtQ==}
+  /@supabase/storage-js@2.5.0:
+    resolution: {integrity: sha512-6brHcFA8Ba8tDw72/mSf+pIgDfWQYkd9BjAra/RSAA0uCy84kALGnxIpxsf6mv40ka2GNRzstRGIKRlUdJgi/g==}
     dependencies:
       cross-fetch: 3.1.5
     transitivePeerDependencies:
       - encoding
     dev: false
 
-  /@supabase/supabase-js@2.13.1:
-    resolution: {integrity: sha512-+Q3FMj0TuI6xJBTTREIRxuLW1QreZhtRxlF5+7aprmlVq1+GsMfnpBOpXcdyhcWWL8UcmaoMJD8tJiedXGCXlg==}
+  /@supabase/supabase-js@2.19.0:
+    resolution: {integrity: sha512-LO+uMy4lnmLvpdF5vGSEQgurxoj8qx4LiZve555JeAnrnuyubvDLZ8Kk5nU0+9KRi4VGQIeD5znqMh0OaACj4w==}
     dependencies:
       '@supabase/functions-js': 2.1.0
-      '@supabase/gotrue-js': 2.16.0
+      '@supabase/gotrue-js': 2.22.0
       '@supabase/postgrest-js': 1.4.1
-      '@supabase/realtime-js': 2.7.1
-      '@supabase/storage-js': 2.3.1
+      '@supabase/realtime-js': 2.7.2
+      '@supabase/storage-js': 2.5.0
       cross-fetch: 3.1.5
     transitivePeerDependencies:
       - encoding
