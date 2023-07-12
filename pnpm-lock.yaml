@@ -22,10 +22,10 @@ importers:
         version: 1.32.3
       '@sveltejs/adapter-auto':
         specifier: 2.0.1
-        version: 2.0.1(@sveltejs/kit@1.15.9)
+        version: 2.0.1(@sveltejs/kit@1.22.3)
       '@sveltejs/kit':
-        specifier: 1.15.9
-        version: 1.15.9(svelte@3.58.0)(vite@4.3.3)
+        specifier: 1.22.3
+        version: 1.22.3(svelte@3.58.0)(vite@4.3.3)
       '@types/cookie':
         specifier: 0.5.1
         version: 0.5.1
@@ -462,56 +462,72 @@ packages:
       - supports-color
     dev: false
 
-  /@sveltejs/adapter-auto@2.0.1(@sveltejs/kit@1.15.9):
+  /@sveltejs/adapter-auto@2.0.1(@sveltejs/kit@1.22.3):
     resolution: {integrity: sha512-anxxYMcQy7HWSKxN4YNaVcgNzCHtNFwygq72EA1Xv7c+5gSECOJ1ez1PYoLciPiFa7A3XBvMDQXUFJ2eqLDtAA==}
     peerDependencies:
       '@sveltejs/kit': ^1.0.0
     dependencies:
-      '@sveltejs/kit': 1.15.9(svelte@3.58.0)(vite@4.3.3)
+      '@sveltejs/kit': 1.22.3(svelte@3.58.0)(vite@4.3.3)
       import-meta-resolve: 3.0.0
     dev: true
 
-  /@sveltejs/kit@1.15.9(svelte@3.58.0)(vite@4.3.3):
-    resolution: {integrity: sha512-Og+4WlguPVPS0PmAHefp4KxvTVZfyDN09aORVXIdKSzqzodSJiLs7Fhi/Q0z0YjmcoNLWF24tI0a6mTusL6Yfg==}
+  /@sveltejs/kit@1.22.3(svelte@3.58.0)(vite@4.3.3):
+    resolution: {integrity: sha512-IpHD5wvuoOIHYaHQUBJ1zERD2Iz+fB/rBXhXjl8InKw6X4VKE9BSus+ttHhE7Ke+Ie9ecfilzX8BnWE3FeQyng==}
     engines: {node: ^16.14 || >=18}
     hasBin: true
     requiresBuild: true
     peerDependencies:
-      svelte: ^3.54.0
+      svelte: ^3.54.0 || ^4.0.0-next.0
       vite: ^4.0.0
     dependencies:
-      '@sveltejs/vite-plugin-svelte': 2.1.1(svelte@3.58.0)(vite@4.3.3)
+      '@sveltejs/vite-plugin-svelte': 2.4.2(svelte@3.58.0)(vite@4.3.3)
       '@types/cookie': 0.5.1
       cookie: 0.5.0
-      devalue: 4.3.0
+      devalue: 4.3.2
       esm-env: 1.0.0
       kleur: 4.1.5
       magic-string: 0.30.0
       mime: 3.0.0
       sade: 1.8.1
-      set-cookie-parser: 2.5.1
+      set-cookie-parser: 2.6.0
       sirv: 2.0.2
       svelte: 3.58.0
-      tiny-glob: 0.2.9
       undici: 5.22.0
       vite: 4.3.3
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@sveltejs/vite-plugin-svelte@2.1.1(svelte@3.58.0)(vite@4.3.3):
-    resolution: {integrity: sha512-7YeBDt4us0FiIMNsVXxyaP4Hwyn2/v9x3oqStkHU3ZdIc5O22pGwUwH33wUqYo+7Itdmo8zxJ45Qvfm3H7UUjQ==}
+  /@sveltejs/vite-plugin-svelte-inspector@1.0.3(@sveltejs/vite-plugin-svelte@2.4.2)(svelte@3.58.0)(vite@4.3.3):
+    resolution: {integrity: sha512-Khdl5jmmPN6SUsVuqSXatKpQTMIifoQPDanaxC84m9JxIibWvSABJyHpyys0Z+1yYrxY5TTEQm+6elh0XCMaOA==}
     engines: {node: ^14.18.0 || >= 16}
     peerDependencies:
-      svelte: ^3.54.0
+      '@sveltejs/vite-plugin-svelte': ^2.2.0
+      svelte: ^3.54.0 || ^4.0.0
       vite: ^4.0.0
     dependencies:
+      '@sveltejs/vite-plugin-svelte': 2.4.2(svelte@3.58.0)(vite@4.3.3)
+      debug: 4.3.4
+      svelte: 3.58.0
+      vite: 4.3.3
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /@sveltejs/vite-plugin-svelte@2.4.2(svelte@3.58.0)(vite@4.3.3):
+    resolution: {integrity: sha512-ePfcC48ftMKhkT0OFGdOyycYKnnkT6i/buzey+vHRTR/JpQvuPzzhf1PtKqCDQfJRgoPSN2vscXs6gLigx/zGw==}
+    engines: {node: ^14.18.0 || >= 16}
+    peerDependencies:
+      svelte: ^3.54.0 || ^4.0.0
+      vite: ^4.0.0
+    dependencies:
+      '@sveltejs/vite-plugin-svelte-inspector': 1.0.3(@sveltejs/vite-plugin-svelte@2.4.2)(svelte@3.58.0)(vite@4.3.3)
       debug: 4.3.4
       deepmerge: 4.3.1
       kleur: 4.1.5
       magic-string: 0.30.0
       svelte: 3.58.0
-      svelte-hmr: 0.15.1(svelte@3.58.0)
+      svelte-hmr: 0.15.2(svelte@3.58.0)
       vite: 4.3.3
       vitefu: 0.2.4(vite@4.3.3)
     transitivePeerDependencies:
@@ -935,8 +951,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /devalue@4.3.0:
-    resolution: {integrity: sha512-n94yQo4LI3w7erwf84mhRUkUJfhLoCZiLyoOZ/QFsDbcWNZePrLwbQpvZBUG2TNxwV3VjCKPxkiiQA6pe3TrTA==}
+  /devalue@4.3.2:
+    resolution: {integrity: sha512-KqFl6pOgOW+Y6wJgu80rHpo2/3H07vr8ntR9rkkFIRETewbf5GaYYcakYfiKz89K+sLsuPkQIZaXDMjUObZwWg==}
     dev: true
 
   /didyoumean@1.2.2:
@@ -1297,10 +1313,6 @@ packages:
       type-fest: 0.20.2
     dev: true
 
-  /globalyzer@0.1.0:
-    resolution: {integrity: sha512-40oNTM9UfG6aBmuKxk/giHn5nQ8RVz/SS4Ir6zgzOv9/qC3kKZ9v4etGTcJbEl/NyVQH7FGU7d+X1egr57Md2Q==}
-    dev: true
-
   /globby@11.1.0:
     resolution: {integrity: sha512-jhIXaOzy1sb8IyocaruWSn1TjmnBVs8Ayhcy83rmxNJ8q2uWKCAj3CnJY+KpGSXCueAPc0i05kVvVKtP1t9S3g==}
     engines: {node: '>=10'}
@@ -1311,10 +1323,6 @@ packages:
       ignore: 5.2.0
       merge2: 1.4.1
       slash: 3.0.0
-    dev: true
-
-  /globrex@0.1.2:
-    resolution: {integrity: sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg==}
     dev: true
 
   /graceful-fs@4.2.10:
@@ -1889,8 +1897,8 @@ packages:
       lru-cache: 6.0.0
     dev: true
 
-  /set-cookie-parser@2.5.1:
-    resolution: {integrity: sha512-1jeBGaKNGdEq4FgIrORu/N570dwoPYio8lSoYLWmX7sQ//0JY08Xh9o5pBcgmHQ/MbsYp/aZnOe1s1lIsbLprQ==}
+  /set-cookie-parser@2.6.0:
+    resolution: {integrity: sha512-RVnVQxTXuerk653XfuliOxBP81Sf0+qfQE73LIYKcyMYHG94AuH0kgrQpRDuTZnSmjpysHmzxJXKNfa6PjFhyQ==}
     dev: true
 
   /shebang-command@2.0.0:
@@ -2011,11 +2019,11 @@ packages:
       - sugarss
     dev: true
 
-  /svelte-hmr@0.15.1(svelte@3.58.0):
-    resolution: {integrity: sha512-BiKB4RZ8YSwRKCNVdNxK/GfY+r4Kjgp9jCLEy0DuqAKfmQtpL38cQK3afdpjw4sqSs4PLi3jIPJIFp259NkZtA==}
+  /svelte-hmr@0.15.2(svelte@3.58.0):
+    resolution: {integrity: sha512-q/bAruCvFLwvNbeE1x3n37TYFb3mTBJ6TrCq6p2CoFbSTNhDE9oAtEfpy+wmc9So8AG0Tja+X0/mJzX9tSfvIg==}
     engines: {node: ^12.20 || ^14.13.1 || >= 16}
     peerDependencies:
-      svelte: '>=3.19.0'
+      svelte: ^3.19.0 || ^4.0.0-next.0
     dependencies:
       svelte: 3.58.0
     dev: true
@@ -2120,13 +2128,6 @@ packages:
     resolution: {integrity: sha512-RVZSIV5IG10Hk3enotrhvz0T9em6cyHBLkH/YAZuKqd8hRkKhSfCGIcP2KUY0EPxndzANBmNllzWPwak+bheSw==}
     dependencies:
       any-promise: 1.3.0
-    dev: true
-
-  /tiny-glob@0.2.9:
-    resolution: {integrity: sha512-g/55ssRPUjShh+xkfx9UPDXqhckHEsHr4Vd9zX55oSdGZc/MD0m3sferOkwWtp98bv+kcVfEHtRJgBVJzelrzg==}
-    dependencies:
-      globalyzer: 0.1.0
-      globrex: 0.1.2
     dev: true
 
   /to-regex-range@5.0.1:
