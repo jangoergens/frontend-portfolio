@@ -51,7 +51,7 @@
 		>
 	</form>
 
-	<div class="flex flex-col sm:w-2/3 md:w-1/2 xl:w-2/5  gap-4 text-center font-semibold ">
+	<div class="flex flex-col sm:w-2/3 md:w-1/2 xl:w-2/5 gap-4 text-center font-semibold">
 		<p>
 			The existing YouTube comment-sorting algorithm may not cater to everyone's preferences,
 			particularly when browsing older videos.
