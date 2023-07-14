@@ -1,6 +1,6 @@
 {
   "name": "youtube-top-comments",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "workspaces": [
     "apps/*",
@@ -16,12 +16,11 @@
     "all": "pnpm install && pnpm lint && pnpm check && pnpm build && pnpm test"
   },
   "devDependencies": {
-    "prettier": "2.8.8",
-    "turbo": "1.9.3"
+    "prettier": "3.0.0",
+    "turbo": "1.10.7"
   },
   "engines": {
-    "node": ">=16.14.0 < 19"
+    "node": ">=18 < 19"
   },
-  "dependencies": {},
-  "packageManager": "pnpm@8.3.1"
+  "packageManager": "pnpm@8.6.7"
 }
