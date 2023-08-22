@@ -18,8 +18,8 @@ importers:
   apps/frontend:
     dependencies:
       '@supabase/supabase-js':
-        specifier: 2.32.0
-        version: 2.32.0
+        specifier: 2.33.0
+        version: 2.33.0
     devDependencies:
       '@playwright/test':
         specifier: 1.37.1
@@ -469,8 +469,8 @@ packages:
       - encoding
     dev: false
 
-  /@supabase/supabase-js@2.32.0:
-    resolution: {integrity: sha512-1ShFhuOI5Du7604nlCelBsRD61daXk2O0qwjumoz35bqrYThnSPPtpJqZOHw6Mg6o7mLjIInYLh/DBlh8UvzRg==}
+  /@supabase/supabase-js@2.33.0:
+    resolution: {integrity: sha512-8cUAwRRPhDSJrxdsJDsFy3dHA7uhNeVyNOfGCholywge24EeNIuIanbBAT2LCRaGmJjQEG98uXSQoD14hy8iWg==}
     dependencies:
       '@supabase/functions-js': 2.1.0
       '@supabase/gotrue-js': 2.46.1
