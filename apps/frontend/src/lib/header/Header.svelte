@@ -3,7 +3,7 @@
 	import logo from '$lib/assets/logo.png';
 </script>
 
-<header class="flex h-16 items-center justify-center">
+<header class="flex h-16 flex-shrink-0 items-center justify-center">
 	<a href="/">
 		<img src={logo} alt="TopCommentFinder Logo" class="h-12 rounded-lg" />
 	</a>
