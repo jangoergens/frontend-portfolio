@@ -6,6 +6,7 @@
 		"build": "vite build",
 		"preview": "vite preview",
 		"test": "playwright test",
+		"install-test-browser": "playwright install chromium",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
