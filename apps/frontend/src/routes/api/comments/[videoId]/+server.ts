@@ -95,16 +95,16 @@ export async function GET({ params }: RequestEvent) {
 		const randomComments: RequiredCommentInfo[] = [
 			{
 				textDisplay: 'This video was so informative, thank you for sharing!',
-				authorDisplayName: 'InfoSeeker',
+				authorDisplayName: 'Rupert',
 				authorProfileImageUrl:
-					'https://yt3.ggpht.com/ytc/AL5GRJUHXLtTVSMbXWeiP721qiXcmdKuxt6aoy5auNO8=s48-c-k-c0x00ffffff-no-rj',
-				authorChannelUrl: 'http://www.youtube.com/channel/UClLFg97nBIWbLdT2VZPQELg',
+					'https://yt3.googleusercontent.com/ytc/APkrFKY7Vu_vJ-pdONXwecBHQYTB9HHRXoodxs3HJvepSw=s176-c-k-c0x00ffffff-no-rj',
+				authorChannelUrl: 'https://www.youtube.com/channel/UC73JBYrwukH8T8KTia7GqUQ',
 				likeCount: '0',
 				publishedAt: '2023-03-17T09:22:07Z'
 			},
 			{
 				textDisplay: 'The cinematography in this video is stunning!',
-				authorDisplayName: 'VisualAdmirer',
+				authorDisplayName: 'Schoko-PetraHDDD',
 				authorProfileImageUrl:
 					'https://yt3.ggpht.com/ytc/AL5GRJVrLn0_v6na09Xgcihe3cozSusC1pWdLbLm=s48-c-k-c0x00ffffff-no-rj',
 				authorChannelUrl: 'http://www.youtube.com/channel/UCgV0uu8xZaMvHh2KCkuxM9Q',
@@ -113,12 +113,38 @@ export async function GET({ params }: RequestEvent) {
 			},
 			{
 				textDisplay: 'I just found your channel and I love your content!',
-				authorDisplayName: 'NewSubscriber',
+				authorDisplayName: 'Calciumchlorid',
 				authorProfileImageUrl:
-					'https://yt3.ggpht.com/ytc/AL5GRJUHXLtTVSMbXWeiP721qiXcmdKuxt6aoy5auNO8=s48-c-k-c0x00ffffff-no-rj',
+					'https://yt3.googleusercontent.com/ytc/APkrFKazjspTLHbTa_xqqWFD1M76QXYd2GDYtyJhEoFq=s176-c-k-c0x00ffffff-no-rj',
 				authorChannelUrl: 'http://www.youtube.com/channel/UClLFg97nBIWbLdT2VZPQELg',
 				likeCount: '3',
 				publishedAt: '2023-03-17T12:45:00Z'
+			},
+			{
+				textDisplay: 'Amazing video, really helped me understand the topic!',
+				authorDisplayName: 'Studio23 Media',
+				authorProfileImageUrl:
+					'https://yt3.googleusercontent.com/ytc/APkrFKbFAdhXEE-J--qiGcylcfew2Jw38tfDouCxu0csog=s176-c-k-c0x00ffffff-no-rj',
+				authorChannelUrl: 'https://www.youtube.com/channel/UCKmj57RRLKy_v2e1vadLeDw',
+				likeCount: '20',
+				publishedAt: '2023-03-21T09:30:00Z'
+			},
+			{
+				textDisplay: 'Your editing skills are on point 👌',
+				authorDisplayName: 'Fred Hollingsworth',
+				authorProfileImageUrl:
+					'https://yt3.googleusercontent.com/ytc/APkrFKbl9twHpBJ6Xol7MpKH8hXynfFB3wAgR1SFVRVJrw=s176-c-k-c0x00ffffff-no-rj',
+				authorChannelUrl: 'https://www.youtube.com/channel/UCMLShsxixseJQyB6lRfqZxQ',
+				likeCount: '7',
+				publishedAt: '2023-03-18T15:00:00Z'
+			},
+			{
+				textDisplay: "Keep up the great work, can't wait for the next video!",
+				authorDisplayName: 'Invalid Demo User',
+				authorProfileImageUrl: 'https://invalid-url.com',
+				authorChannelUrl: 'https://invalid-url.com',
+				likeCount: '12',
+				publishedAt: '2023-03-20T11:15:00Z'
 			}
 		].sort((a, b) => Number(b.likeCount) - Number(a.likeCount));
 		return new Response(JSON.stringify(randomComments));
