@@ -1,67 +1,31 @@
+# Frontend Portfolio
+
+Welcome to my portfolio! This monorepo is powered by [Turborepo](https://turborepo.org) and contains a selection of my best frontend projects.
+
 ## Getting started
 
-Run the command `pnpm all` to install all dependencies and to run the entire pipeline.
+Run the command `pnpm all` to install all dependencies, build the project, and run the test suite. After that, you can run `pnpm start` to start all projects, or navigate to the project you want to run and run `pnpm start` there.
 
 ## What's inside?
 
 This turborepo uses [pnpm](https://pnpm.io) as a package manager. It includes the following packages/apps:
 
-### Utilities
+- [top-comment-finder](./apps/top-comment-finder): A website that finds the top comments under a YouTube video.
 
-This turborepo has some additional tools already setup for you:
+## Utilities Used
+
+Common:
 
 - [TypeScript](https://www.typescriptlang.org/) for static type checking
+- [Renovate Bot](https://docs.renovatebot.com/) for automated dependency updates
+- [Github Actions](https://github.com/features/actions) for CI/CD
 - [ESLint](https://eslint.org/) for code linting
 - [Prettier](https://prettier.io) for code formatting
 
-### Test
+Top Comment Finder:
 
-Install Playwright browsers with `pnpm instal-test-browser` in the main directory or `pnpm exec playwright install` inside of `apps/frontend` folder.
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm run build
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm run dev
-```
-
-### Remote Caching
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.org/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-pnpm dlx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your turborepo:
-
-```
-pnpm dlx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Pipelines](https://turborepo.org/docs/core-concepts/pipelines)
-- [Caching](https://turborepo.org/docs/core-concepts/caching)
-- [Remote Caching](https://turborepo.org/docs/core-concepts/remote-caching)
-- [Scoped Tasks](https://turborepo.org/docs/core-concepts/scopes)
-- [Configuration Options](https://turborepo.org/docs/reference/configuration)
-- [CLI Usage](https://turborepo.org/docs/reference/command-line-reference)
+- [Playwright](https://playwright.dev/) for end-to-end testing
+- [Tailwind CSS](https://tailwindcss.com/) for styling
+- [Vite](https://vitejs.dev/) for bundling
+- [Svelte](https://svelte.dev/) for the frontend framework
+- [Vercel](https://vercel.com/) for hosting
