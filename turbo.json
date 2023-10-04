@@ -5,8 +5,11 @@
       "dependsOn": ["check", "^build"],
       "outputs": ["dist/**", ".next/**"]
     },
+    "install-test-browser": {
+      "outputs": []
+    },
     "test": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["^build", "^install-test-browser"],
       "outputs": []
     },
     "lint": {

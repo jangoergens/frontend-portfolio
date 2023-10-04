@@ -1,3 +1,7 @@
+## Getting started
+
+Run the command `pnpm all` to install all dependencies and to run the entire pipeline.
+
 ## What's inside?
 
 This turborepo uses [pnpm](https://pnpm.io) as a package manager. It includes the following packages/apps:
@@ -12,7 +16,7 @@ This turborepo has some additional tools already setup for you:
 
 ### Test
 
-Install Playwright browsers with `pnpm exec playwright install` inside of `apps/frontend` folder.
+Install Playwright browsers with `pnpm instal-test-browser` in the main directory or `pnpm exec playwright install` inside of `apps/frontend` folder.
 
 ### Build
 
