@@ -1,38 +1,11 @@
-# create-svelte
+# Top Comment Finder - Beyond the Algorithm
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+## Getting Started
 
-## Creating a project
+Run `pnpm all` in the root repo. This will install all dependencies, build the project, and run the test suite. After that, you can run `pnpm start` inside of this folder to start the local website.
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Why this project?
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+The existing YouTube comment-sorting algorithm may not cater to everyone's preferences, particularly when browsing older videos.
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+To address this issue, I've developed a user-friendly platform that enables you to effortlessly access the genuine top comments from any YouTube video. All you need to do is enter the video's link.
