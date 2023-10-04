@@ -1,5 +1,5 @@
 {
-	"name": "youtube-top-comments-frontend",
+	"name": "top-comment-finder",
 	"version": "0.1.0",
 	"scripts": {
 		"start": "vite dev",

@@ -8,7 +8,7 @@ jobs:
   deploy:
     defaults:
       run:
-        working-directory: apps/frontend
+        working-directory: apps/top-comment-finder
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
