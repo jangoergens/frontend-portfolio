@@ -2,7 +2,10 @@ name: Deploy-TopCommentFinder
 
 on:
   push:
-    branches: ["main"]
+    branches:
+      - "main"
+    paths:
+      - "apps/top-comment-finder/**"
 
 jobs:
   deploy:
