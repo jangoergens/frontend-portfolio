@@ -9,7 +9,7 @@
 		"install-test-browser": "playwright install chromium",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"lint": "prettier --check . && eslint .",
+		"lint": "prettier --check . && eslint . --report-unused-disable-directives --max-warnings 0",
 		"format": "prettier --write ."
 	},
 	"devDependencies": {
