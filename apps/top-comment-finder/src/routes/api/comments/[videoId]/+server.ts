@@ -1,9 +1,12 @@
 import { env } from '$env/dynamic/private';
 import { supabase } from '$lib/supabaseClient';
 import type { RequestEvent } from '@sveltejs/kit';
-import type { RequiredCommentInfo, YoutubeCommentThreads } from '../../../[videoId]/page';
+import type { RequiredCommentInfo, YoutubeCommentThreads } from '$lib/types/youtubeApiTypes';
 
 export async function GET({ params }: RequestEvent) {
+	if (!params.videoId) {
+		return new Response('No video ID provided');
+	}
 	if (env.GOOGLE_API_MODE === 'production') {
 		const { data } = await supabase.from('videos').select().eq('video_id', params.videoId);
 		if (data && data[0]) {
@@ -47,7 +50,7 @@ export async function GET({ params }: RequestEvent) {
 				currentCommentThreadPage++;
 
 				if (response.ok) {
-					commentThreads = await response.json();
+					commentThreads = (await response.json()) as YoutubeCommentThreads;
 					commentThreads?.items.map((commentThread) => {
 						const topComment: RequiredCommentInfo = {
 							textDisplay: commentThread.snippet.topLevelComment.snippet.textDisplay,
@@ -74,11 +77,10 @@ export async function GET({ params }: RequestEvent) {
 				commentThreads?.nextPageToken &&
 				currentCommentThreadPage < MAX_COMMENT_THREAD_PAGES
 			);
-
 			await supabase.from('comments').insert(
 				topComments.map((comment) => {
 					return {
-						video_id: params.videoId,
+						video_id: params.videoId!,
 						text_display: comment.textDisplay,
 						author_display_name: comment.authorDisplayName,
 						author_profile_image_url: comment.authorProfileImageUrl,
