@@ -5,7 +5,7 @@
 
 <section class="flex flex-col items-center">
 	<h1>About</h1>
-	<div class="sm:w-2/3 xl:w-1/2 px-4 my-8 flex flex-col gap-3">
+	<div class="my-8 flex flex-col gap-3 px-4 sm:w-2/3 xl:w-1/2">
 		<p>
 			Welcome to the About page of my project, dedicated to putting the power of comment sorting
 			back into the hands of the YouTube community.

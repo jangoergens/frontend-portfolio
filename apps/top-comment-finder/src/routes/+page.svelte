@@ -4,7 +4,7 @@
 
 	let videoURL = '';
 
-	const handleSubmit = () => {
+	const handleSubmit = async () => {
 		const formatedURL =
 			videoURL.startsWith('https://') || videoURL.startsWith('http://')
 				? videoURL
@@ -12,7 +12,7 @@
 		const url = new URL(formatedURL);
 
 		const videoId = url.searchParams.get('v');
-		videoId ? goto(`/${videoId}`) : goto(`/${url.pathname.replaceAll('/', '')}`);
+		videoId ? await goto(`/${videoId}`) : await goto(`/${url.pathname.replaceAll('/', '')}`);
 	};
 </script>
 
@@ -24,10 +24,10 @@
 	/>
 </svelte:head>
 
-<section class="flex flex-col justify-center items-center">
-	<h1 class="font-extrabold text-2xl sm:text-3xl lg:text-4xl tracking-tight text-center">
+<section class="flex flex-col items-center justify-center">
+	<h1 class="text-center text-2xl font-extrabold tracking-tight sm:text-3xl lg:text-4xl">
 		TopCommentFinder - <span
-			class="from-orange-500 via-yellow-500 to-green-500 text-transparent bg-clip-text bg-gradient-to-r"
+			class="bg-gradient-to-r from-orange-500 via-yellow-500 to-green-500 bg-clip-text text-transparent"
 			>Beyond the Algorithm</span
 		>
 	</h1>
@@ -36,10 +36,10 @@
 	</h2>
 	<form
 		on:submit|preventDefault={handleSubmit}
-		class="my-8 w-full sm:w-2/3 lg:max-w-xl py-8 flex gap-2 items-center"
+		class="my-8 flex w-full items-center gap-2 py-8 sm:w-2/3 lg:max-w-xl"
 	>
 		<input
-			class="border-2 border-black rounded-full h-10 px-2 w-5/6 text-center"
+			class="h-10 w-5/6 rounded-full border-2 border-black px-2 text-center"
 			type="text"
 			name="videoSearch"
 			id="videoSearch"
@@ -51,7 +51,7 @@
 		>
 	</form>
 
-	<div class="flex flex-col sm:w-2/3 md:w-1/2 xl:w-2/5 gap-4 text-center font-semibold">
+	<div class="flex flex-col gap-4 text-center font-semibold sm:w-2/3 md:w-1/2 xl:w-2/5">
 		<p>
 			The existing YouTube comment-sorting algorithm may not cater to everyone's preferences,
 			particularly when browsing older videos.

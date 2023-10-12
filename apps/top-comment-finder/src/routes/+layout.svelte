@@ -6,7 +6,7 @@
 
 <Header />
 
-<main class="py-4 lg:px-40 px-4">
+<main class="px-4 py-4 lg:px-40">
 	<slot />
 </main>
 

@@ -1,14 +1,14 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import type { RequiredCommentInfo } from './page';
 	import thumbsUp from '$lib/assets/thumbsUp.svg';
 	import avatar from '$lib/assets/avatar.svg';
+	import type { RequiredCommentInfo } from '$lib/types/youtubeApiTypes';
 
 	const videoId = $page.params.videoId;
-	const fetchComments = async (): Promise<RequiredCommentInfo[]> => {
+	const fetchComments = async () => {
 		const response = await fetch(`/api/comments/${videoId}`);
 
-		return await response.json();
+		return response.json() as Promise<RequiredCommentInfo[]>;
 	};
 
 	function shortenNumber(num: number): string {
@@ -22,7 +22,7 @@
 	}
 </script>
 
-<div class="flex justify-center items-center flex-col gap-4">
+<div class="flex flex-col items-center justify-center gap-4">
 	<h1>Selected Video</h1>
 	<iframe
 		class="aspect-video w-full md:max-w-xl"
@@ -38,22 +38,22 @@
 			<h2>Top Comments for this Video</h2>
 			<h3>{comments.length}/20 comments</h3>
 		</div>
-		<ol class="flex flex-col gap-4 items-center w-full">
+		<ol class="flex w-full flex-col items-center gap-4">
 			{#each comments as comment}
 				<li
-					class="border-2 rounded-lg p-2 flex gap-2 w-full md:w-1/2 items-center bg-white shadow-sm"
+					class="flex w-full items-center gap-2 rounded-lg border-2 bg-white p-2 shadow-sm md:w-1/2"
 				>
 					<a href={comment.authorChannelUrl} class="w-8">
 						<object
 							data={comment.authorProfileImageUrl}
 							type="image/jpeg"
 							title={'Profile Picture of ' + comment.authorDisplayName}
-							class="rounded-full w-full"
+							class="w-full rounded-full"
 						>
 							<img src={avatar} alt="generic user avatar" class="rounded-full" />
 						</object>
 					</a>
-					<div class="flex flex-col break-words w-5/6">
+					<div class="flex w-5/6 flex-col break-words">
 						<span>{comment.textDisplay}</span>
 						<div>
 							<a href={comment.authorChannelUrl} class="text-sm font-semibold"
@@ -64,7 +64,7 @@
 							>
 						</div>
 					</div>
-					<div class="flex flex-col justify-center ml-auto w-8 items-center">
+					<div class="ml-auto flex w-8 flex-col items-center justify-center">
 						<img src={thumbsUp} alt="Thumbs Up" class="w-4 max-w-none" />
 						<span>{shortenNumber(Number(comment.likeCount))}</span>
 					</div>
