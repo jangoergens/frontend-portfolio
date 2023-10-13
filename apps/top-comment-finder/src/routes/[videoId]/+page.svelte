@@ -1,8 +1,9 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-	import thumbsUp from '$lib/assets/thumbsUp.svg';
-	import avatar from '$lib/assets/avatar.svg';
 	import type { RequiredCommentInfo } from '$lib/types/youtubeApiTypes';
+
+	import { page } from '$app/stores';
+	import avatar from '$lib/assets/avatar.svg';
+	import thumbsUp from '$lib/assets/thumbsUp.svg';
 
 	const videoId = $page.params.videoId;
 	const fetchComments = async () => {
@@ -25,11 +26,11 @@
 <div class="flex flex-col items-center justify-center gap-4">
 	<h1>Selected Video</h1>
 	<iframe
+		allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+		allowfullscreen
 		class="aspect-video w-full md:max-w-xl"
 		src={'https://www.youtube.com/embed/' + videoId}
 		title="YouTube video player"
-		allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-		allowfullscreen
 	/>
 	{#await fetchComments()}
 		<p class="animate-pulse">...loading comments</p>
@@ -43,20 +44,20 @@
 				<li
 					class="flex w-full items-center gap-2 rounded-lg border-2 bg-white p-2 shadow-sm md:w-1/2"
 				>
-					<a href={comment.authorChannelUrl} class="w-8">
+					<a class="w-8" href={comment.authorChannelUrl}>
 						<object
-							data={comment.authorProfileImageUrl}
-							type="image/jpeg"
-							title={'Profile Picture of ' + comment.authorDisplayName}
 							class="w-full rounded-full"
+							data={comment.authorProfileImageUrl}
+							title={'Profile Picture of ' + comment.authorDisplayName}
+							type="image/jpeg"
 						>
-							<img src={avatar} alt="generic user avatar" class="rounded-full" />
+							<img alt="generic user avatar" class="rounded-full" src={avatar} />
 						</object>
 					</a>
 					<div class="flex w-5/6 flex-col break-words">
 						<span>{comment.textDisplay}</span>
 						<div>
-							<a href={comment.authorChannelUrl} class="text-sm font-semibold"
+							<a class="text-sm font-semibold" href={comment.authorChannelUrl}
 								>by {comment.authorDisplayName}</a
 							>
 							<span class="text-sm"
@@ -65,7 +66,7 @@
 						</div>
 					</div>
 					<div class="ml-auto flex w-8 flex-col items-center justify-center">
-						<img src={thumbsUp} alt="Thumbs Up" class="w-4 max-w-none" />
+						<img alt="Thumbs Up" class="w-4 max-w-none" src={thumbsUp} />
 						<span>{shortenNumber(Number(comment.likeCount))}</span>
 					</div>
 				</li>

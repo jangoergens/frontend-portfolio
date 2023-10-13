@@ -1,6 +1,6 @@
 <svelte:head>
 	<title>About</title>
-	<meta name="description" content="About this project" />
+	<meta content="About this project" name="description" />
 </svelte:head>
 
 <section class="flex flex-col items-center">

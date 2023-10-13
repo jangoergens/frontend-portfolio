@@ -19,8 +19,8 @@
 <svelte:head>
 	<title>TopCommentFinder - Beyond the Algorithm</title>
 	<meta
-		name="description"
 		content="TopCommentFinder: Effortlessly discover the genuine top comments on any YouTube video. Enhance your viewing experience by accessing the best comments without relying on YouTube's default algorithm."
+		name="description"
 	/>
 </svelte:head>
 
@@ -35,19 +35,19 @@
 		Access top comments without YouTube's limitations
 	</h2>
 	<form
-		on:submit|preventDefault={handleSubmit}
 		class="my-8 flex w-full items-center gap-2 py-8 sm:w-2/3 lg:max-w-xl"
+		on:submit|preventDefault={handleSubmit}
 	>
 		<input
-			class="h-10 w-5/6 rounded-full border-2 border-black px-2 text-center"
-			type="text"
-			name="videoSearch"
-			id="videoSearch"
-			placeholder="Paste YouTube Video URL"
 			bind:value={videoURL}
+			class="h-10 w-5/6 rounded-full border-2 border-black px-2 text-center"
+			id="videoSearch"
+			name="videoSearch"
+			placeholder="Paste YouTube Video URL"
+			type="text"
 		/>
-		<button type="submit" title="Search" class="h-9 py-1"
-			><img src={searchIcon} alt="Search Icon" class="h-full fill-white" /></button
+		<button class="h-9 py-1" title="Search" type="submit"
+			><img alt="Search Icon" class="h-full fill-white" src={searchIcon} /></button
 		>
 	</form>
 
@@ -63,5 +63,5 @@
 		</p>
 	</div>
 
-	<a href="/czgOWmtGVGs" class="my-8"><button type="button">Give it a try!</button></a>
+	<a class="my-8" href="/czgOWmtGVGs"><button type="button">Give it a try!</button></a>
 </section>

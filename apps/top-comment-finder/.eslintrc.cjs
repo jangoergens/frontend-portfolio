@@ -2,7 +2,7 @@ module.exports = {
 	env: {
 		browser: true,
 		es2022: true,
-		node: true
+		node: true,
 	},
 	extends: [
 		'eslint:recommended',
@@ -10,24 +10,24 @@ module.exports = {
 		'plugin:@typescript-eslint/recommended-requiring-type-checking',
 		'plugin:perfectionist/recommended-natural',
 		'plugin:svelte/recommended',
-		'prettier'
+		'prettier',
 	],
 	overrides: [
 		{
 			files: ['*.svelte'],
 			parser: 'svelte-eslint-parser',
 			parserOptions: {
-				parser: '@typescript-eslint/parser'
-			}
-		}
+				parser: '@typescript-eslint/parser',
+			},
+		},
 	],
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
 		ecmaVersion: 'latest',
 		extraFileExtensions: ['.svelte'],
 		project: true,
-		sourceType: 'module'
+		sourceType: 'module',
 	},
 	plugins: ['@typescript-eslint', 'perfectionist'],
-	root: true
+	root: true,
 };

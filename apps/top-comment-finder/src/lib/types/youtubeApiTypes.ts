@@ -1,52 +1,52 @@
 export interface RequiredCommentInfo {
-	textDisplay: string;
+	authorChannelUrl: string;
 	authorDisplayName: string;
 	authorProfileImageUrl: string;
-	authorChannelUrl: string;
 	likeCount: string;
 	publishedAt: string;
+	textDisplay: string;
 }
 
 export interface TopLevelCommentInfo extends RequiredCommentInfo {
-	videoId: string;
-	textOriginal: string;
 	authorChannelId: {
 		value: string;
 	};
 	canRate: string;
-	viewerRating: string;
+	textOriginal: string;
 	updatedAt: string;
+	videoId: string;
+	viewerRating: string;
 }
 
 export interface TopLevelComment {
-	kind: string;
 	etag: string;
 	id: string;
+	kind: string;
 	snippet: TopLevelCommentInfo;
 }
 
 export interface Snippet {
-	videoId: string;
-	topLevelComment: TopLevelComment;
 	canReply: string;
-	totalReplyCount: number;
 	isPublic: string;
+	topLevelComment: TopLevelComment;
+	totalReplyCount: number;
+	videoId: string;
 }
 
 export interface CommentThread {
-	kind: string;
 	etag: string;
 	id: string;
+	kind: string;
 	snippet: Snippet;
 }
 
 export interface YoutubeCommentThreads {
-	kind: string;
 	etag: string;
+	items: CommentThread[];
+	kind: string;
 	nextPageToken: string;
 	pageInfo: {
-		totalResults: number;
 		resultsPerPage: number;
+		totalResults: number;
 	};
-	items: CommentThread[];
 }

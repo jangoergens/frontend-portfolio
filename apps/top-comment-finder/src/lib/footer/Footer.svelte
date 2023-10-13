@@ -5,12 +5,12 @@
 <footer class="mt-auto flex justify-center gap-2 py-4">
 	<span>Copyright © {new Date().getFullYear()}</span>
 	<a
-		target="_blank"
-		rel="noopener noreferrer"
-		href="https://www.github.com/jangoergens"
 		class="flex gap-1 font-bold"
+		href="https://www.github.com/jangoergens"
+		rel="noopener noreferrer"
+		target="_blank"
 	>
 		Jan Görgens
-		<img id="github-logo" src={githubLogo} alt="Github Logo" />
+		<img alt="Github Logo" id="github-logo" src={githubLogo} />
 	</a>
 </footer>

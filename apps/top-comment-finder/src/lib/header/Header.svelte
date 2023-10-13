@@ -5,12 +5,12 @@
 
 <header class="flex h-16 flex-shrink-0 items-center justify-center">
 	<a href="/">
-		<img src={logo} alt="TopCommentFinder Logo" class="h-12 rounded-lg" />
+		<img alt="TopCommentFinder Logo" class="h-12 rounded-lg" src={logo} />
 	</a>
 	<nav data-sveltekit-preload-data>
 		<ul class="flex h-12">
 			<li class:active={$page.url.pathname === '/about'}>
-				<a href="/about" class="flex h-full items-center px-4 font-bold hover:text-orange-500"
+				<a class="flex h-full items-center px-4 font-bold hover:text-orange-500" href="/about"
 					>About</a
 				>
 			</li>
