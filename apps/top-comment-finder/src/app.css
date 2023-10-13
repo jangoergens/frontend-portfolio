@@ -19,3 +19,12 @@
 		@apply rounded-md bg-orange-500 px-3 py-2 text-sm font-semibold text-white hover:bg-orange-400;
 	}
 }
+
+@layer utilities {
+	@media screen and (min-width: 960px) {
+		.fix-scrollbar-jump {
+			margin-left: calc(100vw - 100%);
+			margin-right: 0;
+		}
+	}
+}
