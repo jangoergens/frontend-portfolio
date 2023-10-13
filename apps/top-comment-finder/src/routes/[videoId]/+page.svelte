@@ -44,7 +44,7 @@
 				<li
 					class="flex w-full items-center gap-2 rounded-lg border-2 bg-white p-2 shadow-sm md:w-1/2"
 				>
-					<a class="w-8" href={comment.authorChannelUrl}>
+					<a class="h-8 w-8" href={comment.authorChannelUrl}>
 						<object
 							class="w-full rounded-full"
 							data={comment.authorProfileImageUrl}
