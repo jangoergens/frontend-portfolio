@@ -33,11 +33,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Lint
-        run: pnpm lint
-
       - name: Typecheck
         run: pnpm check
+
+      - name: Lint
+        run: pnpm lint
 
       - name: Build
         run: pnpm build
