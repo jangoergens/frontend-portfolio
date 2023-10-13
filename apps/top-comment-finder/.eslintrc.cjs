@@ -8,6 +8,7 @@ module.exports = {
 		'eslint:recommended',
 		'plugin:@typescript-eslint/recommended',
 		'plugin:@typescript-eslint/recommended-requiring-type-checking',
+		'plugin:perfectionist/recommended-natural',
 		'plugin:svelte/recommended',
 		'prettier'
 	],
@@ -27,6 +28,6 @@ module.exports = {
 		project: true,
 		sourceType: 'module'
 	},
-	plugins: ['@typescript-eslint'],
+	plugins: ['@typescript-eslint', 'perfectionist'],
 	root: true
 };
