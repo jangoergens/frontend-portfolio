@@ -36,5 +36,3 @@ next-env.d.ts
 
 .cargo
 .xwin-cache
-
-target/
