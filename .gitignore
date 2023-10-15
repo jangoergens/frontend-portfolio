@@ -1,19 +1,25 @@
+# build output
+build
+dist
+.svelte-kit
+
+# debug
+.pnpm-debug.log*
+
 # dependencies
 node_modules
+
+# local env files
+.env
+.env.*
+!.env.example
 
 # misc
 .DS_Store
 *.pem
 
-# debug
-.pnpm-debug.log*
-
-# local env files
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
 # turbo
 .turbo
+
+# vercel
 .vercel

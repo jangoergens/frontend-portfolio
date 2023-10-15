@@ -1,5 +1,35 @@
-# Ignore config files
+# build output
+build
+dist
+.svelte-kit
+
+# config files
 *.config.js
 *.config.ts
 *.cjs
 *.mjs
+
+# dependencies
+node_modules
+
+# local env files
+.env
+.env.*
+!.env.example
+
+# misc
+.DS_Store
+*.pem
+
+# pnpm
+.pnpm-debug.log*
+pnpm-lock.yaml
+
+# turbo
+.turbo
+
+# vercel
+.vercel
+
+# webmanifest
+site.webmanifest

@@ -1,5 +1,29 @@
-# Ignore files for PNPM
+# build output
+build
+dist
+.svelte-kit
+
+# dependencies
+node_modules
+
+# local env files
+.env
+.env.*
+!.env.example
+
+# misc
+.DS_Store
+*.pem
+
+# pnpm
+.pnpm-debug.log*
 pnpm-lock.yaml
 
-# Ignore webmanifest
+# turbo
+.turbo
+
+# vercel
+.vercel
+
+# webmanifest
 site.webmanifest
