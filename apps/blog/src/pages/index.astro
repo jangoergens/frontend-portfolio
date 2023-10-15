@@ -8,22 +8,12 @@ import Counter from '../components/Counter.svelte';
 		<meta content="width=device-width" name="viewport" />
 		<meta content={Astro.generator} name="generator" />
 		<link href="/favicon.svg" rel="icon" type="image/svg+xml" />
-		<style>
-			html,
-			body {
-				font-family: system-ui;
-				margin: 0;
-			}
-			body {
-				padding: 2rem;
-			}
-		</style>
 	</head>
 
 	<body>
 		<main>
 			<Counter client:visible>
-				<h1>Hello, Svelte!</h1>
+				<h1 class="text-5xl">Hello, Svelte!</h1>
 			</Counter>
 		</main>
 	</body>
