@@ -7,7 +7,7 @@
     "packages/*"
   ],
   "scripts": {
-    "all": "pnpm install && pnpm lint && pnpm check && pnpm build && pnpm install-test-browser && pnpm test",
+    "all": "pnpm install && pnpm check && pnpm lint && pnpm build && pnpm install-test-browser && pnpm test",
     "build": "turbo run build",
     "check": "turbo run check",
     "clean": "turbo daemon clean",

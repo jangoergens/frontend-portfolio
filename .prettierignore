@@ -1,6 +1,5 @@
-# Ignore files for PNPM, NPM and YARN
+# Ignore files for PNPM
 pnpm-lock.yaml
-package-lock.json
 
 # Ignore webmanifest
 site.webmanifest
