@@ -81,6 +81,9 @@ importers:
       typescript:
         specifier: 5.2.2
         version: 5.2.2
+      vite:
+        specifier: 4.4.11
+        version: 4.4.11
 
   apps/productivity-timer:
     dependencies:
