@@ -27,5 +27,6 @@ Top Comment Finder:
 - [Playwright](https://playwright.dev/) for end-to-end testing
 - [Tailwind CSS](https://tailwindcss.com/) for styling
 - [Vite](https://vitejs.dev/) for bundling
+- [Supabase](https://supabase.com/) for hosting the PostgreSQL database
 - [Svelte](https://svelte.dev/) for the frontend framework
 - [Vercel](https://vercel.com/) for hosting
