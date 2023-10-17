@@ -1,0 +1,33 @@
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width" name="viewport" />
+		<link href="https://rsms.me/inter/inter.css" rel="stylesheet" />
+		<link href="/favicon.svg" rel="icon" type="image/svg+xml" />
+	</head>
+
+	<body data-theme="skeleton">
+		<nav>
+			<ul class="flex justify-center gap-4">
+				<li>
+					<a class="btn" href="/">Home</a>
+				</li>
+				<li>
+					<a class="btn" href="/about">About</a>
+				</li>
+			</ul>
+		</nav>
+		<main class="mx-auto w-full md:w-[768px]">
+			<slot />
+		</main>
+	</body>
+</html>
+
+<style>
+	@media screen and (min-width: 960px) {
+		html {
+			margin-left: calc(100vw - 100%);
+			margin-right: 0;
+		}
+	}
+</style>
