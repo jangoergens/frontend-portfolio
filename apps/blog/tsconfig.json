@@ -2,12 +2,17 @@
 	"extends": "astro/tsconfigs/strict",
 	"compilerOptions": {
 		"allowJs": false,
+		"baseUrl": ".",
 		"composite": false,
 		"declaration": true,
 		"declarationMap": true,
 		"inlineSources": false,
 		"noUnusedLocals": false,
 		"noUnusedParameters": false,
+		"paths": {
+			"@components/*": ["src/components/*"],
+			"@layouts/*": ["src/layouts/*"]
+		},
 		"preserveWatchOutput": true,
 		"sourceMap": true
 	}
