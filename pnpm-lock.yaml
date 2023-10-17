@@ -183,8 +183,8 @@ importers:
         specifier: 0.5.6
         version: 0.5.6(prettier-plugin-astro@0.12.0)(prettier-plugin-svelte@3.0.3)(prettier@3.0.3)
       supabase:
-        specifier: 1.100.1
-        version: 1.100.1
+        specifier: 1.106.1
+        version: 1.106.1
       svelte:
         specifier: 4.2.1
         version: 4.2.1
@@ -7781,8 +7781,8 @@ packages:
       s.color: 0.0.15
     dev: true
 
-  /supabase@1.100.1:
-    resolution: {integrity: sha512-Tn03fjNGiCoJ06ZeBtCmaNj3Kqf2UzM8bpptiIrP7g5wPmAHL8MTDM2ZEemkRxAWAm2E+fcb8zGOSNbh0RCQGQ==}
+  /supabase@1.106.1:
+    resolution: {integrity: sha512-Wc1GYraDRCRGZIkCPoN00QuSP//Cm2Q4q5B6LvEHb2dKoezO7Mx7SYZ5rhh3X0ko9Yii0ABeN2GE88ZVL9R5mg==}
     engines: {npm: '>=8'}
     hasBin: true
     requiresBuild: true
