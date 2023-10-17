@@ -1,0 +1,31 @@
+name: Deploy-Blog
+
+on:
+  push:
+    branches:
+      - "main"
+    paths:
+      - "apps/blog/**"
+
+jobs:
+  deploy:
+    defaults:
+      run:
+        working-directory: apps/blog
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_BLOG_PROJECT_ID }}
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      - name: Deploy to Vercel
+        run: vercel --prod --token=${{ secrets.VERCEL_TOKEN }}
