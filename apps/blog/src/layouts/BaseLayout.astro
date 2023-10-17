@@ -1,8 +1,11 @@
 ---
 const { title } = Astro.props as { title: string };
+import { Image } from 'astro:assets';
+
+import githubLogo from '../assets/github.svg';
 ---
 
-<html lang="en">
+<html class="h-full" lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<meta content="width=device-width" name="viewport" />
@@ -11,20 +14,34 @@ const { title } = Astro.props as { title: string };
 		<title>{title}</title>
 	</head>
 
-	<body data-theme="skeleton">
-		<nav>
-			<ul class="flex justify-center gap-4">
-				<li>
-					<a class="btn" href="/">Home</a>
-				</li>
-				<li>
-					<a class="btn" href="/about">About</a>
-				</li>
-			</ul>
-		</nav>
+	<body class="flex h-full flex-col" data-theme="skeleton">
+		<header class="alig flex justify-center">
+			<nav>
+				<ul class="flex justify-center gap-4">
+					<li>
+						<a class="btn" href="/">Home</a>
+					</li>
+					<li>
+						<a class="btn" href="/about">About</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
 		<main class="mx-auto w-full md:w-[768px]">
 			<slot />
 		</main>
+		<footer class="mt-auto flex justify-center gap-2 py-4">
+			<span>Copyright © {new Date().getFullYear()}</span>
+			<a
+				class="flex gap-1 font-bold"
+				href="https://www.github.com/jangoergens"
+				rel="noopener noreferrer"
+				target="_blank"
+			>
+				Jan Görgens
+				<Image alt="Github Logo" src={githubLogo} />
+			</a>
+		</footer>
 	</body>
 </html>
 
