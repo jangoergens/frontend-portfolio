@@ -5,7 +5,7 @@
 	"scripts": {
 		"dev": "astro dev",
 		"start": "astro dev",
-		"build": "astro build",
+		"build": "astro check && astro build",
 		"preview": "astro preview",
 		"lint": "prettier --ignore-path ../../.prettierignore --check . && eslint . --ignore-path ../../.eslintignore --report-unused-disable-directives --max-warnings 0",
 		"lint:fix": "eslint . --ignore-path ../../.eslintignore --report-unused-disable-directives --max-warnings 0 --fix",
