@@ -13,6 +13,11 @@
 			"@components/*": ["src/components/*"],
 			"@layouts/*": ["src/layouts/*"]
 		},
+		"plugins": [
+			{
+				"name": "@astrojs/ts-plugin"
+			}
+		],
 		"preserveWatchOutput": true,
 		"sourceMap": true
 	}
