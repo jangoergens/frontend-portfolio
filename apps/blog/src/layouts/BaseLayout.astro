@@ -1,8 +1,8 @@
 ---
 const { title } = Astro.props as { title: string };
+import dayNight from '@assets/images/day-night.svg';
 import githubLogo from '@assets/images/github.svg';
 import '@assets/styles/tailwind.css';
-import { LightSwitch } from '@skeletonlabs/skeleton';
 import { Image } from 'astro:assets';
 ---
 
@@ -33,7 +33,9 @@ import { Image } from 'astro:assets';
 					</li>
 				</ul>
 			</nav>
-			<LightSwitch class="absolute right-4" client:only="svelte" />
+			<button class="absolute right-4" id="themeToggle">
+				<Image alt="Half Sun Half Moon" src={dayNight} />
+			</button>
 		</header>
 		<main class="mx-auto w-full md:w-[768px]">
 			<slot />
@@ -52,3 +54,36 @@ import { Image } from 'astro:assets';
 		</footer>
 	</body>
 </html>
+
+<script>
+	const theme = (() => {
+		if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+			const preferredTheme = localStorage.getItem('theme');
+			if (preferredTheme === 'light' || preferredTheme === 'dark') {
+				return preferredTheme;
+			}
+		}
+		if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+			return 'dark';
+		}
+		return 'light';
+	})();
+
+	if (theme === 'dark') {
+		document.documentElement.classList.add('dark');
+	} else {
+		document.documentElement.classList.remove('dark');
+	}
+
+	window.localStorage.setItem('theme', theme);
+
+	const handleToggleClick = () => {
+		const element = document.documentElement;
+		element.classList.toggle('dark');
+
+		const isDark = element.classList.contains('dark');
+		localStorage.setItem('theme', isDark ? 'dark' : 'light');
+	};
+
+	document.getElementById('themeToggle')?.addEventListener('click', handleToggleClick);
+</script>
