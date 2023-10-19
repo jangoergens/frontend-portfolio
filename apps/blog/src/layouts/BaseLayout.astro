@@ -9,8 +9,14 @@ import githubLogo from '../assets/github.svg';
 	<head>
 		<meta charset="utf-8" />
 		<meta content="width=device-width" name="viewport" />
-		<link href="https://rsms.me/inter/inter.css" rel="stylesheet" />
 		<link href="/favicon.svg" rel="icon" type="image/svg+xml" />
+		<link
+			as="font"
+			crossorigin
+			href="/fonts/Inter-VariableFont_slnt,wght.ttf"
+			rel="preload"
+			type="font/ttf"
+		/>
 		<title>{title}</title>
 	</head>
 
@@ -46,6 +52,16 @@ import githubLogo from '../assets/github.svg';
 </html>
 
 <style>
+	@font-face {
+		font-family: 'Inter';
+		src: url('/fonts/Inter-VariableFont_slnt,wght.ttf') format('truetype');
+		font-weight: 100 900;
+		font-style: normal;
+	}
+	:root [data-theme='skeleton'] {
+		--theme-font-family-base: 'Inter', sans-serif;
+		--theme-font-family-heading: 'Inter', sans-serif;
+	}
 	@media screen and (min-width: 960px) {
 		html {
 			margin-left: calc(100vw - 100%);

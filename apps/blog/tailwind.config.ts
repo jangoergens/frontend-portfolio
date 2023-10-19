@@ -2,7 +2,6 @@ import type { Config } from 'tailwindcss';
 
 import { skeleton } from '@skeletonlabs/tw-plugin';
 import { join } from 'path';
-import defaultTheme from 'tailwindcss/defaultTheme';
 
 const config = {
 	content: [
@@ -15,13 +14,6 @@ const config = {
 			themes: { preset: ['skeleton'] },
 		}),
 	],
-	theme: {
-		extend: {
-			fontFamily: {
-				sans: ['Inter var', ...defaultTheme.fontFamily.sans],
-			},
-		},
-	},
 } satisfies Config;
 
 export default config;
