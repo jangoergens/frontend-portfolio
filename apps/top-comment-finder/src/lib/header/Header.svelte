@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import logo from '$lib/assets/logo.png';
+	import logo from '$lib/assets/logo.png?w=48&h=48&format=webp&imagetools';
 </script>
 
 <header class="flex h-16 flex-shrink-0 items-center justify-center">
