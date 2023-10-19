@@ -10,6 +10,7 @@
 		"noUnusedLocals": false,
 		"noUnusedParameters": false,
 		"paths": {
+			"@assets/*": ["src/assets/*"],
 			"@components/*": ["src/components/*"],
 			"@layouts/*": ["src/layouts/*"]
 		},

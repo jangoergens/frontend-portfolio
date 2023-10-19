@@ -1,14 +1,15 @@
 ---
 const { title } = Astro.props as { title: string };
+import githubLogo from '@assets/images/github.svg';
+import '@assets/styles/tailwind.css';
+import { LightSwitch } from '@skeletonlabs/skeleton';
 import { Image } from 'astro:assets';
-
-import githubLogo from '../assets/github.svg';
 ---
 
 <html class="h-full" lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<meta content="width=device-width" name="viewport" />
+		<meta content="width=device-width initial-scale=1" name="viewport" />
 		<link href="/favicon.svg" rel="icon" type="image/svg+xml" />
 		<link
 			as="font"
@@ -21,7 +22,7 @@ import githubLogo from '../assets/github.svg';
 	</head>
 
 	<body class="flex h-full flex-col" data-theme="skeleton">
-		<header class="alig flex justify-center">
+		<header class="flex items-center justify-center">
 			<nav>
 				<ul class="flex justify-center gap-4">
 					<li>
@@ -32,6 +33,7 @@ import githubLogo from '../assets/github.svg';
 					</li>
 				</ul>
 			</nav>
+			<LightSwitch class="absolute right-4" client:only="svelte" />
 		</header>
 		<main class="mx-auto w-full md:w-[768px]">
 			<slot />
@@ -50,23 +52,3 @@ import githubLogo from '../assets/github.svg';
 		</footer>
 	</body>
 </html>
-
-<style>
-	@font-face {
-		font-family: 'Inter';
-		src: url('/fonts/Inter-VariableFont_slnt,wght.ttf') format('truetype');
-		font-weight: 100 900;
-		font-style: normal;
-		font-display: swap;
-	}
-	:root [data-theme='skeleton'] {
-		--theme-font-family-base: 'Inter', sans-serif;
-		--theme-font-family-heading: 'Inter', sans-serif;
-	}
-	@media screen and (min-width: 960px) {
-		html {
-			margin-left: calc(100vw - 100%);
-			margin-right: 0;
-		}
-	}
-</style>
