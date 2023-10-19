@@ -21,5 +21,7 @@
 		],
 		"preserveWatchOutput": true,
 		"sourceMap": true
-	}
+	},
+	"include": ["./*config*", "./src"],
+	"exclude": ["./node_modules/**"]
 }
