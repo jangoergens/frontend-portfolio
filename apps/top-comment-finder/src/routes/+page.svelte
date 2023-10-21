@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import searchIcon from '$lib/assets/searchWhite.svg';
+	import searchIcon from '$lib/assets/searchWhite.svg?w=28&h=28&format=webp&imagetools';
 
 	let videoURL = '';
 
@@ -47,7 +47,7 @@
 			type="text"
 		/>
 		<button class="h-9 py-1" title="Search" type="submit"
-			><img alt="Search Icon" class="h-full fill-white" src={searchIcon} /></button
+			><img alt="Search Icon" class="fill-white" height="28" src={searchIcon} width="28" /></button
 		>
 	</form>
 

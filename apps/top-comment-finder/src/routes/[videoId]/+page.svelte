@@ -2,8 +2,8 @@
 	import type { RequiredCommentInfo } from '$lib/types/youtubeApiTypes';
 
 	import { page } from '$app/stores';
-	import avatar from '$lib/assets/avatar.svg';
-	import thumbsUp from '$lib/assets/thumbsUp.svg';
+	import avatar from '$lib/assets/avatar.svg?w=32&h=32&format=webp&imagetools';
+	import thumbsUp from '$lib/assets/thumbsUp.svg?w=16&h=16&format=webp&imagetools';
 
 	const videoId = $page.params.videoId;
 	const fetchComments = async () => {
@@ -44,14 +44,22 @@
 				<li
 					class="flex w-full items-center gap-2 rounded-lg border-2 bg-white p-2 shadow-sm md:w-1/2"
 				>
-					<a class="h-8 w-8" href={comment.authorChannelUrl}>
+					<a href={comment.authorChannelUrl}>
 						<object
-							class="w-full rounded-full"
+							class="rounded-full"
 							data={comment.authorProfileImageUrl}
+							height="32"
 							title={'Profile Picture of ' + comment.authorDisplayName}
 							type="image/jpeg"
+							width="32"
 						>
-							<img alt="generic user avatar" class="rounded-full" src={avatar} />
+							<img
+								alt="generic user avatar"
+								class="rounded-full"
+								height="32"
+								src={avatar}
+								width="32"
+							/>
 						</object>
 					</a>
 					<div class="flex w-5/6 flex-col break-words">
@@ -66,7 +74,7 @@
 						</div>
 					</div>
 					<div class="ml-auto flex w-8 flex-col items-center justify-center">
-						<img alt="Thumbs Up" class="w-4 max-w-none" src={thumbsUp} />
+						<img alt="Thumbs Up" class="max-w-none" height="16" src={thumbsUp} width="16" />
 						<span>{shortenNumber(Number(comment.likeCount))}</span>
 					</div>
 				</li>

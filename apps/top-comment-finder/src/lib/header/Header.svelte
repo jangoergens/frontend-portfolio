@@ -5,7 +5,7 @@
 
 <header class="flex h-16 flex-shrink-0 items-center justify-center">
 	<a href="/">
-		<img alt="TopCommentFinder Logo" class="h-12 rounded-lg" src={logo} />
+		<img alt="TopCommentFinder Logo" height="48" src={logo} width="48" />
 	</a>
 	<nav data-sveltekit-preload-data>
 		<ul class="flex h-12">
