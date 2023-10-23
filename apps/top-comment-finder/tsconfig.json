@@ -7,8 +7,6 @@
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
 		"inlineSources": false,
-		"noUnusedLocals": false,
-		"noUnusedParameters": false,
 		"resolveJsonModule": true,
 		"preserveWatchOutput": true,
 		"skipLibCheck": true,

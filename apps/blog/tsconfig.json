@@ -7,8 +7,6 @@
 		"declaration": true,
 		"declarationMap": true,
 		"inlineSources": false,
-		"noUnusedLocals": false,
-		"noUnusedParameters": false,
 		"paths": {
 			"@assets/*": ["src/assets/*"],
 			"@components/*": ["src/components/*"],

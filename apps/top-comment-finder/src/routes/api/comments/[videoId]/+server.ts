@@ -8,7 +8,7 @@ export async function GET({ params }: RequestEvent) {
 	if (!params.videoId) {
 		return new Response('No video ID provided');
 	}
-	if (env.GOOGLE_API_MODE === 'production') {
+	if (env.GOOGLE_API_MODE === 'production' && supabase) {
 		const { data } = await supabase.from('videos').select().eq('video_id', params.videoId);
 		if (data && data[0]) {
 			const { data } = await supabase.from('comments').select().eq('video_id', params.videoId);
