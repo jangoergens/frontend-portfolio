@@ -4,7 +4,10 @@ Welcome to my portfolio! This monorepo is powered by [Turborepo](https://turbore
 
 ## Getting started
 
-Run the command `pnpm all` to install all dependencies, build the project, and run the test suite. After that, you can run `pnpm start` to start all projects, or navigate to the project you want to run and run `pnpm start` there.
+1. In `apps/top-comment-finder` copy the `.env.example` file to `.env`.
+2. (Optional) Fill in the credentials.
+3. Run the command `pnpm all` to install all dependencies, build the project, and run the test suite.
+4. Run `pnpm start` to start all projects, or navigate to the project you want to run and run `pnpm start` there.
 
 ## What's inside?
 
