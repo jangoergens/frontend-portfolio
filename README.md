@@ -6,14 +6,17 @@ Welcome to my portfolio! This monorepo is powered by [Turborepo](https://turbore
 
 1. In `apps/top-comment-finder` copy the `.env.example` file to `.env`.
 2. (Optional) Fill in the credentials.
-3. Run the command `pnpm all` to install all dependencies, build the project, and run the test suite.
-4. Run `pnpm start` to start all projects, or navigate to the project you want to run and run `pnpm start` there.
+3. (Optional) If this is your first time running the project, install the dependencies for Playwright by running `pnpm --filter top-comment-finder exec playwright install-deps chromium`.
+4. Run the command `pnpm all` to install all dependencies, build the project, and run the test suite.
+5. Run `pnpm start` to start all projects, or navigate to the project you want to run and run `pnpm start` there.
 
 ## What's inside?
 
 This turborepo uses [pnpm](https://pnpm.io) as a package manager. It includes the following packages/apps:
 
 - [top-comment-finder](./apps/top-comment-finder): A website that finds the top comments under a YouTube video.
+- [blog](./apps/blog): A very basic blog that uses [Astro](https://astro.build/) and [Svelte](https://svelte.dev/).
+- [productivity-timer](./apps/productivity-timer): A productivity timer that uses [Tauri](https://tauri.app/) and [Next.js](https://nextjs.org/).
 
 ## Utilities Used
 
@@ -28,8 +31,22 @@ Common:
 Top Comment Finder:
 
 - [Playwright](https://playwright.dev/) for end-to-end testing
-- [Tailwind CSS](https://tailwindcss.com/) for styling
-- [Vite](https://vitejs.dev/) for bundling
 - [Supabase](https://supabase.com/) for hosting the PostgreSQL database
 - [Svelte](https://svelte.dev/) for the frontend framework
+- [Tailwind CSS](https://tailwindcss.com/) for styling
+- [Vite](https://vitejs.dev/) for bundling
 - [Vercel](https://vercel.com/) for hosting
+
+Blog:
+
+- [Astro](https://astro.build/) for the frontend framework
+- [Skeleteon](https://skeleteon.dev/) for the theme and components
+- [Svelte](https://svelte.dev/) for single components
+- [Tailwind CSS](https://tailwindcss.com/) for styling
+- [Vercel](https://vercel.com/) for hosting
+
+Productivity Timer:
+
+- [Next.js](https://nextjs.org/) for the frontend framework
+- [Tailwind CSS](https://tailwindcss.com/) for styling
+- [Tauri](https://tauri.app/) for the desktop app
