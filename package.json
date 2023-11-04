@@ -11,14 +11,12 @@
     "build": "turbo run build",
     "check": "turbo run check",
     "clean": "turbo daemon clean",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint",
     "start": "turbo run start --parallel",
     "install-test-browser": "turbo run install-test-browser",
     "test": "turbo run test"
   },
   "devDependencies": {
-    "prettier": "3.0.3",
     "turbo": "1.10.16"
   },
   "engines": {
