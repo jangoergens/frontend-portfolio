@@ -14,7 +14,7 @@ Welcome to my portfolio! This monorepo is powered by [Turborepo](https://turbore
 
 This turborepo uses [pnpm](https://pnpm.io) as a package manager. It includes the following packages/apps:
 
-- [top-comment-finder](./apps/top-comment-finder): A website that finds the top comments under a YouTube video.
+- [top-comment-finder](./apps/top-comment-finder): A website that finds the top comments under a YouTube video. Built using [SvelteKit](https://kit.svelte.dev/).
 - [blog](./apps/blog): A very basic blog that uses [Astro](https://astro.build/) and [Svelte](https://svelte.dev/).
 - [productivity-timer](./apps/productivity-timer): A productivity timer that uses [Tauri](https://tauri.app/) and [Next.js](https://nextjs.org/).
 
@@ -33,6 +33,7 @@ Top Comment Finder:
 - [Playwright](https://playwright.dev/) for end-to-end testing
 - [Supabase](https://supabase.com/) for hosting the PostgreSQL database
 - [Svelte](https://svelte.dev/) for the frontend framework
+- [SvelteKit](https://kit.svelte.dev/) for the backend framework
 - [Tailwind CSS](https://tailwindcss.com/) for styling
 - [Vite](https://vitejs.dev/) for bundling
 - [Vercel](https://vercel.com/) for hosting
