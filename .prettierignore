@@ -16,9 +16,16 @@ node_modules
 .DS_Store
 *.pem
 
+# next
+.next
+
 # pnpm
 .pnpm-debug.log*
 pnpm-lock.yaml
+
+# tauri
+.xwin-cache
+target
 
 # turbo
 .turbo
