@@ -1,21 +1,35 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:best-practices"],
+  "extends": [
+    "config:best-practices"
+  ],
   "packageRules": [
     {
-      "matchUpdateTypes": ["major"],
+      "matchUpdateTypes": [
+        "major"
+      ],
       "rebaseWhen": "never"
     },
     {
       "automerge": true,
       "groupName": "all non-major dependencies",
       "groupSlug": "all-minor-patch",
-      "matchPackagePatterns": ["*"],
-      "matchUpdateTypes": ["minor", "patch"],
-      "schedule": ["before 4am on Monday"]
+      "matchPackagePatterns": [
+        "*"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "schedule": [
+        "before 4am on Monday"
+      ]
     },
     {
-      "packageNames": ["sharp", "vite-imagetools"],
+      "matchPackageNames": [
+        "sharp",
+        "vite-imagetools"
+      ],
       "enabled": false
     }
   ]
