@@ -10,16 +10,16 @@
 		"paths": {
 			"@assets/*": ["src/assets/*"],
 			"@components/*": ["src/components/*"],
-			"@layouts/*": ["src/layouts/*"],
+			"@layouts/*": ["src/layouts/*"]
 		},
 		"plugins": [
 			{
-				"name": "@astrojs/ts-plugin",
-			},
+				"name": "@astrojs/ts-plugin"
+			}
 		],
 		"preserveWatchOutput": true,
-		"sourceMap": true,
+		"sourceMap": true
 	},
 	"include": ["./*config*", "./src"],
-	"exclude": ["./node_modules/**"],
+	"exclude": ["./node_modules/**"]
 }
