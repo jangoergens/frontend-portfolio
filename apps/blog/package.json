@@ -16,29 +16,29 @@
 		"@astrojs/svelte": "5.0.3",
 		"@astrojs/tailwind": "5.1.0",
 		"@astrojs/ts-plugin": "1.4.0",
-		"astro": "4.2.8",
-		"svelte": "4.2.9"
+		"astro": "4.3.3",
+		"svelte": "4.2.10"
 	},
 	"devDependencies": {
 		"@astrojs/check": "0.4.1",
 		"@skeletonlabs/skeleton": "2.8.0",
 		"@skeletonlabs/tw-plugin": "0.3.1",
-		"@typescript-eslint/eslint-plugin": "6.20.0",
-		"@typescript-eslint/parser": "6.20.0",
+		"@typescript-eslint/eslint-plugin": "6.21.0",
+		"@typescript-eslint/parser": "6.21.0",
 		"autoprefixer": "10.4.17",
 		"eslint": "8.56.0",
 		"eslint-config-prettier": "9.1.0",
 		"eslint-plugin-astro": "0.31.4",
 		"eslint-plugin-perfectionist": "2.5.0",
 		"eslint-plugin-svelte": "2.35.1",
-		"postcss": "8.4.33",
-		"prettier": "3.2.4",
+		"postcss": "8.4.34",
+		"prettier": "3.2.5",
 		"prettier-plugin-astro": "0.13.0",
 		"prettier-plugin-svelte": "3.1.2",
 		"prettier-plugin-tailwindcss": "0.5.11",
 		"sharp": "0.32.6",
 		"tailwindcss": "3.4.1",
-		"typescript": "5.2.2",
+		"typescript": "5.3.3",
 		"vite": "5.0.12"
 	}
 }
