@@ -16,7 +16,6 @@ This turborepo uses [pnpm](https://pnpm.io) as a package manager. It includes th
 
 - [top-comment-finder](./apps/top-comment-finder): A website that finds the top comments under a YouTube video. Built using [SvelteKit](https://kit.svelte.dev/).
 - [blog](./apps/blog): A very basic blog that uses [Astro](https://astro.build/) and [Svelte](https://svelte.dev/).
-- [productivity-timer](./apps/productivity-timer): A productivity timer that uses [Tauri](https://tauri.app/) and [Next.js](https://nextjs.org/).
 
 ## Utilities Used
 
@@ -45,9 +44,3 @@ Blog:
 - [Svelte](https://svelte.dev/) for single components
 - [Tailwind CSS](https://tailwindcss.com/) for styling
 - [Vercel](https://vercel.com/) for hosting
-
-Productivity Timer:
-
-- [Next.js](https://nextjs.org/) for the frontend framework
-- [Tailwind CSS](https://tailwindcss.com/) for styling
-- [Tauri](https://tauri.app/) for the desktop app
