@@ -16,7 +16,7 @@
       "schedule": ["before 4am on Monday"]
     },
     {
-      "matchPackageNames": ["sharp", "vite-imagetools"],
+      "matchPackageNames": ["sharp", "vite", "vite-imagetools"],
       "enabled": false
     }
   ]
