@@ -2,17 +2,23 @@
 	import { goto } from '$app/navigation';
 	import searchIcon from '$lib/assets/searchWhite.svg?w=28&h=28&format=webp&imagetools';
 
-	let videoURL = '';
+	let videoUrl = '';
 
 	const handleSubmit = async () => {
-		const formatedURL =
-			videoURL.startsWith('https://') || videoURL.startsWith('http://')
-				? videoURL
-				: 'https://' + videoURL;
-		const url = new URL(formatedURL);
+		const videoUrlPattern =
+			/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+		const videoIdPattern = /^[a-zA-Z0-9_-]{11}$/;
 
-		const videoId = url.searchParams.get('v');
-		videoId ? await goto(`/${videoId}`) : await goto(`/${url.pathname.replaceAll('/', '')}`);
+		const urlMatch = videoUrl.match(videoUrlPattern);
+		const idMatch = videoUrl.match(videoIdPattern);
+
+		if (urlMatch) {
+			await goto(`/${urlMatch[1]}`);
+		} else if (idMatch) {
+			await goto(`/${idMatch[0]}`);
+		} else {
+			alert('Invalid YouTube video URL');
+		}
 	};
 </script>
 
@@ -39,7 +45,7 @@
 		on:submit|preventDefault={handleSubmit}
 	>
 		<input
-			bind:value={videoURL}
+			bind:value={videoUrl}
 			class="h-10 w-5/6 rounded-full border-2 border-black px-2 text-center"
 			id="videoSearch"
 			name="videoSearch"
