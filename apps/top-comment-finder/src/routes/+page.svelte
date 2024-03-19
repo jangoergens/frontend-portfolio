@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
-	import searchIcon from '$lib/assets/searchWhite.svg?w=28&h=28&format=webp&imagetools';
+	import { goto } from "$app/navigation";
+	import searchIcon from "$lib/assets/searchWhite.svg?w=28&h=28&format=webp&imagetools";
 
-	let videoUrl = '';
+	let videoUrl = "";
 
 	const handleSubmit = async () => {
 		const videoUrlPattern =
@@ -17,7 +17,7 @@
 		} else if (idMatch) {
 			await goto(`/${idMatch[0]}`);
 		} else {
-			alert('Invalid YouTube video URL');
+			alert("Invalid YouTube video URL");
 		}
 	};
 </script>

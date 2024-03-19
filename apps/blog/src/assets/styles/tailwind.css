@@ -24,15 +24,15 @@
 }
 
 @font-face {
-	font-family: 'Inter';
-	src: url('/fonts/Inter-VariableFont_slnt,wght.ttf') format('truetype');
+	font-family: "Inter";
+	src: url("/fonts/Inter-VariableFont_slnt,wght.ttf") format("truetype");
 	font-weight: 100 900;
 	font-style: normal;
 	font-display: swap;
 }
-:root [data-theme='skeleton'] {
-	--theme-font-family-base: 'Inter', sans-serif;
-	--theme-font-family-heading: 'Inter', sans-serif;
+:root [data-theme="skeleton"] {
+	--theme-font-family-base: "Inter", sans-serif;
+	--theme-font-family-heading: "Inter", sans-serif;
 }
 @media screen and (min-width: 960px) {
 	html {

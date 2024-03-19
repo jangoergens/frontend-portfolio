@@ -13,9 +13,9 @@
 		@apply text-lg font-bold text-slate-900;
 	}
 	button,
-	[type='button'],
-	[type='reset'],
-	[type='submit'] {
+	[type="button"],
+	[type="reset"],
+	[type="submit"] {
 		@apply rounded-md bg-orange-500 px-3 py-2 text-sm font-semibold text-white hover:bg-orange-400;
 	}
 }
@@ -30,8 +30,8 @@
 }
 
 @font-face {
-	font-family: 'Inter Variable';
-	src: url('/fonts/Inter-VariableFont_slnt,wght.ttf') format('truetype');
+	font-family: "Inter Variable";
+	src: url("/fonts/Inter-VariableFont_slnt,wght.ttf") format("truetype");
 	font-weight: 100 900;
 	font-style: normal;
 	font-display: swap;

@@ -1,15 +1,14 @@
 export default {
 	overrides: [
-		{ files: '*.svelte', options: { parser: 'svelte' } },
+		{ files: "*.svelte", options: { parser: "svelte" } },
 		{
-			files: '*.astro',
+			files: "*.astro",
 			options: {
-				parser: 'astro',
+				parser: "astro",
 			},
 		},
 	],
-	plugins: ['prettier-plugin-svelte', 'prettier-plugin-astro', 'prettier-plugin-tailwindcss'],
+	plugins: ["prettier-plugin-svelte", "prettier-plugin-astro", "prettier-plugin-tailwindcss"],
 	printWidth: 100,
-	singleQuote: true,
 	useTabs: true,
 };

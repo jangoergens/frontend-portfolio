@@ -1,9 +1,9 @@
 <script lang="ts">
-	import type { RequiredCommentInfo } from '$lib/types/youtubeApiTypes';
+	import type { RequiredCommentInfo } from "$lib/types/youtubeApiTypes";
 
-	import { page } from '$app/stores';
-	import avatar from '$lib/assets/avatar.svg?w=32&h=32&format=webp&imagetools';
-	import thumbsUp from '$lib/assets/thumbsUp.svg?w=16&h=16&format=webp&imagetools';
+	import { page } from "$app/stores";
+	import avatar from "$lib/assets/avatar.svg?w=32&h=32&format=webp&imagetools";
+	import thumbsUp from "$lib/assets/thumbsUp.svg?w=16&h=16&format=webp&imagetools";
 
 	const videoId = $page.params.videoId;
 	const fetchComments = async () => {
@@ -14,9 +14,9 @@
 
 	function shortenNumber(num: number): string {
 		if (num >= 1_000_000) {
-			return (num / 1_000_000).toFixed(1) + 'M';
+			return (num / 1_000_000).toFixed(1) + "M";
 		} else if (num >= 1_000) {
-			return (num / 1_000).toFixed(1) + 'K';
+			return (num / 1_000).toFixed(1) + "K";
 		} else {
 			return num.toString();
 		}
@@ -29,7 +29,7 @@
 		allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 		allowfullscreen
 		class="aspect-video w-full md:max-w-xl"
-		src={'https://www.youtube.com/embed/' + videoId}
+		src={"https://www.youtube.com/embed/" + videoId}
 		title="YouTube video player"
 	/>
 	{#await fetchComments()}
@@ -49,7 +49,7 @@
 							class="rounded-full"
 							data={comment.authorProfileImageUrl}
 							height="32"
-							title={'Profile Picture of ' + comment.authorDisplayName}
+							title={"Profile Picture of " + comment.authorDisplayName}
 							type="image/jpeg"
 							width="32"
 						>
@@ -69,7 +69,7 @@
 								>by {comment.authorDisplayName}</a
 							>
 							<span class="text-sm"
-								>({new Date(comment.publishedAt).toLocaleDateString('de-DE')})</span
+								>({new Date(comment.publishedAt).toLocaleDateString("de-DE")})</span
 							>
 						</div>
 					</div>

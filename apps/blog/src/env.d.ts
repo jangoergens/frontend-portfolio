@@ -3,7 +3,7 @@
 /// <reference types="astro/client" />
 /// <reference types="vite/client" />
 
-import 'astro/astro-jsx';
+import "astro/astro-jsx";
 
 declare global {
 	namespace JSX {

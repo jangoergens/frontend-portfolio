@@ -26,10 +26,10 @@ export interface Database {
 				};
 				Relationships: [
 					{
-						columns: ['video_id'];
-						foreignKeyName: 'comments_video_id_fkey';
-						referencedColumns: ['video_id'];
-						referencedRelation: 'videos';
+						columns: ["video_id"];
+						foreignKeyName: "comments_video_id_fkey";
+						referencedColumns: ["video_id"];
+						referencedRelation: "videos";
 					},
 				];
 				Row: {
