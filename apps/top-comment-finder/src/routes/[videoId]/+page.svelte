@@ -74,7 +74,13 @@
 						</div>
 					</div>
 					<div class="ml-auto flex w-8 flex-col items-center justify-center">
-						<img alt="Thumbs Up" class="max-w-none" height="16" src={thumbsUp} width="16" />
+						<img
+							alt="Thumbs Up"
+							class="max-w-none dark:invert"
+							height="16"
+							src={thumbsUp}
+							width="16"
+						/>
 						<span>{shortenNumber(Number(comment.likeCount))}</span>
 					</div>
 				</li>
