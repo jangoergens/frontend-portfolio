@@ -13,6 +13,7 @@ jobs:
       TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
       PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.PUBLIC_SUPABASE_ANON_KEY }}
       PUBLIC_SUPABASE_URL: ${{ secrets.PUBLIC_SUPABASE_URL }}
+      GOOGLE_API_MODE: ${{ secrets.GOOGLE_API_MODE }}
 
     steps:
       - name: Check out code
