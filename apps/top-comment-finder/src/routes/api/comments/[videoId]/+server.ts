@@ -1,8 +1,8 @@
 import type { RequiredCommentInfo, YoutubeCommentThreads } from "$lib/types/youtubeApiTypes";
-import type { RequestEvent } from "@sveltejs/kit";
 
 import { env } from "$env/dynamic/private";
 import { supabase } from "$lib/supabaseClient";
+import { type RequestEvent } from "@sveltejs/kit";
 
 export async function GET({ params }: RequestEvent) {
 	if (!params.videoId) {
@@ -151,5 +151,10 @@ export async function GET({ params }: RequestEvent) {
 			},
 		].sort((a, b) => Number(b.likeCount) - Number(a.likeCount));
 		return new Response(JSON.stringify(randomComments));
+	} else {
+		console.error(
+			"Error: Supabase client not found or API mode not set to development or production. Current mode is: ",
+			env.GOOGLE_API_MODE,
+		);
 	}
 }
