@@ -42,7 +42,7 @@
 		<ol class="flex w-full flex-col items-center gap-4">
 			{#each comments as comment}
 				<li
-					class="flex w-full items-center gap-2 rounded-lg border-2 bg-white p-2 shadow-sm md:w-1/2"
+					class="flex w-full items-center gap-2 rounded-lg border-2 bg-white p-2 shadow-sm md:w-3/4 lg:w-[56rem] dark:border-zinc-400 dark:bg-zinc-800"
 				>
 					<a href={comment.authorChannelUrl}>
 						<object

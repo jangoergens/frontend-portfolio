@@ -46,7 +46,7 @@
 	>
 		<input
 			bind:value={videoUrl}
-			class="h-10 w-5/6 rounded-full border-2 border-black px-2 text-center"
+			class="h-10 w-5/6 rounded-full border-2 border-black bg-white px-2 text-center dark:border-zinc-400 dark:bg-zinc-800"
 			id="videoSearch"
 			name="videoSearch"
 			placeholder="Paste YouTube Video URL"
