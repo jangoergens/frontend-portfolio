@@ -91,6 +91,78 @@ importers:
         specifier: 5.2.7
         version: 5.2.7
 
+  apps/personal-website:
+    devDependencies:
+      '@playwright/test':
+        specifier: 1.42.1
+        version: 1.42.1
+      '@sveltejs/adapter-auto':
+        specifier: 3.2.0
+        version: 3.2.0(@sveltejs/kit@2.5.5)
+      '@sveltejs/kit':
+        specifier: 2.5.5
+        version: 2.5.5(@sveltejs/vite-plugin-svelte@3.0.2)(svelte@4.2.12)(vite@5.2.7)
+      '@sveltejs/vite-plugin-svelte':
+        specifier: 3.0.2
+        version: 3.0.2(svelte@4.2.12)(vite@5.2.7)
+      '@typescript-eslint/eslint-plugin':
+        specifier: 7.5.0
+        version: 7.5.0(@typescript-eslint/parser@7.5.0)(eslint@8.57.0)(typescript@5.4.3)
+      '@typescript-eslint/parser':
+        specifier: 7.5.0
+        version: 7.5.0(eslint@8.57.0)(typescript@5.4.3)
+      autoprefixer:
+        specifier: 10.4.19
+        version: 10.4.19(postcss@8.4.38)
+      eslint:
+        specifier: 8.57.0
+        version: 8.57.0
+      eslint-config-prettier:
+        specifier: 9.1.0
+        version: 9.1.0(eslint@8.57.0)
+      eslint-plugin-perfectionist:
+        specifier: 2.7.0
+        version: 2.7.0(eslint@8.57.0)(svelte@4.2.12)(typescript@5.4.3)
+      eslint-plugin-svelte:
+        specifier: 2.35.1
+        version: 2.35.1(eslint@8.57.0)(svelte@4.2.12)
+      postcss:
+        specifier: 8.4.38
+        version: 8.4.38
+      prettier:
+        specifier: 3.2.5
+        version: 3.2.5
+      prettier-plugin-svelte:
+        specifier: 3.2.2
+        version: 3.2.2(prettier@3.2.5)(svelte@4.2.12)
+      prettier-plugin-tailwindcss:
+        specifier: 0.5.13
+        version: 0.5.13(prettier-plugin-astro@0.13.0)(prettier-plugin-svelte@3.2.2)(prettier@3.2.5)
+      svelte:
+        specifier: 4.2.12
+        version: 4.2.12
+      svelte-check:
+        specifier: 3.6.9
+        version: 3.6.9(postcss@8.4.38)(svelte@4.2.12)
+      svelte-preprocess:
+        specifier: 5.1.3
+        version: 5.1.3(postcss@8.4.38)(svelte@4.2.12)(typescript@5.4.3)
+      tailwindcss:
+        specifier: 3.4.3
+        version: 3.4.3
+      tslib:
+        specifier: 2.6.2
+        version: 2.6.2
+      typescript:
+        specifier: 5.4.3
+        version: 5.4.3
+      vite:
+        specifier: 5.2.7
+        version: 5.2.7
+      vite-imagetools:
+        specifier: 6.2.3
+        version: 6.2.3
+
   apps/top-comment-finder:
     dependencies:
       '@supabase/supabase-js':
@@ -395,7 +467,7 @@ packages:
     dependencies:
       '@babel/types': 7.23.9
       '@jridgewell/gen-mapping': 0.3.3
-      '@jridgewell/trace-mapping': 0.3.18
+      '@jridgewell/trace-mapping': 0.3.25
       jsesc: 2.5.2
     dev: false
 
@@ -1155,7 +1227,6 @@ packages:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.0
       '@jridgewell/sourcemap-codec': 1.4.15
-    dev: false
 
   /@nodelib/fs.scandir@2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -5299,7 +5370,7 @@ packages:
     peerDependencies:
       svelte: ^3.55.0 || ^4.0.0-next.0 || ^4.0.0 || ^5.0.0-next.0
     dependencies:
-      '@jridgewell/trace-mapping': 0.3.18
+      '@jridgewell/trace-mapping': 0.3.25
       chokidar: 3.5.3
       fast-glob: 3.3.2
       import-fresh: 3.3.0
@@ -5411,7 +5482,7 @@ packages:
     dependencies:
       '@ampproject/remapping': 2.2.1
       '@jridgewell/sourcemap-codec': 1.4.15
-      '@jridgewell/trace-mapping': 0.3.18
+      '@jridgewell/trace-mapping': 0.3.25
       '@types/estree': 1.0.5
       acorn: 8.11.3
       aria-query: 5.3.0
