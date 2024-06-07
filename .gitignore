@@ -18,6 +18,9 @@ node_modules
 .DS_Store
 *.pem
 
+# test output
+test-results
+
 # turbo
 .turbo
 

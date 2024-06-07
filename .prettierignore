@@ -27,6 +27,9 @@ pnpm-lock.yaml
 .xwin-cache
 target
 
+# test output
+test-results
+
 # turbo
 .turbo
 
