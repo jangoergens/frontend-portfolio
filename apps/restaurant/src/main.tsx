@@ -4,8 +4,18 @@ import { Provider } from "react-redux"
 import App from "./App"
 import { store } from "./app/store"
 import "./index.css"
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import { ErrorPage } from "./error-page"
 
 const container = document.getElementById("root")
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    errorElement: <ErrorPage />,
+  },
+])
 
 if (container) {
   const root = createRoot(container)
@@ -13,7 +23,7 @@ if (container) {
   root.render(
     <React.StrictMode>
       <Provider store={store}>
-        <App />
+        <RouterProvider router={router} />
       </Provider>
     </React.StrictMode>,
   )
