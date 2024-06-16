@@ -6,6 +6,9 @@ import { store } from "./app/store";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ErrorPage } from "./error-page";
+import { IngredientList } from "./features/ingredients/IngredientList";
+import { Counter } from "./features/counter/Counter";
+import { Quotes } from "./features/quotes/Quotes";
 
 const container = document.getElementById("root");
 
@@ -14,6 +17,20 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "ingredients",
+        element: <IngredientList />,
+      },
+      {
+        path: "counter",
+        element: <Counter />,
+      },
+      {
+        path: "quotes",
+        element: <Quotes />,
+      },
+    ],
   },
 ]);
 
