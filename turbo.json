@@ -3,20 +3,25 @@
   "pipeline": {
     "build": {
       "dependsOn": ["check", "^build"],
-      "outputs": ["dist/**", ".next/**"]
+      "outputs": ["dist/**", ".next/**"],
+      "cache": false
     },
     "install-test-browser": {
-      "outputs": []
+      "outputs": [],
+      "cache": false
     },
     "test": {
       "dependsOn": ["^build", "^install-test-browser"],
-      "outputs": []
+      "outputs": [],
+      "cache": false
     },
     "lint": {
-      "outputs": []
+      "outputs": [],
+      "cache": false
     },
     "check": {
-      "outputs": []
+      "outputs": [],
+      "cache": false
     },
     "start": {
       "cache": false
