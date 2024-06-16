@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      typescript:
+        specifier: 5.4.5
+        version: 5.4.5
     devDependencies:
       turbo:
         specifier: 1.13.4
@@ -84,9 +88,6 @@ importers:
       tailwindcss:
         specifier: 3.4.4
         version: 3.4.4
-      typescript:
-        specifier: 5.4.5
-        version: 5.4.5
       vite:
         specifier: 5.2.13
         version: 5.2.13
@@ -153,9 +154,6 @@ importers:
       tslib:
         specifier: 2.6.3
         version: 2.6.3
-      typescript:
-        specifier: 5.4.5
-        version: 5.4.5
       vite:
         specifier: 5.2.13
         version: 5.2.13
@@ -214,9 +212,6 @@ importers:
       prettier:
         specifier: 3.3.0
         version: 3.3.0
-      typescript:
-        specifier: 5.4.5
-        version: 5.4.5
       vite:
         specifier: 5.2.12
         version: 5.2.12
@@ -293,9 +288,6 @@ importers:
       tslib:
         specifier: 2.6.3
         version: 2.6.3
-      typescript:
-        specifier: 5.4.5
-        version: 5.4.5
       vite:
         specifier: 5.2.13
         version: 5.2.13

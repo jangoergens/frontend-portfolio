@@ -4,6 +4,9 @@ import type { UserConfig } from "vite";
 
 const config: UserConfig = {
 	plugins: [sveltekit(), imagetools()],
+	preview: {
+		port: 5555,
+	},
 };
 
 export default config;
