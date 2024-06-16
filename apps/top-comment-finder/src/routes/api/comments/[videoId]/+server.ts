@@ -153,8 +153,7 @@ export async function GET({ params }: RequestEvent) {
 		return new Response(JSON.stringify(randomComments));
 	} else {
 		console.error(
-			"Error: Supabase client not found or API mode not set to development or production. Current mode is: ",
-			env.GOOGLE_API_MODE,
+			"Error: Supabase client not found or API mode not set to development or production",
 		);
 	}
 }
