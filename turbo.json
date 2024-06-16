@@ -1,15 +1,24 @@
 {
   "$schema": "https://turborepo.org/schema.json",
-  "pipeline": {
+  "tasks": {
     "build": {
-      "dependsOn": ["check", "^build"],
-      "outputs": ["dist/**", ".next/**"]
+      "dependsOn": [
+        "check",
+        "^build"
+      ],
+      "outputs": [
+        "dist/**",
+        ".next/**"
+      ]
     },
     "install-test-browser": {
       "outputs": []
     },
     "test": {
-      "dependsOn": ["^build", "^install-test-browser"],
+      "dependsOn": [
+        "^build",
+        "^install-test-browser"
+      ],
       "outputs": []
     },
     "lint": {
