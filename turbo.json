@@ -1,9 +1,14 @@
 {
   "$schema": "https://turborepo.org/schema.json",
-  "pipeline": {
+  "tasks": {
     "build": {
       "dependsOn": ["check", "^build"],
       "outputs": ["dist/**", ".next/**"],
+      "env": [
+        "GOOGLE_API_MODE",
+        "PUBLIC_SUPABASE_URL",
+        "PUBLIC_SUPABASE_ANON_KEY"
+      ],
       "cache": false
     },
     "install-test-browser": {
@@ -13,6 +18,11 @@
     "test": {
       "dependsOn": ["^build", "^install-test-browser"],
       "outputs": [],
+      "env": [
+        "GOOGLE_API_MODE",
+        "PUBLIC_SUPABASE_URL",
+        "PUBLIC_SUPABASE_ANON_KEY"
+      ],
       "cache": false
     },
     "lint": {
@@ -21,7 +31,12 @@
     },
     "check": {
       "outputs": [],
-      "cache": false
+      "cache": false,
+      "env": [
+        "GOOGLE_API_MODE",
+        "PUBLIC_SUPABASE_URL",
+        "PUBLIC_SUPABASE_ANON_KEY"
+      ]
     },
     "start": {
       "cache": false
