@@ -15,6 +15,7 @@ node_modules
 # misc
 .DS_Store
 *.pem
+*vite.config.ts.timestamp*
 
 # next
 .next

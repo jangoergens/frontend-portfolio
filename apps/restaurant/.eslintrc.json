@@ -30,10 +30,7 @@
       }
     ]
   },
-  "overrides": [
-    { "files": ["*.{c,m,}{t,j}s", "*.{t,j}sx"] },
-    { "files": ["*{test,spec}.{t,j}s?(x)"], "env": { "jest": true } }
-  ],
+  "overrides": [{ "files": ["*.{c,m,}{t,j}s", "*.{t,j}sx"] }],
   "env": {
     "browser": true,
     "node": true,
