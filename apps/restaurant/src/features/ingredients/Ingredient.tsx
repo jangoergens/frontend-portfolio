@@ -1,4 +1,8 @@
-export const Ingredient = ({ name }: { name: string }) => {
+export interface IngredientProps {
+  name: string;
+}
+
+export const Ingredient = ({ name }: IngredientProps) => {
   return (
     <div>
       <h3>{name}</h3>
