@@ -9,6 +9,7 @@ import { ErrorPage } from "./error-page";
 import { IngredientList } from "./features/ingredients/IngredientList";
 import { Counter } from "./features/counter/Counter";
 import { Quotes } from "./features/quotes/Quotes";
+import { Menu } from "./features/meals/Menu";
 
 const container = document.getElementById("root");
 
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
     element: <App />,
     errorElement: <ErrorPage />,
     children: [
+      {
+        path: "menu",
+        element: <Menu />,
+      },
       {
         path: "ingredients",
         element: <IngredientList />,

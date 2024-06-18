@@ -11,6 +11,9 @@ const App = () => {
               <Link to="/">Home</Link>
             </li>
             <li>
+              <Link to="/menu">Menu</Link>
+            </li>
+            <li>
               <Link to="/ingredients">Ingredients</Link>
             </li>
             <li>

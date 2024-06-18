@@ -1,7 +1,7 @@
 import { createSlice, nanoid, type PayloadAction } from "@reduxjs/toolkit";
 import type { IngredientProps } from "./Ingredient";
 
-type Ingredient = IngredientProps & { id: string };
+export type Ingredient = IngredientProps & { id: string };
 export interface IngredientsSliceState {
   ingredients: Ingredient[];
 }
@@ -35,9 +35,14 @@ export const ingredientsSlice = createSlice({
   }),
   selectors: {
     selectIngredients: (state) => state.ingredients,
+    selectIngredientsById: (state, ...id: string[]) =>
+      state.ingredients.filter((ingredient) => id.includes(ingredient.id)),
+    selectIngredientsByName: (state, ...names: string[]) =>
+      state.ingredients.filter((ingredient) => names.includes(ingredient.name)),
   },
 });
 
 export const { addIngredient, removeIngredient } = ingredientsSlice.actions;
 
-export const { selectIngredients } = ingredientsSlice.selectors;
+export const { selectIngredients, selectIngredientsById, selectIngredientsByName } =
+  ingredientsSlice.selectors;
