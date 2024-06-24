@@ -17,7 +17,7 @@
     "test": "turbo run test"
   },
   "dependencies": {
-    "typescript": "5.4.5"
+    "typescript": "5.5.2"
   },
   "devDependencies": {
     "turbo": "2.0.4"
@@ -25,5 +25,5 @@
   "engines": {
     "node": ">=18 < 19"
   },
-  "packageManager": "pnpm@9.3.0"
+  "packageManager": "pnpm@9.4.0"
 }
