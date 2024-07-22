@@ -20,10 +20,10 @@
     "typescript": "5.5.3"
   },
   "devDependencies": {
-    "turbo": "2.0.6"
+    "turbo": "2.0.9"
   },
   "engines": {
     "node": ">=18 < 19"
   },
-  "packageManager": "pnpm@9.5.0"
+  "packageManager": "pnpm@9.6.0"
 }
