@@ -31,7 +31,8 @@
 		class="aspect-video w-full md:max-w-xl"
 		src={"https://www.youtube.com/embed/" + videoId}
 		title="YouTube video player"
-	/>
+	></iframe>
+
 	{#await fetchComments()}
 		<p class="animate-pulse">...loading comments</p>
 	{:then comments}
