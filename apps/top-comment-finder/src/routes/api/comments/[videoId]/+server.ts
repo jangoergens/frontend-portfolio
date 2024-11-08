@@ -5,7 +5,7 @@ import { type RequestEvent } from "@sveltejs/kit";
 
 export async function GET({ params }: RequestEvent) {
 	if (!params.videoId) {
-		return new Response("No video ID provided");
+		return new Response("No video ID provided.");
 	}
 	if (env.GOOGLE_API_MODE === "production") {
 		const apiKey = env.GOOGLE_API_KEY;
@@ -116,7 +116,7 @@ export async function GET({ params }: RequestEvent) {
 		return new Response(JSON.stringify(randomComments));
 	} else {
 		console.error(
-			"Error: Supabase client not found or API mode not set to development or production",
+			"Error: Supabase client not found or API mode not set to development or production.",
 		);
 	}
 }
