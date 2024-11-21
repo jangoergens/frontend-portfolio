@@ -1,5 +1,3 @@
-export type Json = { [key: string]: Json | undefined } | Json[] | boolean | null | number | string;
-
 export interface Database {
 	public: {
 		CompositeTypes: {
@@ -82,3 +80,5 @@ export interface Database {
 		};
 	};
 }
+
+export type Json = boolean | Json[] | null | number | string | { [key: string]: Json | undefined };
