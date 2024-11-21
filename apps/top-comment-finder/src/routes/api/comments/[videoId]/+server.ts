@@ -22,7 +22,7 @@ export async function GET({ params }: RequestEvent) {
 			);
 		};
 
-		let commentThreads: YoutubeCommentThreads | undefined;
+		let commentThreads: undefined | YoutubeCommentThreads;
 		let currentCommentThreadPage = 0;
 		const topComments: RequiredCommentInfo[] = [];
 

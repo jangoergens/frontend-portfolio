@@ -1,3 +1,10 @@
+export interface CommentThread {
+	etag: string;
+	id: string;
+	kind: string;
+	snippet: Snippet;
+}
+
 export interface RequiredCommentInfo {
 	authorChannelUrl: string;
 	authorDisplayName: string;
@@ -5,6 +12,21 @@ export interface RequiredCommentInfo {
 	likeCount: string;
 	publishedAt: string;
 	textDisplay: string;
+}
+
+export interface Snippet {
+	canReply: string;
+	isPublic: string;
+	topLevelComment: TopLevelComment;
+	totalReplyCount: number;
+	videoId: string;
+}
+
+export interface TopLevelComment {
+	etag: string;
+	id: string;
+	kind: string;
+	snippet: TopLevelCommentInfo;
 }
 
 export interface TopLevelCommentInfo extends RequiredCommentInfo {
@@ -16,28 +38,6 @@ export interface TopLevelCommentInfo extends RequiredCommentInfo {
 	updatedAt: string;
 	videoId: string;
 	viewerRating: string;
-}
-
-export interface TopLevelComment {
-	etag: string;
-	id: string;
-	kind: string;
-	snippet: TopLevelCommentInfo;
-}
-
-export interface Snippet {
-	canReply: string;
-	isPublic: string;
-	topLevelComment: TopLevelComment;
-	totalReplyCount: number;
-	videoId: string;
-}
-
-export interface CommentThread {
-	etag: string;
-	id: string;
-	kind: string;
-	snippet: Snippet;
 }
 
 export interface YoutubeCommentThreads {

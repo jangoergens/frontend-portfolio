@@ -8,7 +8,7 @@ module.exports = {
 		"eslint:recommended",
 		"plugin:@typescript-eslint/recommended",
 		"plugin:@typescript-eslint/recommended-requiring-type-checking",
-		"plugin:perfectionist/recommended-natural",
+		"plugin:perfectionist/recommended-natural-legacy",
 		"plugin:astro/recommended",
 		"plugin:svelte/recommended",
 		"prettier",
