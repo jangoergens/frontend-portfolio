@@ -30,7 +30,7 @@
 	/>
 </svelte:head>
 
-<section class="flex flex-col items-center justify-center">
+<section class="flex h-full flex-col">
 	<h1 class="text-center text-2xl font-extrabold tracking-tight sm:text-3xl lg:text-4xl">
 		TopCommentFinder - <span
 			class="bg-gradient-to-r from-orange-500 via-yellow-500 to-green-500 bg-clip-text text-transparent"
@@ -40,34 +40,30 @@
 	<h2 class="text-center italic text-slate-500">
 		Access top comments without YouTube's limitations
 	</h2>
-	<form
-		class="my-8 flex w-full items-center gap-2 py-8 sm:w-2/3 lg:max-w-xl"
-		on:submit|preventDefault={handleSubmit}
-	>
-		<input
-			bind:value={videoUrl}
-			class="h-10 w-5/6 rounded-full border-2 border-black bg-white px-2 text-center dark:border-zinc-400 dark:bg-zinc-800"
-			id="videoSearch"
-			name="videoSearch"
-			placeholder="Paste YouTube Video URL"
-			type="text"
-		/>
-		<button class="h-9 py-1" title="Search" type="submit"
-			><img alt="Search Icon" class="fill-white" height="28" src={searchIcon} width="28" /></button
+
+	<div class="my-auto mt-8 flex flex-col items-center">
+		<form
+			class="flex w-full max-w-xl items-center gap-2 py-8 lg:max-w-2xl"
+			on:submit|preventDefault={handleSubmit}
 		>
-	</form>
+			<input
+				bind:value={videoUrl}
+				class="h-10 w-full rounded-full border-2 border-black bg-white px-2 text-center lg:h-12 dark:border-zinc-400 dark:bg-zinc-800"
+				id="videoSearch"
+				name="videoSearch"
+				placeholder="Paste YouTube Video URL"
+				type="text"
+			/>
+			<button class="h-9 w-12 lg:h-11 lg:w-12" title="Search" type="submit"
+				><img alt="Search Icon" class="fill-white" src={searchIcon} /></button
+			>
+		</form>
 
-	<div class="flex flex-col gap-4 text-center font-semibold sm:w-2/3 md:w-1/2 xl:w-2/5">
-		<p>
-			The existing YouTube comment-sorting algorithm may not cater to everyone's preferences,
-			particularly when browsing older videos.
+		<p class="max-w-lg text-center font-semibold lg:max-w-xl">
+			Get the top 20 most upvoted comments from any YouTube video. This tool ranks comments by
+			initial upvotes, not date. Paste a link to use.
 		</p>
-		<p>
-			To address this issue, I've developed a user-friendly platform that enables you to
-			effortlessly access the genuine top comments from any YouTube video. All you need to do is
-			enter the video's link.
-		</p>
+
+		<a class="my-8" href="/czgOWmtGVGs"><button type="button">Give it a try!</button></a>
 	</div>
-
-	<a class="my-8" href="/czgOWmtGVGs"><button type="button">Give it a try!</button></a>
 </section>

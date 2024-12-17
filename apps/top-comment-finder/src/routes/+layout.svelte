@@ -17,7 +17,7 @@
 
 <Header />
 
-<main class="px-4 py-4 lg:px-40">
+<main class="h-fit p-4">
 	<slot />
 </main>
 
