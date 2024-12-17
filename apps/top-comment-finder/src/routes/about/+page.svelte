@@ -7,19 +7,15 @@
 	<h1>About</h1>
 	<div class="my-8 flex flex-col gap-3 px-4 sm:w-2/3 xl:w-1/2">
 		<p>
-			Welcome to the About page of my project, dedicated to putting the power of comment sorting
-			back into the hands of the YouTube community.
+			YouTube's comment system prioritizes newer comments to keep things fresh. That's great for
+			recent uploads, but it makes it tough to see the top comments on older videos. Basically, it
+			buries the original reactions people had when the video first came out.
 		</p>
 		<p>
-			YouTube's current algorithm doesn't suit everyone's preferences, especially when it comes to
-			comments under older videos. It has a strong recency bias, often promoting new comments with
-			very few likes and overshadowing valuable older comments.
-		</p>
-		<p>
-			With this in mind, I have created a platform that allows you to easily access the top 20
-			comments from any YouTube video simply by entering its link. This user-friendly and unbiased
-			solution saves you time and ensures you can enjoy the most relevant and engaging comments
-			without the influence of YouTube's recency bias.
+			I built this tool to fix that. Just paste a YouTube video link, and it'll show you the top 20
+			comments based solely on their upvote count, regardless of when they were posted. No more
+			digging through a pile of recent comments to find the highest rated comments from back in the
+			day.
 		</p>
 	</div>
 </section>
