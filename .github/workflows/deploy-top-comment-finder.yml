@@ -6,12 +6,10 @@ on:
       - "main"
     paths:
       - "apps/top-comment-finder/**"
+      - "package.json"
 
 jobs:
   deploy:
-    defaults:
-      run:
-        working-directory: apps/top-comment-finder
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
