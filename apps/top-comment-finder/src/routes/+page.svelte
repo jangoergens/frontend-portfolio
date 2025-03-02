@@ -2,9 +2,10 @@
 	import { goto } from "$app/navigation";
 	import searchIcon from "$lib/assets/searchWhite.svg?w=28&h=28&format=webp&imagetools";
 
-	let videoUrl = "";
+	let videoUrl = $state("");
 
-	const handleSubmit = async () => {
+	const handleSubmit = async (event: SubmitEvent) => {
+		event.preventDefault();
 		const videoUrlPattern =
 			/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
 		const videoIdPattern = /^[a-zA-Z0-9_-]{11}$/;
@@ -42,10 +43,7 @@
 	</h2>
 
 	<div class="my-auto mt-8 flex flex-col items-center">
-		<form
-			class="flex w-full max-w-xl items-center gap-2 py-8 lg:max-w-2xl"
-			on:submit|preventDefault={handleSubmit}
-		>
+		<form class="flex w-full max-w-xl items-center gap-2 py-8 lg:max-w-2xl" onsubmit={handleSubmit}>
 			<input
 				bind:value={videoUrl}
 				class="h-10 w-full rounded-full border-2 border-black bg-white px-2 text-center lg:h-12 dark:border-zinc-400 dark:bg-zinc-800"

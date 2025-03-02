@@ -10,7 +10,7 @@
 		"lint": "astro check && prettier --ignore-path ../../.prettierignore --check . && eslint . --ignore-path ../../.eslintignore --report-unused-disable-directives --max-warnings 0",
 		"lint:fix": "eslint . --ignore-path ../../.eslintignore --report-unused-disable-directives --max-warnings 0 --fix",
 		"astro": "astro",
-		"format": "prettier --write . --plugin=prettier-plugin-astro"
+		"format": "prettier --ignore-path ../../.prettierignore --write ."
 	},
 	"dependencies": {
 		"@astrojs/svelte": "6.0.2",

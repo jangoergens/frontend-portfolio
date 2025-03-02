@@ -7,7 +7,7 @@
 
 	import { getUserThemePreference } from "../../utils/helper";
 
-	let currentTheme = "light";
+	let currentTheme = $state("light");
 
 	onMount(() => {
 		currentTheme = getUserThemePreference();
@@ -40,7 +40,7 @@
 	</nav>
 	<button
 		class="bg-transparent hover:bg-transparent"
-		on:click={toggleDarkMode}
+		onclick={toggleDarkMode}
 		title={currentTheme === "light" ? "Enable Dark Mode" : "Enable Light Mode"}
 	>
 		<img
