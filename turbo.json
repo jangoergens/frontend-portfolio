@@ -26,6 +26,9 @@
     "lint": {
       "outputs": []
     },
+    "format": {
+      "outputs": []
+    },
     "check": {
       "outputs": [".svelte-kit/**"],
       "env": [

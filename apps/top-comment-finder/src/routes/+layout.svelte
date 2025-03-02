@@ -5,6 +5,11 @@
 
 	import "../app.css";
 	import { getUserThemePreference } from "../utils/helper";
+	interface Props {
+		children?: import("svelte").Snippet;
+	}
+
+	let { children }: Props = $props();
 
 	onMount(() => {
 		if (getUserThemePreference() === "dark") {
@@ -18,7 +23,7 @@
 <Header />
 
 <main class="h-fit p-4">
-	<slot />
+	{@render children?.()}
 </main>
 
 <Footer />
