@@ -17,7 +17,7 @@
 		"@astrojs/tailwind": "5.1.5",
 		"@astrojs/ts-plugin": "1.10.4",
 		"astro": "4.16.18",
-		"svelte": "5.23.1"
+		"svelte": "5.25.3"
 	},
 	"devDependencies": {
 		"@astrojs/check": "0.9.4",
