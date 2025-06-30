@@ -17,7 +17,7 @@
 		"@astrojs/tailwind": "5.1.5",
 		"@astrojs/ts-plugin": "1.10.4",
 		"astro": "4.16.18",
-		"svelte": "5.34.7"
+		"svelte": "5.34.9"
 	},
 	"devDependencies": {
 		"@astrojs/check": "0.9.4",
@@ -33,7 +33,7 @@
 		"eslint-plugin-perfectionist": "4.15.0",
 		"eslint-plugin-svelte": "2.46.1",
 		"postcss": "8.5.6",
-		"prettier": "3.5.3",
+		"prettier": "3.6.2",
 		"prettier-plugin-astro": "0.14.1",
 		"prettier-plugin-svelte": "3.4.0",
 		"prettier-plugin-tailwindcss": "0.6.13",
