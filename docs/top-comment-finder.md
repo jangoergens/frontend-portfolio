@@ -62,16 +62,36 @@ Results are a JSON array of up to 20 comments sorted by likes. The page cap can 
 a sample; `X-Comments-Partial` reports this and the page shows a notice. HTTP responses
 use `Cache-Control: no-store`; the application cache remains in server memory.
 
-| Status | Cause                                                                   |
-| ------ | ----------------------------------------------------------------------- |
-| 400    | Invalid video ID                                                        |
-| 429    | Client rate limit                                                       |
-| 503    | Missing configuration, exhausted budget or storage, or duplicate lookup |
-| 502    | Upstream failure                                                        |
-| 504    | Deadline exceeded                                                       |
+| Status | Cause                                                                          |
+| ------ | ------------------------------------------------------------------------------ |
+| 400    | Invalid video ID                                                               |
+| 403    | Comments disabled for the video                                                |
+| 404    | Video unavailable or private                                                   |
+| 429    | Client rate limit                                                              |
+| 503    | Missing/invalid configuration, exhausted quota or storage, or duplicate lookup |
+| 502    | Upstream failure                                                               |
+| 504    | Deadline exceeded                                                              |
 
 Error responses omit credentials and upstream response bodies. Missing configuration
 or storage capacity prevents new YouTube calls.
+
+Recognized YouTube errors include a stable `code` for disabled comments, unavailable
+videos, exhausted YouTube quota, or configuration failures. The page maps those codes
+to its own messages and falls back to the HTTP status when a proxy returns non-JSON.
+Server logs record only the upstream HTTP status and an allowlisted reason, never
+the API key, request URL, upstream message, or Google project metadata.
+
+If production fails, inspect the Vercel function logs for `YouTube comment request
+failed`. `API_KEY_INVALID` means Google rejected the configured key: replace
+`GOOGLE_API_KEY` in Vercel's Production environment with a valid key for a project
+with YouTube Data API v3 enabled, then redeploy through the validated workflow.
+`API_KEY_HTTP_REFERRER_BLOCKED` means a browser-restricted key is being used by the
+server; use a server key restricted to YouTube Data API v3 and to server IP addresses
+where supported. `SERVICE_DISABLED` or `API_KEY_SERVICE_BLOCKED` requires checking
+API enablement and the key's API restrictions. `quotaExceeded` requires checking the
+Google project's quota rather than replacing the key. See Google's
+[API error reference](https://developers.google.com/youtube/v3/docs/errors) and
+[key restrictions documentation](https://docs.cloud.google.com/api-keys/docs/add-restrictions-api-keys).
 
 Server tests mock YouTube responses and cover pagination, ordering, limits, cache and
 storage bounds, locking, configuration failures, and deadlines. They do not verify live

@@ -323,6 +323,74 @@ void test("reports upstream network and HTTP errors without caching them", async
 	}
 });
 
+void test("classifies YouTube errors and logs only safe diagnostic fields", async (t) => {
+	const logger = t.mock.method(console, "error", () => {});
+	for (const [reason, upstreamStatus, status, code] of [
+		["commentsDisabled", 403, 403, "comments_disabled"],
+		["videoNotFound", 404, 404, "video_unavailable"],
+		["quotaExceeded", 403, 503, "youtube_quota_exceeded"],
+		["dailyLimitExceeded", 403, 503, "youtube_quota_exceeded"],
+		["rateLimitExceeded", 403, 503, "youtube_quota_exceeded"],
+		["keyInvalid", 400, 503, "youtube_configuration_error"],
+		["API_KEY_INVALID", 400, 503, "youtube_configuration_error"],
+		["API_KEY_HTTP_REFERRER_BLOCKED", 403, 503, "youtube_configuration_error"],
+		["API_KEY_IP_ADDRESS_BLOCKED", 403, 503, "youtube_configuration_error"],
+		["API_KEY_SERVICE_BLOCKED", 403, 503, "youtube_configuration_error"],
+		["accessNotConfigured", 403, 503, "youtube_configuration_error"],
+		["SERVICE_DISABLED", 403, 503, "youtube_configuration_error"],
+		["forbidden", 403, 503, "youtube_configuration_error"],
+	] as const) {
+		const modern = reason.includes("_");
+		const upstream = Response.json(
+			{
+				error: {
+					details: modern ? [{ metadata: { key: "test-api-key" }, reason }] : [],
+					errors: [{ reason: modern ? "forbidden" : reason }],
+					message: "Secret upstream details containing test-api-key",
+				},
+			},
+			{ status: upstreamStatus },
+		);
+		const { handle, requests, store } = fixture([upstream]);
+		const response = await handle(videoId, "127.0.0.1");
+		assert.equal(response.status, status);
+		assert.equal(response.headers.get("Cache-Control"), "no-store");
+		const body = (await response.json()) as { code: string; error: string };
+		assert.equal(body.code, code);
+		assert.ok(!body.error.includes("test-api-key"));
+		assert.equal(requests.length, 1);
+		assert.equal(store.cache.size, 0);
+		assert.equal(store.locks.size, 0);
+		assert.deepEqual(logger.mock.calls.at(-1)?.arguments, [
+			"YouTube comment request failed",
+			{ reason, status: upstreamStatus },
+		]);
+	}
+});
+
+void test("does not expose unknown upstream reasons or non-JSON error bodies", async (t) => {
+	const logger = t.mock.method(console, "error", () => {});
+	for (const upstream of [
+		Response.json(
+			{ error: { errors: [{ reason: "test-api-key" }], message: "test-api-key" } },
+			{ status: 400 },
+		),
+		Response.json({ error: { details: "test-api-key", errors: [null] } }, { status: 400 }),
+		new Response("<html>test-api-key</html>", { status: 400 }),
+	]) {
+		const { handle, store } = fixture([upstream]);
+		const response = await handle(videoId, "127.0.0.1");
+		assert.equal(response.status, 502);
+		assert.deepEqual(await response.json(), { error: "Unable to fetch comments from YouTube." });
+		assert.equal(store.cache.size, 0);
+		assert.equal(store.locks.size, 0);
+		assert.deepEqual(logger.mock.calls.at(-1)?.arguments, [
+			"YouTube comment request failed",
+			{ reason: "unknown", status: 400 },
+		]);
+	}
+});
+
 void test("validates upstream JSON, comment fields and pagination tokens", async () => {
 	for (const body of [
 		null,

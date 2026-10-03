@@ -12,8 +12,29 @@
 		const response = await fetch(`/api/comments/${videoId}`);
 
 		if (!response.ok) {
+			const codes: Record<string, string> = {
+				comments_disabled: "Comments are disabled for this video.",
+				video_unavailable: "This video is unavailable or private.",
+				youtube_configuration_error:
+					"The comment service cannot access YouTube right now. Please try again later.",
+				youtube_quota_exceeded:
+					"The comment service has reached its YouTube quota. Please try again later.",
+			};
+			// Display only our own messages; proxies can return HTML instead of API JSON.
+			const body: unknown = await response.json().catch(() => null);
+			if (
+				body &&
+				typeof body === "object" &&
+				"code" in body &&
+				typeof body.code === "string" &&
+				Object.hasOwn(codes, body.code)
+			) {
+				throw new Error(codes[body.code]);
+			}
 			const messages: Record<number, string> = {
 				400: "This YouTube video link is invalid.",
+				403: "Comments are unavailable for this video.",
+				404: "This video is unavailable or private.",
 				429: "Too many requests. Please wait a minute before trying again.",
 				503: "The comment service is busy or temporarily unavailable. Please try again later.",
 				504: "Fetching comments took too long. Please try again later.",

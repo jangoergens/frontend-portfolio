@@ -25,11 +25,13 @@ interface Options {
 }
 
 class CommentsError extends Error {
+	code?: string;
 	retryAfter?: number;
 	status: number;
 
-	constructor(message: string, status: number, retryAfter?: number) {
+	constructor(message: string, status: number, retryAfter?: number, code?: string) {
 		super(message);
+		this.code = code;
 		this.status = status;
 		this.retryAfter = retryAfter;
 	}
@@ -139,7 +141,7 @@ export function createCommentsHandler({
 				let parsed;
 				try {
 					const response = await fetcher(url, { redirect: "error", signal });
-					if (!response.ok) throw new CommentsError("Unable to fetch comments from YouTube.", 502);
+					if (!response.ok) throw await youtubeError(response);
 					parsed = parsePage(await response.json());
 				} catch (error) {
 					if (error instanceof CommentsError) throw error;
@@ -171,7 +173,7 @@ export function createCommentsHandler({
 						? new CommentsError("Fetching comments took too long. Please try again later.", 504)
 						: new CommentsError("The comment service is busy. Please try again later.", 503, 30);
 			return Response.json(
-				{ error: failure.message },
+				{ error: failure.message, ...(failure.code ? { code: failure.code } : {}) },
 				{
 					headers: {
 						"Cache-Control": "no-store",
@@ -285,4 +287,71 @@ function success(result: CachedComments, cached = false): Response {
 			"X-Comments-Partial": String(result.partial),
 		},
 	});
+}
+
+async function youtubeError(response: Response): Promise<CommentsError> {
+	const knownReasons = new Map([
+		["accessNotConfigured", "youtube_configuration_error"],
+		["API_KEY_HTTP_REFERRER_BLOCKED", "youtube_configuration_error"],
+		["API_KEY_INVALID", "youtube_configuration_error"],
+		["API_KEY_IP_ADDRESS_BLOCKED", "youtube_configuration_error"],
+		["API_KEY_SERVICE_BLOCKED", "youtube_configuration_error"],
+		["commentsDisabled", "comments_disabled"],
+		["dailyLimitExceeded", "youtube_quota_exceeded"],
+		["forbidden", "youtube_configuration_error"],
+		["keyInvalid", "youtube_configuration_error"],
+		["quotaExceeded", "youtube_quota_exceeded"],
+		["rateLimitExceeded", "youtube_quota_exceeded"],
+		["SERVICE_DISABLED", "youtube_configuration_error"],
+		["videoNotFound", "video_unavailable"],
+	]);
+	let reason = "unknown";
+	try {
+		const body: unknown = await response.json();
+		if (body && typeof body === "object" && "error" in body) {
+			const error = body.error;
+			if (error && typeof error === "object") {
+				for (const field of ["details", "errors"] as const) {
+					if (!(field in error)) continue;
+					const entries = (error as Record<string, unknown>)[field];
+					if (!Array.isArray(entries)) continue;
+					for (const entry of entries as unknown[]) {
+						if (
+							entry &&
+							typeof entry === "object" &&
+							"reason" in entry &&
+							typeof entry.reason === "string" &&
+							knownReasons.has(entry.reason)
+						) {
+							reason = entry.reason;
+							break;
+						}
+					}
+					if (reason !== "unknown") break;
+				}
+			}
+		}
+	} catch {
+		// Error bodies are not always JSON. Never expose upstream text or request URLs.
+	}
+	const code = knownReasons.get(reason);
+	// Log only allowlisted reasons: Google messages can contain credentials and project details.
+	console.error("YouTube comment request failed", { reason, status: response.status });
+	switch (code) {
+		case "comments_disabled":
+			return new CommentsError("Comments are disabled for this video.", 403, undefined, code);
+		case "video_unavailable":
+			return new CommentsError("This video is unavailable or private.", 404, undefined, code);
+		case "youtube_configuration_error":
+			return new CommentsError("The comment service cannot access YouTube.", 503, undefined, code);
+		case "youtube_quota_exceeded":
+			return new CommentsError(
+				"The comment service has reached its YouTube quota. Please try again later.",
+				503,
+				undefined,
+				code,
+			);
+		default:
+			return new CommentsError("Unable to fetch comments from YouTube.", 502);
+	}
 }
