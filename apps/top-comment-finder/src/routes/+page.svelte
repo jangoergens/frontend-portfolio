@@ -28,7 +28,7 @@
 <svelte:head>
 	<title>TopCommentFinder - Beyond the Algorithm</title>
 	<meta
-		content="TopCommentFinder: Effortlessly discover the genuine top comments on any YouTube video. Enhance your viewing experience by accessing the best comments without relying on YouTube's default algorithm."
+		content="Explore YouTube comments sorted by likes. Paste a video link to see up to 20 of the most-liked comments retrieved by TopCommentFinder."
 		name="description"
 	/>
 </svelte:head>
@@ -40,9 +40,7 @@
 			>Beyond the Algorithm</span
 		>
 	</h1>
-	<h2 class="text-center text-slate-500 italic">
-		Access top comments without YouTube's limitations
-	</h2>
+	<h2 class="text-center text-slate-500 italic">Explore YouTube comments, sorted by likes</h2>
 
 	<div class="my-auto mt-8 flex flex-col items-center">
 		<form class="flex w-full max-w-xl items-center gap-2 py-8 lg:max-w-2xl" onsubmit={handleSubmit}>
@@ -66,8 +64,8 @@
 		</form>
 
 		<p class="max-w-lg text-center font-semibold lg:max-w-xl">
-			Get the top 20 most upvoted comments from any YouTube video. This tool ranks comments by
-			initial upvotes, not date. Paste a link to use.
+			Paste a YouTube video link to see up to 20 of the most-liked comments we find, sorted by like
+			count. Videos with many comments may show a sample.
 		</p>
 
 		<a class="my-8" href={resolve("/[videoId]", { videoId: "czgOWmtGVGs" })}
