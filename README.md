@@ -41,9 +41,29 @@ Read [AGENTS.md](./AGENTS.md) for repository working conventions. App setup, quo
 
 Renovate groups minor, patch, digest, and pin updates on the first day of each month in `Europe/Berlin`; major upgrades remain separate. Existing branches follow the same schedule. Automerge is disabled and releases require a known publication timestamp and a one-day delay. Security fixes bypass the monthly schedule but retain that delay and manual review. Enable GitHub Dependabot alerts and grant Renovate access separately for that integration to work.
 
-Keep TypeScript within the supported SvelteKit, svelte-check, and typescript-eslint peer ranges; review those peers together before upgrading to TypeScript 7. Node types follow the primary Node 24 runtime. Dependency build permissions in `pnpm-workspace.yaml` allow only the native tooling used here: Tailwind's oxide, esbuild, and Sharp. Review changes to those permissions during upgrades.
+Keep TypeScript within the supported SvelteKit, svelte-check, and typescript-eslint peer ranges; review those peers together before upgrading to TypeScript 7. Node types follow the primary Node 24 runtime. Dependency build permissions in `pnpm-workspace.yaml` allow only the native tooling used here: Tailwind's oxide and esbuild. Review changes to those permissions during upgrades.
 
-pnpm enforces a one-day release delay, including frozen installs. Exact-version exceptions for ESLint 10.12.0, Turbo 2.11.7, and Turbo's platform packages remain temporarily necessary on 2026-10-03. Remove `minimumReleaseAgeExclude` from `pnpm-workspace.yaml` on or after **2026-10-04**, then verify `pnpm install --frozen-lockfile`. The exceptions do not cover future versions. Run `pnpm audit` and `pnpm outdated --recursive` during dependency reviews.
+pnpm enforces a one-day release delay, including frozen installs. The exact-version exception for ESLint 10.12.0 remains necessary until **2026-10-03 at 20:09 UTC**. Remove `minimumReleaseAgeExclude` from `pnpm-workspace.yaml` on or after **2026-10-04**, then verify `pnpm install --frozen-lockfile`. The exception does not cover future versions. Run `pnpm audit` and `pnpm outdated --recursive` during dependency reviews.
+
+## Assets and adapters
+
+The personal website uses `@sveltejs/adapter-static` and emits a fully prerendered site in `apps/personal-website/build`. Top Comment Finder uses the explicitly pinned `@sveltejs/adapter-vercel` with the Node 24 runtime and emits `.vercel/output` inside its app directory.
+
+Both apps self-host `Inter-Latin-Variable.woff2`, a subset of the original Inter variable font. It preserves variable weights, Latin and extended Latin characters (including German and Vietnamese), combining accents, punctuation, currency symbols, and common arrows. Other scripts use the existing system-font fallback. CSS and font preloads reference the same WOFF2 asset.
+
+To regenerate the font from the original `Inter-VariableFont_slnt,wght.ttf`, install `fonttools[woff]` in a temporary environment and run:
+
+```sh
+pyftsubset Inter-VariableFont_slnt,wght.ttf \
+  --output-file=Inter-Latin-Variable.woff2 --flavor=woff2 \
+  --unicodes='U+0000-024F,U+0300-036F,U+1E00-1EFF,U+2000-206F,U+20A0-20CF,U+2100-214F,U+2190-21FF,U+2212,U+FEFF,U+FFFD' \
+  --layout-features='*' --name-IDs='*' --name-languages='*' \
+  --notdef-outline --recommended-glyphs
+```
+
+Copy the generated font to each app's `static/fonts` directory. The original TTF is available in Git history.
+
+Top Comment Finder imports SVG icons directly and uses a pre-generated 96×96 WebP logo displayed at 48×48 for sharp rendering on high-density screens. The original `src/lib/assets/logo.png` remains as its source. There is no build-time image-processing plugin or Sharp dependency.
 
 ## Production deployment
 

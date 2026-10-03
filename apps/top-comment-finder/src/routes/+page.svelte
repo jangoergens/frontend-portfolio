@@ -2,7 +2,7 @@
 	import { goto } from "$app/navigation";
 	import { resolve } from "$app/paths";
 
-	import searchIcon from "#lib/assets/searchWhite.svg?w=28&h=28&format=webp&imagetools";
+	import searchIcon from "#lib/assets/searchWhite.svg";
 
 	let videoUrl = $state("");
 
@@ -55,7 +55,13 @@
 				type="text"
 			/>
 			<button aria-label="Search" class="h-9 w-12 lg:h-11 lg:w-12" title="Search" type="submit"
-				><img alt="Search Icon" class="fill-white" src={searchIcon} /></button
+				><img
+					alt="Search Icon"
+					class="fill-white"
+					height="28"
+					src={searchIcon}
+					width="28"
+				/></button
 			>
 		</form>
 

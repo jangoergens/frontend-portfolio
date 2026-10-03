@@ -12,8 +12,3 @@ declare namespace App {
 
 	// interface Platform {}
 }
-
-declare module "*&imagetools" {
-	const out: string;
-	export default out;
-}

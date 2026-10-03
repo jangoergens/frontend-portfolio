@@ -6,6 +6,12 @@ test("responsive layout and persistent manual dark mode", async ({ page }) => {
 	await page.goto("/");
 	await expect(page.locator("header")).toHaveCSS("height", "64px");
 	await expect(page.locator("body")).toHaveCSS("font-family", /Inter Variable/);
+	expect(
+		await page.evaluate(async () => {
+			const fonts = await document.fonts.load('400 16px "Inter Variable"', "Görgens Việt Nam");
+			return fonts.length > 0 && fonts.every((font) => font.status === "loaded");
+		}),
+	).toBe(true);
 	const lightBackground = await page
 		.locator("body")
 		.evaluate((body) => getComputedStyle(body).backgroundColor);

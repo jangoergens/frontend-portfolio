@@ -3,7 +3,7 @@
 	import { page } from "$app/state";
 	import { onMount } from "svelte";
 
-	import logo from "#lib/assets/logo.png?w=48&h=48&format=webp&imagetools";
+	import logo from "#lib/assets/logo.webp";
 	import moon from "#lib/assets/moon.svg";
 	import sun from "#lib/assets/sun.svg";
 

@@ -8,17 +8,10 @@ saveExact: true
 allowBuilds:
   "@tailwindcss/oxide": true
   "esbuild": true
-  "sharp": true
-# Keep pnpm 12's one-day release delay. These exact releases were selected
-# and tested during this upgrade; remove the exceptions after 2026-10-04.
+# Keep pnpm 12's one-day release delay, including frozen installs.
 minimumReleaseAge: 1440
 minimumReleaseAgeStrict: true
+# ESLint 10.12.0 clears the delay on 2026-10-03 at 20:09 UTC.
+# Remove this exact-version exception on or after 2026-10-04.
 minimumReleaseAgeExclude:
-  - "@turbo/darwin-64@2.11.7"
-  - "@turbo/darwin-arm64@2.11.7"
-  - "@turbo/linux-64@2.11.7"
-  - "@turbo/linux-arm64@2.11.7"
-  - "@turbo/windows-64@2.11.7"
-  - "@turbo/windows-arm64@2.11.7"
   - eslint@10.12.0
-  - turbo@2.11.7

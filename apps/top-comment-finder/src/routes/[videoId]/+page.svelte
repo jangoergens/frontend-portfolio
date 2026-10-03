@@ -3,8 +3,8 @@
 
 	import type { RequiredCommentInfo } from "#lib/types/youtubeApiTypes.ts";
 
-	import avatar from "#lib/assets/avatar.svg?w=32&h=32&format=webp&imagetools";
-	import thumbsUp from "#lib/assets/thumbsUp.svg?w=16&h=16&format=webp&imagetools";
+	import avatar from "#lib/assets/avatar.svg";
+	import thumbsUp from "#lib/assets/thumbsUp.svg";
 
 	const videoId = $derived(page.params.videoId);
 	let partialResults = $state(false);

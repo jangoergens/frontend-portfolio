@@ -53,7 +53,7 @@
 
 @font-face {
 	font-family: "Inter Variable";
-	src: url("/fonts/Inter-VariableFont_slnt,wght.ttf") format("truetype");
+	src: url("/fonts/Inter-Latin-Variable.woff2") format("woff2");
 	font-weight: 100 900;
 	font-style: normal;
 	font-display: swap;
