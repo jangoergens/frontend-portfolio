@@ -1,5 +1,4 @@
 # build output
-.astro
 build
 dist
 .svelte-kit

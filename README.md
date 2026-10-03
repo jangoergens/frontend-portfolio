@@ -1,12 +1,11 @@
 # Frontend Portfolio
 
-A pnpm workspace with three web apps, coordinated by Turborepo, and a small Chrome extension.
+A pnpm workspace with two web apps, coordinated by Turborepo, and a small Chrome extension.
 
 | Directory                   | Purpose                                              | Stack                                          |
 | --------------------------- | ---------------------------------------------------- | ---------------------------------------------- |
 | `apps/personal-website`     | Personal website scaffold                            | SvelteKit, Svelte 5, Tailwind 3                |
 | `apps/top-comment-finder`   | Find the most liked comments on a YouTube video      | SvelteKit, Svelte 5, YouTube Data API          |
-| `apps/blog`                 | Static blog with Markdown posts                      | Astro, Svelte 5, Tailwind 3, Skeleton v2 theme |
 | `apps/tcf-chrome-extension` | Open the current YouTube video in Top Comment Finder | Chrome Manifest V3, JavaScript                 |
 
 ## Getting started
@@ -21,7 +20,7 @@ pnpm --filter top-comment-finder start
 
 Development mode returns sample comments and requires no external credentials. Production mode requires a server-side `GOOGLE_API_KEY` for the YouTube Data API. There is no database dependency.
 
-Use `pnpm --filter personal-website start` or `pnpm --filter blog start` to run the other apps. `pnpm start` launches all three; Vite/Astro select available development ports. The SvelteKit preview ports are 5555 for the personal website and 4444 for Top Comment Finder.
+Use `pnpm --filter personal-website start` to run the other app. `pnpm start` launches both apps; Vite selects available development ports. The SvelteKit preview ports are 5555 for the personal website and 4444 for Top Comment Finder.
 
 ## Validation
 
@@ -40,4 +39,4 @@ ESLint, TypeScript, Playwright, and Prettier are shared root development depende
 
 Read [AGENTS.md](./AGENTS.md) for repository working conventions and [MAINTENANCE.md](./MAINTENANCE.md) for the investigation, retained legacy dependencies, and follow-up work. Renovate proposes dependency updates for review; application and theme migrations should be validated separately.
 
-The existing Vercel workflows deploy the blog and Top Comment Finder when matching changes reach `main`. They require the configured Vercel secrets. Local validation does not deploy anything.
+The Vercel workflow deploys Top Comment Finder when matching changes reach `main`. It requires the configured Vercel secrets. Local validation does not deploy anything.

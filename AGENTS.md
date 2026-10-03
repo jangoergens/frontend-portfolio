@@ -4,7 +4,6 @@
 
 - `apps/personal-website`: SvelteKit personal website.
 - `apps/top-comment-finder`: SvelteKit YouTube comment finder, including a server API.
-- `apps/blog`: static Astro blog with Svelte components and Markdown content collections.
 - `apps/tcf-chrome-extension`: plain JavaScript Manifest V3 extension; no workspace package.
 - Root configuration owns pnpm, Turborepo, TypeScript, ESLint, Prettier, and Playwright.
 
@@ -26,7 +25,7 @@
 - Do not deploy, publish, or change external service data unless explicitly requested.
 - Use supported MCP tools or CLIs for external services; do not write custom HTTP/SDK scripts or retrieve access tokens as a workaround.
 - Keep environment files and credentials out of Git and logs. `GOOGLE_API_KEY` belongs only on the server.
-- Follow the existing Svelte 5 component conventions and retain the blog's post URLs when changing content loaders.
-- Tailwind 3 and the blog's archived Skeleton v2 theme remain deliberate migration work; see `MAINTENANCE.md` before changing them.
+- Follow the existing Svelte 5 component conventions.
+- Review `MAINTENANCE.md` for dependency and deployment decisions.
 - When commands return a session ID, poll until they exit. Quiet output does not mean failure.
 - For command approval, use a reusable prefix at a stable subcommand boundary. Keep deployment, publishing, migration, and destructive approvals narrowly scoped.

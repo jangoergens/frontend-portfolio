@@ -1,6 +1,6 @@
 # Maintenance investigation
 
-Investigated on 2026-10-03. This is a first maintenance pass, with larger product and styling migrations left explicit below.
+Investigated on 2026-10-03. The unused blog and its deployment workflow were subsequently removed at the user's request; the user confirmed that it is absent from their Vercel dashboard, and GitHub returned no deployment workflow runs. The blog-specific findings below record the initial investigation. This is a first maintenance pass, with larger product and styling migrations left explicit below.
 
 ## Repository layout
 

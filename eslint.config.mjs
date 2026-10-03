@@ -1,7 +1,6 @@
 import js from "@eslint/js";
 import { defineConfig, globalIgnores } from "eslint/config";
 import prettier from "eslint-config-prettier";
-import astro from "eslint-plugin-astro";
 import perfectionist from "eslint-plugin-perfectionist";
 import svelte from "eslint-plugin-svelte";
 import globals from "globals";
@@ -24,7 +23,7 @@ export default defineConfig(
     languageOptions: { globals: { ...globals.browser, ...globals.node } },
   },
   {
-    files: ["apps/**/*.{ts,svelte,astro}"],
+    files: ["apps/**/*.{ts,svelte}"],
     extends: [ts.configs.recommended],
   },
   ...["personal-website", "top-comment-finder"].map((app) => ({
@@ -39,13 +38,12 @@ export default defineConfig(
     },
   })),
   svelte.configs.recommended,
-  astro.configs.recommended,
   {
-    files: ["apps/**/*.svelte", "apps/**/*.astro"],
+    files: ["apps/**/*.svelte"],
     languageOptions: { parserOptions: { parser: ts.parser } },
   },
   {
-    files: ["apps/*/src/**/*.{ts,svelte,astro}", "apps/*/tests/**/*.ts"],
+    files: ["apps/*/src/**/*.{ts,svelte}", "apps/*/tests/**/*.ts"],
     extends: [perfectionist.configs["recommended-natural"]],
   },
   {
