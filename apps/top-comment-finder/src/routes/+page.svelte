@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { resolve } from "$app/paths";
-	import searchIcon from "$lib/assets/searchWhite.svg?w=28&h=28&format=webp&imagetools";
+
+	import searchIcon from "#lib/assets/searchWhite.svg?w=28&h=28&format=webp&imagetools";
 
 	let videoUrl = $state("");
 

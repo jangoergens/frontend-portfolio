@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { resolve } from "$app/paths";
 	import { page } from "$app/state";
-	import logo from "$lib/assets/logo.svg";
-	import moon from "$lib/assets/moon.svg";
-	import sun from "$lib/assets/sun.svg";
 	import { onMount } from "svelte";
+
+	import logo from "#lib/assets/logo.svg";
+	import moon from "#lib/assets/moon.svg";
+	import sun from "#lib/assets/sun.svg";
 
 	import { getUserThemePreference } from "../../utils/helper";
 

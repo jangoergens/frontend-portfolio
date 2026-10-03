@@ -31,13 +31,7 @@
       "cache": false
     },
     "check": {
-      "outputs": [
-        ".svelte-kit/tsconfig.json",
-        ".svelte-kit/ambient.d.ts",
-        ".svelte-kit/non-ambient.d.ts",
-        ".svelte-kit/types/**",
-        ".svelte-kit/generated/**"
-      ]
+      "cache": false
     },
     "start": {
       "cache": false,

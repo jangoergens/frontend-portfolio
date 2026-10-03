@@ -1,7 +1,8 @@
 <script lang="ts">
-	import Footer from "$lib/footer/Footer.svelte";
-	import Header from "$lib/header/Header.svelte";
 	import { onMount } from "svelte";
+
+	import Footer from "#lib/footer/Footer.svelte";
+	import Header from "#lib/header/Header.svelte";
 
 	import "../app.css";
 	import { getUserThemePreference } from "../utils/helper";

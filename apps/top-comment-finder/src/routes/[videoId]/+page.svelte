@@ -1,9 +1,10 @@
 <script lang="ts">
-	import type { RequiredCommentInfo } from "$lib/types/youtubeApiTypes";
-
 	import { page } from "$app/state";
-	import avatar from "$lib/assets/avatar.svg?w=32&h=32&format=webp&imagetools";
-	import thumbsUp from "$lib/assets/thumbsUp.svg?w=16&h=16&format=webp&imagetools";
+
+	import type { RequiredCommentInfo } from "#lib/types/youtubeApiTypes.ts";
+
+	import avatar from "#lib/assets/avatar.svg?w=32&h=32&format=webp&imagetools";
+	import thumbsUp from "#lib/assets/thumbsUp.svg?w=16&h=16&format=webp&imagetools";
 
 	const videoId = $derived(page.params.videoId);
 	const fetchComments = async () => {

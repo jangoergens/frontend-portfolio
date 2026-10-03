@@ -1,16 +1,16 @@
-import type { RequiredCommentInfo, YoutubeCommentThreads } from "$lib/types/youtubeApiTypes";
+import { GOOGLE_API_KEY, GOOGLE_API_MODE } from "$app/env/private";
+import { type RequestEvent } from "@sveltejs/kit";
 
-import { env } from "$env/dynamic/private";
-import { json, type RequestEvent } from "@sveltejs/kit";
+import type { RequiredCommentInfo, YoutubeCommentThreads } from "#lib/types/youtubeApiTypes.ts";
 
 export async function GET({ fetch, params }: RequestEvent) {
 	if (!params.videoId || !/^[a-zA-Z0-9_-]{11}$/.test(params.videoId)) {
-		return json({ error: "Invalid YouTube video ID." }, { status: 400 });
+		return Response.json({ error: "Invalid YouTube video ID." }, { status: 400 });
 	}
-	if (env.GOOGLE_API_MODE === "production") {
-		const apiKey = env.GOOGLE_API_KEY;
+	if (GOOGLE_API_MODE === "production") {
+		const apiKey = GOOGLE_API_KEY;
 		if (!apiKey) {
-			return json({ error: "YouTube API is not configured." }, { status: 503 });
+			return Response.json({ error: "YouTube API is not configured." }, { status: 503 });
 		}
 		const MAX_RESULTS = 20;
 		const MAX_COMMENT_THREAD_PAGES = 100;
@@ -38,7 +38,7 @@ export async function GET({ fetch, params }: RequestEvent) {
 			try {
 				response = await fetchCommentThread(commentThreads?.nextPageToken);
 			} catch {
-				return json({ error: "Unable to contact YouTube." }, { status: 502 });
+				return Response.json({ error: "Unable to contact YouTube." }, { status: 502 });
 			}
 			currentCommentThreadPage++;
 
@@ -64,12 +64,12 @@ export async function GET({ fetch, params }: RequestEvent) {
 					}
 				});
 			} else {
-				return json({ error: "Unable to fetch comments from YouTube." }, { status: 502 });
+				return Response.json({ error: "Unable to fetch comments from YouTube." }, { status: 502 });
 			}
 		} while (commentThreads?.nextPageToken && currentCommentThreadPage < MAX_COMMENT_THREAD_PAGES);
 
-		return json(topComments);
-	} else if (env.GOOGLE_API_MODE === "development") {
+		return Response.json(topComments);
+	} else if (GOOGLE_API_MODE === "development") {
 		const randomComments: RequiredCommentInfo[] = [
 			{
 				authorChannelUrl: "https://www.youtube.com/channel/UC73JBYrwukH8T8KTia7GqUQ",
@@ -125,8 +125,8 @@ export async function GET({ fetch, params }: RequestEvent) {
 				textDisplay: "Keep up the great work, can't wait for the next video!",
 			},
 		].sort((a, b) => Number(b.likeCount) - Number(a.likeCount));
-		return json(randomComments);
+		return Response.json(randomComments);
 	} else {
-		return json({ error: "YouTube API mode is not configured." }, { status: 503 });
+		return Response.json({ error: "YouTube API mode is not configured." }, { status: 503 });
 	}
 }
