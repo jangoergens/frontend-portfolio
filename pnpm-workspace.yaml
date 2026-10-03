@@ -4,11 +4,21 @@ packages:
 engineStrict: true
 saveExact: true
 
-# Vite image tooling can retain an old Rollup peer from the previous lockfile.
-overrides:
-  "rollup@<4.59.0": "4.64.0"
-
-onlyBuiltDependencies:
-  - "@tailwindcss/oxide"
-  - "esbuild"
-  - "sharp"
+# Permit installation scripts only for the native tooling used by this workspace.
+allowBuilds:
+  "@tailwindcss/oxide": true
+  "esbuild": true
+  "sharp": true
+# Keep pnpm 12's one-day release delay. These exact releases were selected
+# and tested during this upgrade; remove the exceptions after 2026-10-04.
+minimumReleaseAge: 1440
+minimumReleaseAgeStrict: true
+minimumReleaseAgeExclude:
+  - "@turbo/darwin-64@2.11.7"
+  - "@turbo/darwin-arm64@2.11.7"
+  - "@turbo/linux-64@2.11.7"
+  - "@turbo/linux-arm64@2.11.7"
+  - "@turbo/windows-64@2.11.7"
+  - "@turbo/windows-arm64@2.11.7"
+  - eslint@10.12.0
+  - turbo@2.11.7
