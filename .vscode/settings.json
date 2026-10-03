@@ -1,28 +1,16 @@
 {
   "[svelte]": {
-    "editor.defaultFormatter": "svelte.svelte-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
-  "eslint.probe": [
-    "javascript",
-    "javascriptreact",
-    "svelte",
-    "typescript",
-    "typescriptreact"
-  ],
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "svelte",
-    "typescript",
-    "typescriptreact"
-  ],
+  "eslint.validate": ["javascript", "svelte", "typescript"],
   "editor.rulers": [100],
-  "eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }],
   "editor.tabSize": 2,
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "prettier.documentSelectors": ["**/*.svelte"],
+  "js/ts.tsdk.path": "node_modules/typescript/lib",
+  "js/ts.experimental.useTsgo": false
 }
