@@ -1,25 +1,32 @@
 import type { RequiredCommentInfo, YoutubeCommentThreads } from "$lib/types/youtubeApiTypes";
 
 import { env } from "$env/dynamic/private";
-import { type RequestEvent } from "@sveltejs/kit";
+import { json, type RequestEvent } from "@sveltejs/kit";
 
-export async function GET({ params }: RequestEvent) {
-	if (!params.videoId) {
-		return new Response("No video ID provided.");
+export async function GET({ fetch, params }: RequestEvent) {
+	if (!params.videoId || !/^[a-zA-Z0-9_-]{11}$/.test(params.videoId)) {
+		return json({ error: "Invalid YouTube video ID." }, { status: 400 });
 	}
 	if (env.GOOGLE_API_MODE === "production") {
 		const apiKey = env.GOOGLE_API_KEY;
+		if (!apiKey) {
+			return json({ error: "YouTube API is not configured." }, { status: 503 });
+		}
 		const MAX_RESULTS = 20;
 		const MAX_COMMENT_THREAD_PAGES = 100;
 
-		const fetchCommentThread = async (pageToken?: string) => {
-			return await fetch(
-				`https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&order=relevance&videoId=${
-					params.videoId
-				}&key=${apiKey}&textFormat=plainText&maxResults=100${
-					pageToken ? `&pageToken=${pageToken}` : ""
-				}`,
-			);
+		const fetchCommentThread = (pageToken?: string) => {
+			const url = new URL("https://www.googleapis.com/youtube/v3/commentThreads");
+			url.search = new URLSearchParams({
+				key: apiKey,
+				maxResults: "100",
+				order: "relevance",
+				part: "snippet",
+				textFormat: "plainText",
+				videoId: params.videoId ?? "",
+				...(pageToken ? { pageToken } : {}),
+			}).toString();
+			return fetch(url, { signal: AbortSignal.timeout(10000) });
 		};
 
 		let commentThreads: undefined | YoutubeCommentThreads;
@@ -27,7 +34,12 @@ export async function GET({ params }: RequestEvent) {
 		const topComments: RequiredCommentInfo[] = [];
 
 		do {
-			const response = await fetchCommentThread(commentThreads?.nextPageToken);
+			let response: Response;
+			try {
+				response = await fetchCommentThread(commentThreads?.nextPageToken);
+			} catch {
+				return json({ error: "Unable to contact YouTube." }, { status: 502 });
+			}
 			currentCommentThreadPage++;
 
 			if (response.ok) {
@@ -52,11 +64,11 @@ export async function GET({ params }: RequestEvent) {
 					}
 				});
 			} else {
-				return new Response(JSON.stringify(response.text()));
+				return json({ error: "Unable to fetch comments from YouTube." }, { status: 502 });
 			}
 		} while (commentThreads?.nextPageToken && currentCommentThreadPage < MAX_COMMENT_THREAD_PAGES);
 
-		return new Response(JSON.stringify(topComments));
+		return json(topComments);
 	} else if (env.GOOGLE_API_MODE === "development") {
 		const randomComments: RequiredCommentInfo[] = [
 			{
@@ -113,10 +125,8 @@ export async function GET({ params }: RequestEvent) {
 				textDisplay: "Keep up the great work, can't wait for the next video!",
 			},
 		].sort((a, b) => Number(b.likeCount) - Number(a.likeCount));
-		return new Response(JSON.stringify(randomComments));
+		return json(randomComments);
 	} else {
-		console.error(
-			"Error: Supabase client not found or API mode not set to development or production.",
-		);
+		return json({ error: "YouTube API mode is not configured." }, { status: 503 });
 	}
 }

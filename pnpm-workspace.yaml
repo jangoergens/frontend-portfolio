@@ -1,3 +1,17 @@
 packages:
   - "apps/*"
-  - "packages/*"
+
+engineStrict: true
+saveExact: true
+
+# SvelteKit 2 retains cookie 0.6, which has an input-validation advisory.
+# Vite image tooling can retain an old Rollup peer from the previous lockfile.
+overrides:
+  "@sveltejs/kit>cookie": "0.7.2"
+  "rollup@<4.59.0": "4.64.0"
+
+onlyBuiltDependencies:
+  - "@astrojs/compiler-rs"
+  - "@tailwindcss/oxide"
+  - "esbuild"
+  - "sharp"

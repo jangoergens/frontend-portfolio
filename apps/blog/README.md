@@ -1,11 +1,7 @@
-# Astro + Svelte Example
+# Blog
 
-```sh
-npm create astro@latest -- --template framework-svelte
-```
+A static Astro blog with Svelte components. Posts live in `src/content/posts`; `src/content.config.ts` loads them with Astro's content layer.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/framework-svelte)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/framework-svelte)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/framework-svelte/devcontainer.json)
+Install dependencies from the repository root with `pnpm install --frozen-lockfile`, then run `pnpm --filter blog start`. Use `pnpm --filter blog check` and `pnpm --filter blog build` to validate changes.
 
-This example showcases Astro working with [Svelte](https://svelte.dev/).
+The blog retains Tailwind 3 and the archived Skeleton v2 theme. Read [the maintenance report](../../MAINTENANCE.md) before migrating its styling.

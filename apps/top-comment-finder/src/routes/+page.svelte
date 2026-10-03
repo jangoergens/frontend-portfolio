@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
+	import { resolve } from "$app/paths";
 	import searchIcon from "$lib/assets/searchWhite.svg?w=28&h=28&format=webp&imagetools";
 
 	let videoUrl = $state("");
@@ -14,9 +15,9 @@
 		const idMatch = videoUrl.match(videoIdPattern);
 
 		if (urlMatch) {
-			await goto(`/${urlMatch[1]}`);
+			await goto(resolve("/[videoId]", { videoId: urlMatch[1] }));
 		} else if (idMatch) {
-			await goto(`/${idMatch[0]}`);
+			await goto(resolve("/[videoId]", { videoId: idMatch[0] }));
 		} else {
 			alert("Invalid YouTube video URL");
 		}
@@ -62,6 +63,8 @@
 			initial upvotes, not date. Paste a link to use.
 		</p>
 
-		<a class="my-8" href="/czgOWmtGVGs"><button type="button">Give it a try!</button></a>
+		<a class="my-8" href={resolve("/[videoId]", { videoId: "czgOWmtGVGs" })}
+			><button type="button">Give it a try!</button></a
+		>
 	</div>
 </section>

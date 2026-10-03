@@ -1,11 +1,11 @@
-# Top Comment Finder - Beyond the Algorithm
+# Top Comment Finder
 
-## Getting Started
+A SvelteKit app that finds the most liked comments on a YouTube video.
 
-Run `pnpm all` in the root repo. This will install all dependencies, build the project, and run the test suite. After that, you can run `pnpm start` inside of this folder to start the local website.
+Install dependencies from the repository root with `pnpm install --frozen-lockfile`. Copy `.env.example` to `.env` in this directory, then run `pnpm --filter top-comment-finder start`.
 
-## Why this project?
+Development mode returns sample comments without external credentials. Production mode requires `GOOGLE_API_MODE=production` and a server-side `GOOGLE_API_KEY` for the YouTube Data API. The app does not use a database.
 
-The existing YouTube comment-sorting algorithm may not cater to everyone's preferences, particularly when browsing older videos.
+For validation, run `pnpm check`, `pnpm lint`, and `pnpm test` from the root. Install Chromium with `pnpm install-test-browser` first. Root browser tests build the app and start its preview server on port 4444, forcing development mode.
 
-To address this issue, I've developed a user-friendly platform that enables you to effortlessly access the genuine top comments from any YouTube video. All you need to do is enter the video's link.
+Before production use, review the API quota and rate-limit follow-up in [the maintenance report](../../MAINTENANCE.md).

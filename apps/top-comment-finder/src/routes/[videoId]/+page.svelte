@@ -1,14 +1,17 @@
 <script lang="ts">
 	import type { RequiredCommentInfo } from "$lib/types/youtubeApiTypes";
 
-	import { page } from "$app/stores";
+	import { page } from "$app/state";
 	import avatar from "$lib/assets/avatar.svg?w=32&h=32&format=webp&imagetools";
 	import thumbsUp from "$lib/assets/thumbsUp.svg?w=16&h=16&format=webp&imagetools";
 
-	const videoId = $page.params.videoId;
+	const videoId = $derived(page.params.videoId);
 	const fetchComments = async () => {
 		const response = await fetch(`/api/comments/${videoId}`);
 
+		if (!response.ok) {
+			throw new Error("Unable to load comments. Please try again later.");
+		}
 		return response.json() as Promise<RequiredCommentInfo[]>;
 	};
 
@@ -41,10 +44,11 @@
 			<h3>{comments.length}/20 comments</h3>
 		</div>
 		<ol class="flex w-full flex-col items-center gap-4">
-			{#each comments as comment}
+			{#each comments as comment, index (index)}
 				<li
 					class="flex w-full items-center gap-2 rounded-lg border-2 bg-white p-2 shadow-sm md:w-3/4 lg:w-[56rem] dark:border-zinc-400 dark:bg-zinc-800"
 				>
+					<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- External YouTube profile URL. -->
 					<a href={comment.authorChannelUrl}>
 						<object
 							class="rounded-full"
@@ -66,6 +70,7 @@
 					<div class="flex w-5/6 flex-col break-words">
 						<span>{comment.textDisplay}</span>
 						<div>
+							<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- External YouTube profile URL. -->
 							<a class="text-sm font-semibold" href={comment.authorChannelUrl}
 								>by {comment.authorDisplayName}</a
 							>

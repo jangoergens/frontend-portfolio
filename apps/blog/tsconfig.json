@@ -3,10 +3,6 @@
 	"compilerOptions": {
 		"allowJs": false,
 		"baseUrl": ".",
-		"composite": false,
-		"declaration": true,
-		"declarationMap": true,
-		"inlineSources": false,
 		"paths": {
 			"@assets/*": ["src/assets/*"],
 			"@components/*": ["src/components/*"],
@@ -17,9 +13,8 @@
 				"name": "@astrojs/ts-plugin"
 			}
 		],
-		"preserveWatchOutput": true,
-		"sourceMap": true
+		"preserveWatchOutput": true
 	},
-	"include": ["./*config*", "./src"],
-	"exclude": ["./node_modules/**"]
+	"include": [".astro/types.d.ts", "**/*"],
+	"exclude": ["node_modules", "dist"]
 }

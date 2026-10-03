@@ -1,7 +1,10 @@
 import type { Config } from "tailwindcss";
 
 import { skeleton } from "@skeletonlabs/tw-plugin";
-import { join } from "path";
+import { createRequire } from "node:module";
+import { join } from "node:path";
+
+const require = createRequire(import.meta.url);
 
 const config = {
 	content: [

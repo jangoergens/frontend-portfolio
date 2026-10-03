@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { page } from "$app/stores";
+	import { resolve } from "$app/paths";
+	import { page } from "$app/state";
 	import logo from "$lib/assets/logo.svg";
 	import moon from "$lib/assets/moon.svg";
 	import sun from "$lib/assets/sun.svg";
@@ -26,14 +27,15 @@
 </script>
 
 <header class="flex h-16 flex-shrink-0 items-center justify-center">
-	<a href="/">
+	<a href={resolve("/")}>
 		<img alt="Personal Logo" height="48" src={logo} width="48" />
 	</a>
 	<nav data-sveltekit-preload-data>
 		<ul class="flex h-12">
-			<li class:active={$page.url.pathname === "/about"}>
-				<a class="flex h-full items-center px-4 font-bold hover:text-orange-500" href="/about"
-					>About</a
+			<li class:active={page.url.pathname === "/about"}>
+				<a
+					class="flex h-full items-center px-4 font-bold hover:text-orange-500"
+					href={resolve("/about")}>About</a
 				>
 			</li>
 		</ul>

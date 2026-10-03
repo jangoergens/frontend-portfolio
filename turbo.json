@@ -1,45 +1,43 @@
 {
-  "$schema": "https://turborepo.org/schema.json",
+  "$schema": "https://turborepo.com/schema.json",
   "tasks": {
     "build": {
       "dependsOn": ["check", "^build"],
-      "outputs": ["dist/**", ".next/**"],
-      "env": [
-        "GOOGLE_API_MODE",
-        "PUBLIC_SUPABASE_URL",
-        "PUBLIC_SUPABASE_ANON_KEY"
+      "outputs": [
+        "dist/**",
+        "build/**",
+        ".svelte-kit/**",
+        ".astro/**",
+        ".vercel/output/**"
       ]
-    },
-    "install-test-browser": {
-      "outputs": [],
-      "cache": false
     },
     "test": {
-      "dependsOn": ["^build", "^install-test-browser"],
-      "outputs": [],
-      "env": [
-        "GOOGLE_API_MODE",
-        "PUBLIC_SUPABASE_URL",
-        "PUBLIC_SUPABASE_ANON_KEY"
-      ]
+      "dependsOn": ["build"],
+      "cache": false,
+      "outputs": ["test-results/**", "playwright-report/**"]
     },
     "lint": {
       "outputs": []
     },
     "format": {
-      "outputs": []
+      "outputs": [],
+      "cache": false
     },
     "check": {
-      "outputs": [".svelte-kit/**"],
-      "env": [
-        "GOOGLE_API_MODE",
-        "PUBLIC_SUPABASE_URL",
-        "PUBLIC_SUPABASE_ANON_KEY"
+      "outputs": [
+        ".svelte-kit/tsconfig.json",
+        ".svelte-kit/ambient.d.ts",
+        ".svelte-kit/non-ambient.d.ts",
+        ".svelte-kit/types/**",
+        ".svelte-kit/generated/**",
+        ".astro/**"
       ]
     },
     "start": {
-      "cache": false
+      "cache": false,
+      "persistent": true
     }
   },
-  "ui": "stream"
+  "ui": "stream",
+  "globalDependencies": ["eslint.config.mjs", ".prettierignore"]
 }

@@ -1,46 +1,43 @@
 # Frontend Portfolio
 
-Welcome to my portfolio! This monorepo is powered by [Turborepo](https://turborepo.org) and contains a selection of my best frontend projects.
+A pnpm workspace with three web apps, coordinated by Turborepo, and a small Chrome extension.
+
+| Directory                   | Purpose                                              | Stack                                          |
+| --------------------------- | ---------------------------------------------------- | ---------------------------------------------- |
+| `apps/personal-website`     | Personal website scaffold                            | SvelteKit, Svelte 5, Tailwind 3                |
+| `apps/top-comment-finder`   | Find the most liked comments on a YouTube video      | SvelteKit, Svelte 5, YouTube Data API          |
+| `apps/blog`                 | Static blog with Markdown posts                      | Astro, Svelte 5, Tailwind 3, Skeleton v2 theme |
+| `apps/tcf-chrome-extension` | Open the current YouTube video in Top Comment Finder | Chrome Manifest V3, JavaScript                 |
 
 ## Getting started
 
-1. In `apps/top-comment-finder` copy the `.env.example` file to `.env`.
-2. (Optional) Fill in the credentials.
-3. (Optional) If this is your first time running the project, install the dependencies for Playwright by running `pnpm --filter top-comment-finder exec playwright install-deps chromium`.
-4. Run the command `pnpm all` to install all dependencies, build the project, and run the test suite.
-5. Run `pnpm start` to start all projects, or navigate to the project you want to run and run `pnpm start` there.
+Use the Node version in `.nvmrc` (`nvm install && nvm use`). The repository also supports Node 24.21.0 or newer within Node 24; CI checks both supported LTS lines. Use the exact pnpm version declared by `packageManager` in `package.json`; Corepack can select it with `corepack pnpm` if your pnpm installation does not.
 
-## What's inside?
+```sh
+pnpm install --frozen-lockfile
+cp apps/top-comment-finder/.env.example apps/top-comment-finder/.env
+pnpm --filter top-comment-finder start
+```
 
-This turborepo uses [pnpm](https://pnpm.io) as a package manager. It includes the following packages/apps:
+Development mode returns sample comments and requires no external credentials. Production mode requires a server-side `GOOGLE_API_KEY` for the YouTube Data API. There is no database dependency.
 
-- [top-comment-finder](./apps/top-comment-finder): A website that finds the top comments under a YouTube video. Built using [SvelteKit](https://kit.svelte.dev/).
-- [blog](./apps/blog): A very basic blog that uses [Astro](https://astro.build/) and [Svelte](https://svelte.dev/).
+Use `pnpm --filter personal-website start` or `pnpm --filter blog start` to run the other apps. `pnpm start` launches all three; Vite/Astro select available development ports. The SvelteKit preview ports are 5555 for the personal website and 4444 for Top Comment Finder.
 
-## Utilities Used
+## Validation
 
-Common:
+```sh
+pnpm install-test-browser
+pnpm all
+```
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [Renovate Bot](https://docs.renovatebot.com/) for automated dependency updates
-- [Github Actions](https://github.com/features/actions) for CI/CD
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+`pnpm all` runs type checks, lint, production builds, and browser tests. Install dependencies separately first. On Linux, Playwright may also require system libraries: `pnpm exec playwright install-deps chromium`. CI uses `pnpm exec playwright install --with-deps chromium`.
 
-Top Comment Finder:
+Individual commands are `pnpm check`, `pnpm lint`, `pnpm build`, and `pnpm test`. Browser tests build the apps through Turborepo and then start preview servers. Direct filtered app tests require an existing build. Tests use sample comments, regardless of production settings in a local `.env` file.
 
-- [Playwright](https://playwright.dev/) for end-to-end testing
-- [Supabase](https://supabase.com/) for hosting the PostgreSQL database
-- [Svelte](https://svelte.dev/) for the frontend framework
-- [SvelteKit](https://kit.svelte.dev/) for the backend framework
-- [Tailwind CSS](https://tailwindcss.com/) for styling
-- [Vite](https://vitejs.dev/) for bundling
-- [Vercel](https://vercel.com/) for hosting
+ESLint, TypeScript, Playwright, and Prettier are shared root development dependencies. App-specific Prettier settings remain inside each app. `pnpm format` formats the repository; for a narrow change, use `pnpm exec prettier --write <changed-file-paths>` instead.
 
-Blog:
+## Maintenance
 
-- [Astro](https://astro.build/) for the frontend framework
-- [Skeleteon](https://skeleteon.dev/) for the theme and components
-- [Svelte](https://svelte.dev/) for single components
-- [Tailwind CSS](https://tailwindcss.com/) for styling
-- [Vercel](https://vercel.com/) for hosting
+Read [AGENTS.md](./AGENTS.md) for repository working conventions and [MAINTENANCE.md](./MAINTENANCE.md) for the investigation, retained legacy dependencies, and follow-up work. Renovate proposes dependency updates for review; application and theme migrations should be validated separately.
+
+The existing Vercel workflows deploy the blog and Top Comment Finder when matching changes reach `main`. They require the configured Vercel secrets. Local validation does not deploy anything.

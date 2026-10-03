@@ -2,37 +2,37 @@
   "name": "frontend-portfolio",
   "version": "0.1.0",
   "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
   "scripts": {
-    "all": "pnpm install && pnpm check && pnpm lint && pnpm build && pnpm install-test-browser && pnpm test",
+    "all": "pnpm check && pnpm lint && pnpm build && pnpm test",
     "build": "turbo run build",
     "check": "turbo run check",
-    "clean": "turbo daemon clean",
-    "lint": "turbo run lint",
+    "lint": "pnpm lint:root && turbo run lint",
     "start": "turbo run start --parallel",
-    "install-test-browser": "turbo run install-test-browser",
+    "install-test-browser": "pnpm exec playwright install chromium",
     "test": "turbo run test",
-    "format": "turbo run format"
-  },
-  "dependencies": {
-    "typescript": "5.8.3"
+    "format": "prettier --write AGENTS.md README.md MAINTENANCE.md package.json pnpm-workspace.yaml turbo.json renovate.json eslint.config.mjs .github/workflows/*.yml && turbo run format",
+    "lint:root": "eslint eslint.config.mjs apps/tcf-chrome-extension/background.js && prettier --check AGENTS.md README.md MAINTENANCE.md package.json pnpm-workspace.yaml turbo.json renovate.json eslint.config.mjs .github/workflows/*.yml"
   },
   "devDependencies": {
-    "turbo": "2.5.4"
+    "@eslint/js": "10.0.1",
+    "@playwright/test": "1.63.0",
+    "@types/node": "22.20.5",
+    "eslint": "10.12.0",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-astro": "3.2.1",
+    "eslint-plugin-perfectionist": "5.12.1",
+    "eslint-plugin-svelte": "3.23.0",
+    "globals": "17.13.0",
+    "prettier": "3.9.9",
+    "prettier-plugin-astro": "1.1.0",
+    "prettier-plugin-svelte": "4.1.1",
+    "prettier-plugin-tailwindcss": "0.8.1",
+    "turbo": "2.11.7",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.71.0"
   },
   "engines": {
-    "node": ">=22 < 23"
+    "node": ">=22.23.3 <23 || >=24.21.0 <25"
   },
-  "packageManager": "pnpm@10.12.4+sha512.5ea8b0deed94ed68691c9bad4c955492705c5eeb8a87ef86bc62c74a26b037b08ff9570f108b2e4dbd1dd1a9186fea925e527f141c648e85af45631074680184",
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "sharp",
-      "supabase",
-      "svelte-preprocess"
-    ]
-  }
+  "packageManager": "pnpm@10.34.6+sha512.7e1ae66a83a9143c118cc1944f37cc4f2b8acddeda4b001cfa78908f6e46e45e15292739ca6c9d026426cc757e9318cc98c5551d6a16c165097b0028ba87b4e6"
 }

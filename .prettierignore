@@ -17,18 +17,12 @@ node_modules
 *.pem
 *vite.config.ts.timestamp*
 
-# next
-.next
-
 # pnpm
 .pnpm-debug.log*
 pnpm-lock.yaml
 
-# tauri
-.xwin-cache
-target
-
 # test output
+playwright-report
 test-results
 
 # turbo

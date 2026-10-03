@@ -1,38 +1,49 @@
 name: Test
 
 on:
+  push:
+    branches: [main]
   pull_request:
-    types: [opened, synchronize]
+    types: [opened, synchronize, reopened, ready_for_review]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: test-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   test:
-    timeout-minutes: 15
+    timeout-minutes: 20
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [22.23.3, 24.21.0]
     env:
-      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
-      TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
-      PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.PUBLIC_SUPABASE_ANON_KEY }}
-      PUBLIC_SUPABASE_URL: ${{ secrets.PUBLIC_SUPABASE_URL }}
-      GOOGLE_API_MODE: ${{ secrets.GOOGLE_API_MODE }}
+      GOOGLE_API_MODE: development
+      ASTRO_TELEMETRY_DISABLED: "1"
+      TURBO_TELEMETRY_DISABLED: "1"
 
     steps:
       - name: Check out code
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
-          fetch-depth: 2
+          persist-credentials: false
 
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8.15.1
+      - name: Install declared pnpm version
+        uses: pnpm/action-setup@a8198c4bff370c8506180b035930dea56dbd5288 # v5
 
       - name: Setup Node.js environment
-        uses: actions/setup-node@1d0ff469b7ec7b3cb9d8673fde0c81c44821de2a # v4
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
         with:
-          node-version: 22
+          node-version: ${{ matrix.node }}
           cache: "pnpm"
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Typecheck
         run: pnpm check
@@ -43,8 +54,8 @@ jobs:
       - name: Build
         run: pnpm build
 
-      - name: Install Playwright Browsers
-        run: pnpm install-test-browser
+      - name: Install Playwright browser and system dependencies
+        run: pnpm exec playwright install --with-deps chromium
 
       - name: Test
         run: pnpm test

@@ -1,12 +1,9 @@
 import { defineConfig } from "astro/config";
 import svelte from "@astrojs/svelte";
-import tailwind from "@astrojs/tailwind";
 
 export default defineConfig({
-	integrations: [
-		svelte(),
-		tailwind({
-			applyBaseStyles: false,
-		}),
-	],
+	integrations: [svelte()],
+	// Skeleton v2 generates selectors rejected by Vite 8's Lightning CSS minifier.
+	// Keep the existing theme until its Tailwind/Skeleton migration is complete.
+	vite: { build: { cssMinify: "esbuild" } },
 });
