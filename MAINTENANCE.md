@@ -28,6 +28,8 @@ The blog had a Vercel production workflow but GitHub returned no recorded runs. 
 
 The [Kit 3 migration guide](https://svelte.dev/docs/kit/migrating-to-sveltekit-3), [Tailwind 4 upgrade guide](https://tailwindcss.com/docs/upgrade-guide), and [pnpm migration guide](https://pnpm.io/migration) informed these migrations.
 
+Renovate now schedules routine updates for the first day of each month in `Europe/Berlin`, including updates to existing branches. Minor, patch, digest, and pin updates are grouped; major upgrades remain separate. Automerge is disabled. Releases must be at least one day old and have a known publication timestamp before they qualify. Security fixes bypass the monthly schedule but retain the one-day delay and manual review. GitHub currently reports Dependabot alerts disabled; enable those alerts and grant Renovate read access to them for its security-fix integration to work. Changing repository configuration does not enable the GitHub setting.
+
 ## Dependency health and configuration
 
 The final full-workspace `pnpm audit --json` reports **zero advisories**. Initially there were 174 findings (2 critical, 80 high, 72 moderate, 20 low); the first pass reduced these to two high transitive findings. Removing Astro/blog dependencies and migrating away from Tailwind 3 removed those remaining dependency chains. An audit result describes the dependency tree at the time of checking, not all application risks.
