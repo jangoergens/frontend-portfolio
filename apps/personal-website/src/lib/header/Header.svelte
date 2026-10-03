@@ -27,7 +27,7 @@
 	}
 </script>
 
-<header class="flex h-16 flex-shrink-0 items-center justify-center">
+<header class="flex h-16 shrink-0 items-center justify-center">
 	<a href={resolve("/")}>
 		<img alt="Personal Logo" height="48" src={logo} width="48" />
 	</a>
@@ -42,6 +42,7 @@
 		</ul>
 	</nav>
 	<button
+		aria-label={currentTheme === "light" ? "Enable Dark Mode" : "Enable Light Mode"}
 		class="bg-transparent hover:bg-transparent"
 		onclick={toggleDarkMode}
 		title={currentTheme === "light" ? "Enable Dark Mode" : "Enable Light Mode"}

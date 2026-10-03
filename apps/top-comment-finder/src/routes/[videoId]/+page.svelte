@@ -47,7 +47,7 @@
 		<ol class="flex w-full flex-col items-center gap-4">
 			{#each comments as comment, index (index)}
 				<li
-					class="flex w-full items-center gap-2 rounded-lg border-2 bg-white p-2 shadow-sm md:w-3/4 lg:w-[56rem] dark:border-zinc-400 dark:bg-zinc-800"
+					class="flex w-full items-center gap-2 rounded-lg border-2 border-gray-200 bg-white p-2 shadow-xs md:w-3/4 lg:w-[56rem] dark:border-zinc-400 dark:bg-zinc-800"
 				>
 					<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- External YouTube profile URL. -->
 					<a href={comment.authorChannelUrl}>

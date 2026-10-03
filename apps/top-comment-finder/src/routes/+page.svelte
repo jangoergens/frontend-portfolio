@@ -36,7 +36,7 @@
 <section class="flex h-full flex-col">
 	<h1 class="text-center text-2xl font-extrabold tracking-tight sm:text-3xl lg:text-4xl">
 		TopCommentFinder - <span
-			class="bg-gradient-to-r from-orange-500 via-yellow-500 to-green-500 bg-clip-text text-transparent"
+			class="bg-linear-to-r/srgb from-orange-500 via-yellow-500 to-green-500 bg-clip-text text-transparent"
 			>Beyond the Algorithm</span
 		>
 	</h1>
@@ -54,7 +54,7 @@
 				placeholder="Paste YouTube Video URL"
 				type="text"
 			/>
-			<button class="h-9 w-12 lg:h-11 lg:w-12" title="Search" type="submit"
+			<button aria-label="Search" class="h-9 w-12 lg:h-11 lg:w-12" title="Search" type="submit"
 				><img alt="Search Icon" class="fill-white" src={searchIcon} /></button
 			>
 		</form>
