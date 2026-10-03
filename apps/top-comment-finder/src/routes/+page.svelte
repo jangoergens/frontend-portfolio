@@ -40,7 +40,7 @@
 			>Beyond the Algorithm</span
 		>
 	</h1>
-	<h2 class="text-center italic text-slate-500">
+	<h2 class="text-center text-slate-500 italic">
 		Access top comments without YouTube's limitations
 	</h2>
 

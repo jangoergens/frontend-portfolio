@@ -1,10 +1,10 @@
 {
- "extends": "$app/tsconfig",
- "compilerOptions": {
-  "strict": true,
-  "skipLibCheck": true,
-  "preserveWatchOutput": true
- },
- "include": ["src", "tests", "*.ts", "*.js"],
- "exclude": ["node_modules", ".svelte-kit", "src/service-worker"]
+	"extends": "$app/tsconfig",
+	"compilerOptions": {
+		"strict": true,
+		"skipLibCheck": true,
+		"preserveWatchOutput": true
+	},
+	"include": ["src", "tests", "*.ts", "*.js"],
+	"exclude": ["node_modules", ".svelte-kit", "src/service-worker"]
 }

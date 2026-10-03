@@ -1,72 +1,64 @@
 # Maintenance investigation
 
-Investigated on 2026-10-03. The unused blog and its deployment workflow were subsequently removed at the user's request; the user confirmed that it is absent from their Vercel dashboard, and GitHub returned no deployment workflow runs. The blog-specific findings below record the initial investigation. This is a first maintenance pass, with larger product and styling migrations left explicit below.
+Investigated and modernized on 2026-10-03. The follow-up upgrades are separate commits: blog removal, SvelteKit 3/TypeScript 6, Tailwind 4, and Node 24/pnpm 12. The user's original cleanup commit was rebased onto `origin/main` before these changes.
 
 ## Repository layout
 
-The workspace has three independent web apps: a SvelteKit personal website scaffold, a SvelteKit YouTube comment finder, and a static Astro blog with one example Markdown post. A fourth directory contains a plain JavaScript Manifest V3 Chrome extension with no package manifest. There are no shared packages; the empty `packages/` workspace glob was removed.
+The workspace now has two web apps: a SvelteKit personal website scaffold and a SvelteKit YouTube comment finder. `apps/tcf-chrome-extension` is a plain JavaScript Manifest V3 extension with no package manifest. There are no shared packages; the empty physical `packages/` directory and its unused workspace glob were removed.
 
-The original README omitted the personal website and Chrome extension, described a database that the running app does not use, and the blog README was upstream template text. Root and app documentation now describe the actual repository. `AGENTS.md` records working conventions, validation, credential handling, and the user's rule against creating pull requests.
+The blog had a Vercel production workflow but GitHub returned no recorded runs. The user confirmed it was absent from their Vercel dashboard and requested removal. The blog, its example post/assets, deployment workflow, Astro tooling, and archived Skeleton v2 dependencies were removed together. External Vercel project state was not changed.
 
-## Concerns found and changes made
+`AGENTS.md`, root/app READMEs, and this report describe the current layout, validation, environment handling, and maintenance decisions.
 
-| Finding                                                                                                         | First-pass change                                                                                                                                         |
-| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| CI used pnpm 8.15.1 against a pnpm 10 lockfile and package-manager declaration                                  | Pin pnpm 10.34.6 with integrity metadata; CI reads the declaration and installs with a frozen lockfile                                                    |
-| Node 22.14.0 was pinned; Node 24 was excluded                                                                   | Pin Node 22.23.3 locally, support Node 24.21.0+, and configure CI for both LTS lines                                                                      |
-| ESLint 8 had reached end-of-life, with duplicated legacy configs                                                | Upgrade to ESLint 10 and shared flat config, retaining type-aware linting for SvelteKit source/tests                                                      |
-| Astro 4, early Svelte 5, and old Vite/build tooling had numerous audit findings                                 | Upgrade Astro to 7.3.5, Svelte to 5.57.1, Vite to 8.3.2, and compatible integrations and tooling                                                          |
-| Blog was missing from `pnpm check`                                                                              | Add an Astro check task; migrate the content loader, post IDs, render API, Zod import, generated types, and TypeScript configuration                      |
-| Deprecated Astro Tailwind integration                                                                           | Remove it; the existing PostCSS configuration supplies Tailwind 3                                                                                         |
-| Old image tooling and Sharp, with Renovate updates disabled                                                     | Update used image tooling and Sharp, remove unused personal-website image tooling, and re-enable update proposals                                         |
-| Supabase CLI, SDK, client, generated types, and credentials had no consumers                                    | Remove the unused database setup and documentation                                                                                                        |
-| Separate `svelte-preprocess` dependency for standard Vite preprocessing                                         | Use the Svelte Vite plugin's `vitePreprocess`                                                                                                             |
-| Shared developer dependencies duplicated in every app                                                           | Move ESLint, formatter, TypeScript, and Playwright tooling to the root                                                                                    |
-| Browser tests depended on secrets; personal-website end-to-end file contained no test cases                     | Force sample-comment mode, add a navigation smoke test, set explicit preview URLs and longer startup timeouts, and install browser system libraries in CI |
-| Turbo tasks omitted SvelteKit build outputs and cached mutating formatting commands                             | Correct build outputs, separate sync outputs from compiled output, mark dev servers persistent, and disable caching for formatting and browser tests      |
-| Comments API accepted arbitrary IDs, returned HTTP 200 for errors, and serialized a Promise on upstream failure | Validate IDs, encode query parameters, return JSON with error statuses, add per-fetch timeouts, and test development API responses and invalid IDs        |
-| Deprecated SvelteKit store imports and nonreactive video route parameter                                        | Use `$app/state`, derive the route parameter, and resolve internal navigation paths                                                                       |
-| Deployment workflows used floating Vercel CLI versions and missed shared lockfile changes                       | Pin the CLI and Actions, set read-only token permissions, quote the token through an environment variable, and cover shared build inputs                  |
-| Grouped dependency updates could auto-merge without manual review                                               | Keep Renovate proposals, disable automerge, and remove update exclusions                                                                                  |
+## Completed modernization
 
-The lockfile was refreshed through pnpm, including transitive dependencies within their declared ranges. Two narrow overrides address retained vulnerable versions: SvelteKit's `cookie` uses 0.7.2, and vulnerable Rollup 4 versions resolve to 4.64.0. Remove these overrides when upstream dependency resolution no longer needs them, after rechecking audit and validation.
+| Area                        | Current state                                                                                                                                                                                                                                                                       |
+| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Runtime and package manager | Node 24.21.0 is the default; Node 22.23.3+ remains supported. pnpm 12.8.1 is pinned with integrity metadata. CI checks both LTS lines and uses frozen installs.                                                                                                                     |
+| SvelteKit                   | Both apps use Kit 3.0.0 and adapter-auto 8.0.0, Svelte 5.57.1, and Vite 8.3.2. Configuration moved into the Vite plugin; imports use `#lib`, TypeScript extends `$app/tsconfig`, and environment imports use the new API.                                                           |
+| Server environment          | Top Comment Finder declares its private runtime variables in `src/env.ts`. API keys remain server-only; optional credentials retain the existing HTTP 503 response when production settings are missing. Invalid modes fail validation.                                             |
+| TypeScript                  | Updated to 6.0.3, the latest release compatible with Kit 3, svelte-check, and typescript-eslint. Node types match the primary Node 24 runtime.                                                                                                                                      |
+| Styling                     | Both apps use Tailwind 4.3.3 with its Vite integration. Removed Tailwind 3 and app PostCSS/autoprefixer configs/dependencies. Fonts and manual dark mode use CSS configuration; renamed utilities, explicit borders, and sRGB gradient interpolation preserve the intended styling. |
+| Lint and formatting         | Shared ESLint 10 flat configuration, typed Svelte linting, and current Prettier plugins. Removed Astro-only plugins. Tailwind formatting reads each app's CSS configuration.                                                                                                        |
+| Image tooling               | Used Vite image tooling and Sharp are current; unused personal-website image tooling was removed. Dependency-update exclusions were removed.                                                                                                                                        |
+| Unused database             | Removed unused Supabase CLI/SDK/client/types, credentials, and stale database documentation.                                                                                                                                                                                        |
+| Tasks and tests             | Build outputs cover SvelteKit and Vercel artifacts. Sync/type checks always run because Kit 3 generates `$app` files inside app `node_modules`. Formatting and browser tests are also uncached. Tests use sample comments without credentials.                                      |
+| API behavior                | Video IDs are validated, query parameters encoded, JSON error responses use 400/503/502 statuses, and upstream fetches have timeouts. Kit's deprecated JSON helper was replaced with `Response.json`.                                                                               |
+| Automation                  | Actions and Vercel CLI are pinned, permissions limited, and shared build inputs included. Renovate proposes updates with automerge disabled.                                                                                                                                        |
 
-## Dependency health
+The [Kit 3 migration guide](https://svelte.dev/docs/kit/migrating-to-sveltekit-3), [Tailwind 4 upgrade guide](https://tailwindcss.com/docs/upgrade-guide), and [pnpm migration guide](https://pnpm.io/migration) informed these migrations.
 
-The full workspace `pnpm audit` counts changed as follows. These are dependency-tree findings, not a count of demonstrated application exploits.
+## Dependency health and configuration
 
-| Severity | Before | After |
-| -------- | -----: | ----: |
-| Critical |      2 |     0 |
-| High     |     80 |     2 |
-| Moderate |     72 |     0 |
-| Low      |     20 |     0 |
-| Total    |    174 |     2 |
+The final full-workspace `pnpm audit --json` reports **zero advisories**. Initially there were 174 findings (2 critical, 80 high, 72 moderate, 20 low); the first pass reduced these to two high transitive findings. Removing Astro/blog dependencies and migrating away from Tailwind 3 removed those remaining dependency chains. An audit result describes the dependency tree at the time of checking, not all application risks.
 
-Two high-severity transitive advisories remain. Do not suppress them or represent this repository as having a clean audit:
+Both temporary overrides are gone:
 
-- `astro > http-cache-semantics@4.2.0`: [GHSA-ch52-4w7c-c8xp](https://github.com/advisories/GHSA-ch52-4w7c-c8xp), shared-cache response disclosure through `max-stale` handling. No patched version is published in the advisory. The blog generates static public HTML and has no user sessions or shared authenticated response cache; that lowers the apparent exposure for this app, an inference from its source and deployment mode. Recheck before adding SSR, authentication, or response caching.
-- `tailwindcss > chokidar > braces@3.0.3`: [GHSA-vfj7-8cjw-p6xm](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm), stack exhaustion from deeply nested patterns. No patched version is published in the advisory. The dependency is used by build tooling with repository-controlled patterns. Avoid passing untrusted patterns into it and revisit with the Tailwind migration or an upstream fix.
+- `@sveltejs/kit>cookie: 0.7.2` patched the old Kit 2 dependency. Kit 3 resolves `cookie@2.0.1` normally.
+- `rollup@<4.59.0: 4.64.0` avoided a stale vulnerable peer from the old lockfile. The regenerated lockfile has no installed Rollup package; Vite 8 uses Rolldown, and the image tooling's Rollup peer is optional.
 
-Archived or intentionally retained release lines:
+`onlyBuiltDependencies` was an installation-script allowlist, not a list of application builds. pnpm 12 replaces it with [the `allowBuilds` map](https://pnpm.io/settings/build#allowbuilds): only `@tailwindcss/oxide` (Tailwind native tooling), `esbuild` (build tooling), and `sharp` (image processing) are allowed. The Astro compiler entry was removed with the blog. Unreviewed dependency scripts fail installation under pnpm 12's default strict policy.
 
-- **Skeleton v2** (`@skeletonlabs/skeleton@2.11.0`, `@skeletonlabs/tw-plugin@0.4.1`): the [v2 documentation is archived](https://v2.skeleton.dev/). The overall Skeleton project is still active; the retained v2 line should be treated as legacy. The blog uses its generated heading/button/theme CSS. A migration requires visual review, so this pass preserves the theme and selects esbuild's CSS minifier because Vite 8's Lightning CSS rejects some v2 selectors.
-- **Tailwind 3.4.19**: retained across all apps to avoid an unreviewed styling migration. The deprecated [Astro Tailwind integration](https://docs.astro.build/en/guides/integrations-guide/tailwind/) was removed. Plan Tailwind 4 and the blog theme together; older major version alone does not establish that a package is abandoned.
-- **SvelteKit 2.70.3 / adapter-auto 7.0.1**: retained as a compatible pair. Adapter-auto 8 requires SvelteKit 3. Review the Kit 3 migration separately rather than accepting a peer mismatch.
-- **TypeScript 5.9.3**: retained within framework peer requirements. The latest registry major is newer; update only alongside integration compatibility checks.
+pnpm 12 checks locked dependencies against its one-day minimum release age. The workspace explicitly retains that delay and strict enforcement. Exact ESLint 10.12.0, Turbo 2.11.7, and corresponding platform-package exceptions permit the already selected and validated releases, which were published less than a day before this maintenance run. Remove these exceptions after 2026-10-04; they do not exempt future versions.
 
-ESLint 8 was already [end-of-life](https://eslint.org/version-support/); that line has been removed. Current image tooling and Sharp are updated, rather than labelled unmaintained merely because their old versions were stale.
+`pnpm outdated --recursive` reports only these intentional differences:
 
-## Follow-up priorities
+- **TypeScript 6.0.3 versus registry latest 7.0.2.** Kit 3 declares TypeScript `^6`, svelte-check supports 5/6, and [typescript-eslint supports versions below 6.1](https://typescript-eslint.io/users/dependency-versions/). Revisit TypeScript 7 when all integrations support it.
+- **Node types 24.19.1 versus registry latest 26.6.4.** Types follow the supported Node 24 LTS runtime, rather than the newer Node major.
 
-1. **Protect YouTube API quota before further production work.** A single public request still fetches up to 100 pages, with no rate limiter, cache, total request budget, or request deduplication. Per-fetch timeouts now exist, but do not bound the total duration. Choose infrastructure appropriate for the production deployment, restrict the API key to its intended API/use, and add mocked production-path coverage for pagination, missing credentials, and upstream failures. This pass tested the development API and made no live YouTube calls.
-2. **Migrate the blog's theme and Tailwind.** Replace archived Skeleton v2 CSS or migrate to a supported Skeleton release; compare headings, buttons, spacing, typography, and dark mode. Then remove the CSS minifier compatibility setting and reconsider the `braces` advisory.
-3. **Make production deploys depend on passing validation.** The existing Vercel workflows still trigger directly on matching pushes to `main`; they are not gated by the Test workflow. Check branch protection, Vercel project roots, Node settings, and whether Vercel Git integration duplicates these deployments. No external deployment settings were inspected or changed.
-4. **Expand coverage with product development.** The blog has type/build checks but no browser suite. The Chrome extension has JS lint coverage, but needs a manual unpacked-extension test and hostname/ID handling review. The personal website is still a demo scaffold.
-5. **Review the next coordinated majors.** SvelteKit 3/adapter 8, Tailwind 4/Skeleton, and a newer TypeScript require separate compatibility and behavior checks. Re-run `pnpm outdated --recursive` and `pnpm audit` regularly; current status is not a permanent guarantee.
+No archived direct dependency line remains. Skeleton v2 was removed with the blog; older major versions alone were not treated as evidence that projects were abandoned.
+
+## Remaining production and product concerns
+
+1. **Protect YouTube API quota before more production work.** A public request can still fetch up to 100 pages. There is no rate limiter, cache, total request budget, or request deduplication. Per-fetch timeouts do not bound the total duration. Choose deployment-appropriate infrastructure, restrict the API key to its intended API/use, and add mocked production-path coverage for pagination, missing credentials, and upstream failures. No live YouTube calls were made.
+2. **Gate production deployment on validation.** The remaining Top Comment Finder Vercel workflow triggers directly on matching pushes to `main` and is not gated by the Test workflow. Review branch protection, Vercel project root/Node settings, and whether Vercel Git integration duplicates the workflow. No production deployment or external setting was changed.
+3. **Review the extension during product work.** It has JavaScript lint coverage but needs a manual unpacked-extension test and hostname/video-ID handling review. The personal website remains a demo scaffold.
+4. **Keep coordinated upgrades compatible.** Review TypeScript 7 when upstream peers allow it. Re-run `pnpm outdated --recursive` and `pnpm audit` regularly and remove the dated release-age exceptions.
 
 ## Validation and limits
 
-Local validation used Node 22.23.3 and pnpm 10.34.6. All three apps passed type checks with no diagnostics, all three production builds passed, and 20 Playwright tests passed: 2 personal-website tests and 18 comment-finder tests, including two API checks. Changed files were formatted once with explicit paths, followed by lint and formatting checks. A frozen-lockfile install was checked after the final dependency changes.
+Both apps pass Svelte type checks with zero errors/warnings and production builds. All 23 Playwright tests pass: 3 personal-website tests and 20 comment-finder tests. New checks cover desktop/mobile layout, the Inter font, persistent manual dark mode, heading gradients, controls, and comment-card borders/shadows. Existing API, search URL, and navigation tests remain.
 
-The sandbox blocks localhost connections, so browser validation required approved execution outside it. Corepack shims and pnpm cache/store files used temporary directories to avoid the machine's incompatible global pnpm. GitHub Actions, Node 24, production YouTube requests, Chrome extension behavior, and Vercel deployments were not executed locally. The CI matrix is configured to validate Node 24 on GitHub.
+Validation covers Node 22.23.3 and Node 24.21.0 with pnpm 12.8.1, lint/format checks, and a frozen-lockfile install. Changed files were formatted once with explicit paths. Temporary Node/Corepack shims and pnpm stores avoid changing the machine's global tooling; browser validation required localhost access outside the sandbox.
+
+GitHub Actions, real production YouTube requests, manual Chrome extension behavior, and Vercel deployment were not executed locally. No push or pull request was created.

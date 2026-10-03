@@ -9,7 +9,6 @@ import ts from "typescript-eslint";
 export default defineConfig(
   globalIgnores([
     "**/node_modules/**",
-    "**/.astro/**",
     "**/.svelte-kit/**",
     "**/build/**",
     "**/dist/**",

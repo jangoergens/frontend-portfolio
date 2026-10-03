@@ -2,15 +2,15 @@
 
 A pnpm workspace with two web apps, coordinated by Turborepo, and a small Chrome extension.
 
-| Directory                   | Purpose                                              | Stack                                          |
-| --------------------------- | ---------------------------------------------------- | ---------------------------------------------- |
-| `apps/personal-website`     | Personal website scaffold                            | SvelteKit, Svelte 5, Tailwind 3                |
-| `apps/top-comment-finder`   | Find the most liked comments on a YouTube video      | SvelteKit, Svelte 5, YouTube Data API          |
-| `apps/tcf-chrome-extension` | Open the current YouTube video in Top Comment Finder | Chrome Manifest V3, JavaScript                 |
+| Directory                   | Purpose                                              | Stack                                               |
+| --------------------------- | ---------------------------------------------------- | --------------------------------------------------- |
+| `apps/personal-website`     | Personal website scaffold                            | SvelteKit 3, Svelte 5, Tailwind 4                   |
+| `apps/top-comment-finder`   | Find the most liked comments on a YouTube video      | SvelteKit 3, Svelte 5, Tailwind 4, YouTube Data API |
+| `apps/tcf-chrome-extension` | Open the current YouTube video in Top Comment Finder | Chrome Manifest V3, JavaScript                      |
 
 ## Getting started
 
-Use the Node version in `.nvmrc` (`nvm install && nvm use`). The repository also supports Node 24.21.0 or newer within Node 24; CI checks both supported LTS lines. Use the exact pnpm version declared by `packageManager` in `package.json`; Corepack can select it with `corepack pnpm` if your pnpm installation does not.
+Use the Node version in `.nvmrc` (`nvm install && nvm use`). Node 24.21.0 is the default; Node 22.23.3 or newer within Node 22 is also supported. CI checks both LTS lines. Use the exact pnpm version declared by `packageManager` in `package.json`; Corepack can select it with `corepack pnpm` if your pnpm installation does not.
 
 ```sh
 pnpm install --frozen-lockfile
@@ -37,6 +37,6 @@ ESLint, TypeScript, Playwright, and Prettier are shared root development depende
 
 ## Maintenance
 
-Read [AGENTS.md](./AGENTS.md) for repository working conventions and [MAINTENANCE.md](./MAINTENANCE.md) for the investigation, retained legacy dependencies, and follow-up work. Renovate proposes dependency updates for review; application and theme migrations should be validated separately.
+Read [AGENTS.md](./AGENTS.md) for repository working conventions and [MAINTENANCE.md](./MAINTENANCE.md) for the investigation, completed migrations, compatibility choices, and follow-up work. Renovate proposes dependency updates for review; major migrations should be validated separately.
 
 The Vercel workflow deploys Top Comment Finder when matching changes reach `main`. It requires the configured Vercel secrets. Local validation does not deploy anything.

@@ -6,7 +6,11 @@ import { imagetools } from "vite-imagetools";
 import type { UserConfig } from "vite";
 
 const config: UserConfig = {
-	plugins: [tailwindcss(), sveltekit({ adapter: adapter(), preprocess: vitePreprocess() }), imagetools()],
+	plugins: [
+		tailwindcss(),
+		sveltekit({ adapter: adapter(), preprocess: vitePreprocess() }),
+		imagetools(),
+	],
 	preview: {
 		port: 4444,
 	},

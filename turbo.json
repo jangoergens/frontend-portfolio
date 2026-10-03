@@ -2,26 +2,13 @@
   "$schema": "https://turborepo.com/schema.json",
   "tasks": {
     "build": {
-      "dependsOn": [
-        "check",
-        "^build"
-      ],
-      "outputs": [
-        "dist/**",
-        "build/**",
-        ".svelte-kit/**",
-        ".vercel/output/**"
-      ]
+      "dependsOn": ["check", "^build"],
+      "outputs": ["dist/**", "build/**", ".svelte-kit/**", ".vercel/output/**"]
     },
     "test": {
-      "dependsOn": [
-        "build"
-      ],
+      "dependsOn": ["build"],
       "cache": false,
-      "outputs": [
-        "test-results/**",
-        "playwright-report/**"
-      ]
+      "outputs": ["test-results/**", "playwright-report/**"]
     },
     "lint": {
       "outputs": []
@@ -39,8 +26,5 @@
     }
   },
   "ui": "stream",
-  "globalDependencies": [
-    "eslint.config.mjs",
-    ".prettierignore"
-  ]
+  "globalDependencies": ["eslint.config.mjs", ".prettierignore"]
 }
