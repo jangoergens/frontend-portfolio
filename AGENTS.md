@@ -28,6 +28,6 @@
 - Follow the existing Svelte 5 component conventions. SvelteKit 3 configuration belongs in `vite.config.ts`; use `#lib` imports and declare server environment variables in `src/env.ts`.
 - Tailwind 4 uses the Vite plugin and CSS configuration in `src/app.css`; keep manual dark mode and the Inter font.
 - Keep TypeScript within the supported SvelteKit, svelte-check, and typescript-eslint peer ranges.
-- Review `MAINTENANCE.md` for dependency and deployment decisions.
+- Review the root and app READMEs for dependency, quota, and deployment decisions.
 - When commands return a session ID, poll until they exit. Quiet output does not mean failure.
 - For command approval, use a reusable prefix at a stable subcommand boundary. Keep deployment, publishing, migration, and destructive approvals narrowly scoped.

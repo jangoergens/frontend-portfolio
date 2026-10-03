@@ -9,9 +9,10 @@
     "lint": "pnpm lint:root && turbo run lint",
     "start": "turbo run start --parallel",
     "install-test-browser": "pnpm exec playwright install chromium",
-    "test": "turbo run test",
-    "format": "prettier --write AGENTS.md README.md MAINTENANCE.md package.json pnpm-workspace.yaml turbo.json renovate.json eslint.config.mjs .github/workflows/*.yml && turbo run format",
-    "lint:root": "eslint eslint.config.mjs apps/tcf-chrome-extension/background.js && prettier --check AGENTS.md README.md MAINTENANCE.md package.json pnpm-workspace.yaml turbo.json renovate.json eslint.config.mjs .github/workflows/*.yml"
+    "test": "pnpm test:extension && turbo run test",
+    "test:extension": "node --test apps/tcf-chrome-extension/tests/*.test.mjs",
+    "format": "prettier --write AGENTS.md README.md package.json pnpm-workspace.yaml turbo.json renovate.json eslint.config.mjs .github/workflows/*.yml \"apps/tcf-chrome-extension/**/*.{js,mjs,md}\" && turbo run format",
+    "lint:root": "eslint eslint.config.mjs apps/tcf-chrome-extension/background.js apps/tcf-chrome-extension/tests/*.test.mjs --report-unused-disable-directives --max-warnings 0 && prettier --check AGENTS.md README.md package.json pnpm-workspace.yaml turbo.json renovate.json eslint.config.mjs .github/workflows/*.yml \"apps/tcf-chrome-extension/**/*.{js,mjs,md}\""
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
@@ -30,7 +31,7 @@
     "typescript-eslint": "8.71.0"
   },
   "engines": {
-    "node": ">=22.23.3 <23 || >=24.21.0 <25"
+    "node": ">=24.21.0 <25"
   },
   "packageManager": "pnpm@12.8.1+sha512.f64ba907507f5ceafe06c8d38e6052d0179444580ec1279ddd5bfc11cb48aa8a2644b66598e07e761da84872a9fc57d5f902b87fa49d024198d558612aabbe45"
 }

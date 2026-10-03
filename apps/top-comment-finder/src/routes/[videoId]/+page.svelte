@@ -7,12 +7,22 @@
 	import thumbsUp from "#lib/assets/thumbsUp.svg?w=16&h=16&format=webp&imagetools";
 
 	const videoId = $derived(page.params.videoId);
+	let partialResults = $state(false);
 	const fetchComments = async () => {
 		const response = await fetch(`/api/comments/${videoId}`);
 
 		if (!response.ok) {
-			throw new Error("Unable to load comments. Please try again later.");
+			const messages: Record<number, string> = {
+				400: "This YouTube video link is invalid.",
+				429: "Too many requests. Please wait a minute before trying again.",
+				503: "The comment service is busy or temporarily unavailable. Please try again later.",
+				504: "Fetching comments took too long. Please try again later.",
+			};
+			throw new Error(
+				messages[response.status] ?? "Unable to load comments. Please try again later.",
+			);
 		}
+		partialResults = response.headers.get("X-Comments-Partial") === "true";
 		return response.json() as Promise<RequiredCommentInfo[]>;
 	};
 
@@ -43,6 +53,9 @@
 		<div class="flex flex-col items-center">
 			<h2>Top Comments for this Video</h2>
 			<h3>{comments.length}/20 comments</h3>
+			{#if partialResults}
+				<p>Showing the most liked comments from a limited sample of this video's comments.</p>
+			{/if}
 		</div>
 		<ol class="flex w-full flex-col items-center gap-4">
 			{#each comments as comment, index (index)}
