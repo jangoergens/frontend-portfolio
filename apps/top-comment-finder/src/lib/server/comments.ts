@@ -233,9 +233,7 @@ function parsePage(value: unknown): { comments: RequiredCommentInfo[]; nextPageT
 	}
 	if (
 		"nextPageToken" in value &&
-		(typeof value.nextPageToken !== "string" ||
-			!value.nextPageToken ||
-			value.nextPageToken.length > 1024)
+		(typeof value.nextPageToken !== "string" || !value.nextPageToken)
 	) {
 		throw new CommentsError("YouTube returned an invalid response.", 502);
 	}

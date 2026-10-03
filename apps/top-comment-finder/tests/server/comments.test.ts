@@ -159,6 +159,19 @@ void test("paginates using encoded tokens and selects the top 20 across pages", 
 	assert.equal(response.headers.get("X-Comments-Partial"), "false");
 });
 
+void test("accepts and forwards opaque pagination tokens longer than 1024 characters", async () => {
+	const token = "a".repeat(1084);
+	const { handle, requests } = fixture([Response.json(page([1], token)), Response.json(page([2]))]);
+	const response = await handle(videoId, "127.0.0.1");
+	assert.equal(response.status, 200);
+	assert.equal(requests.length, 2);
+	assert.equal(requests[1].searchParams.get("pageToken"), token);
+	assert.deepEqual(
+		((await response.json()) as { likeCount: string }[]).map((comment) => comment.likeCount),
+		["2", "1"],
+	);
+});
+
 void test("bounds pagination and marks the limited sample", async () => {
 	const { handle, requests } = fixture(
 		[Response.json(page([1], "page2")), Response.json(page([2], "page3"))],
