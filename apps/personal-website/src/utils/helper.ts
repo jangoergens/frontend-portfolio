@@ -1,10 +1,9 @@
 export function getUserThemePreference() {
-	if (
-		localStorage.theme === "dark" ||
-		(!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)
-	) {
-		return "dark";
-	} else {
-		return "light";
+	try {
+		const savedTheme = localStorage.getItem("theme");
+		if (savedTheme === "dark" || savedTheme === "light") return savedTheme;
+	} catch {
+		// Fall back to the system preference when storage is unavailable.
 	}
+	return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }

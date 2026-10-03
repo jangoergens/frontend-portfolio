@@ -1,0 +1,19 @@
+# Local credentials and configuration
+**/.env
+**/.env.*
+!**/.env.example
+**/*.pem
+.aws
+.codex
+.agents
+
+# Dependencies, caches, generated output, and test reports
+.git
+**/node_modules
+**/.turbo
+**/.svelte-kit
+**/.vercel
+**/build
+**/dist
+**/playwright-report
+**/test-results

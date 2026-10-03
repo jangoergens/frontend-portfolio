@@ -1,12 +1,44 @@
 <!doctype html>
-<html lang="en" class="fix-scrollbar-jump h-full">
+<html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
-		<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
-		<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
-		<link rel="manifest" href="/favicon/site.webmanifest" />
-		<link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="color-scheme" content="light dark" />
+		<script>
+			// Only neutral entry URLs use browser preferences. Localized URLs stay explicit.
+			if (location.pathname === "/" || /^\/about\/?$/.test(location.pathname)) {
+				let savedLanguage;
+				try {
+					savedLanguage = localStorage.getItem("language");
+				} catch {
+					// Browser preferences still work when local storage is disabled.
+				}
+				const preferredLanguage = (navigator.languages || [navigator.language])
+					.map((language) => language.toLowerCase().split("-")[0])
+					.find((language) => language === "de" || language === "en");
+				const language =
+					savedLanguage === "de" || savedLanguage === "en"
+						? savedLanguage
+						: preferredLanguage || "en";
+				const path = location.pathname === "/" ? "" : "/about";
+				location.replace(`/${language}${path}${location.search}${location.hash}`);
+			}
+		</script>
+		<script>
+			try {
+				const theme = localStorage.getItem("theme");
+				document.documentElement.classList.toggle(
+					"dark",
+					theme === "dark" ||
+						(theme !== "light" && matchMedia("(prefers-color-scheme: dark)").matches),
+				);
+			} catch {
+				document.documentElement.classList.toggle(
+					"dark",
+					matchMedia("(prefers-color-scheme: dark)").matches,
+				);
+			}
+		</script>
 		<link
 			as="font"
 			crossorigin
@@ -17,7 +49,7 @@
 		<meta name="viewport" content="width=device-width initial-scale=1" />
 		%sveltekit.head%
 	</head>
-	<body class="h-full bg-gray-100 text-black dark:bg-gray-800 dark:text-white">
-		<div class="flex h-full flex-col">%sveltekit.body%</div>
+	<body>
+		<div>%sveltekit.body%</div>
 	</body>
 </html>

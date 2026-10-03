@@ -3,8 +3,8 @@ import { expect, test } from "@playwright/test";
 test("responsive layout and persistent manual dark mode", async ({ page }) => {
 	await page.emulateMedia({ colorScheme: "light" });
 	await page.setViewportSize({ height: 800, width: 1280 });
-	await page.goto("/");
-	await expect(page.locator("header")).toHaveCSS("height", "64px");
+	await page.goto("/en");
+	await expect(page.locator("header")).toHaveCSS("height", "96px");
 	await expect(page.locator("body")).toHaveCSS("font-family", /Inter Variable/);
 	expect(
 		await page.evaluate(async () => {
@@ -23,7 +23,7 @@ test("responsive layout and persistent manual dark mode", async ({ page }) => {
 	await page.reload();
 	await expect(page.getByRole("button", { name: "Enable Light Mode" })).toBeVisible();
 	await page.setViewportSize({ height: 812, width: 375 });
-	await expect(page.locator("header")).toHaveCSS("height", "64px");
+	await expect(page.locator("header")).toHaveCSS("height", "76px");
 	await expect
 		.poll(() => page.evaluate(() => document.documentElement.scrollWidth))
 		.toBeLessThanOrEqual(375);

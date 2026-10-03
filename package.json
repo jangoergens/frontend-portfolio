@@ -7,7 +7,7 @@
     "build": "turbo run build",
     "check": "turbo run check",
     "lint": "pnpm lint:root && turbo run lint",
-    "start": "turbo run start --parallel",
+    "start": "turbo run start",
     "install-test-browser": "pnpm exec playwright install chromium",
     "test": "pnpm test:extension && turbo run test",
     "test:extension": "node --test apps/tcf-chrome-extension/tests/*.test.mjs",

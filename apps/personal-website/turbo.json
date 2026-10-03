@@ -1,0 +1,18 @@
+{
+	"extends": ["//"],
+	"tasks": {
+		"build": {
+			"env": ["FORMSPREE_ENDPOINT"],
+			"inputs": [
+				"$TURBO_DEFAULT$",
+				".env",
+				".env.local",
+				".env.production",
+				".env.production.local"
+			]
+		},
+		"start": {
+			"env": ["FORMSPREE_ENDPOINT"]
+		}
+	}
+}

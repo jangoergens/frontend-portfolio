@@ -1,30 +1,30 @@
 <script lang="ts">
-	import { onMount } from "svelte";
+	import { page } from "$app/state";
 
 	import Footer from "#lib/footer/Footer.svelte";
 	import Header from "#lib/header/Header.svelte";
+	import { getLocale, translations } from "#lib/i18n.ts";
+	import LocalizedHead from "#lib/LocalizedHead.svelte";
 
 	import "../app.css";
-	import { getUserThemePreference } from "../utils/helper";
+
 	interface Props {
 		children?: import("svelte").Snippet;
 	}
 
 	let { children }: Props = $props();
+	let locale = $derived(getLocale(page.params.lang));
+	let copy = $derived(translations[locale]);
 
-	onMount(() => {
-		if (getUserThemePreference() === "dark") {
-			document.documentElement.classList.add("dark");
-		} else {
-			document.documentElement.classList.remove("dark");
-		}
+	$effect(() => {
+		document.documentElement.lang = locale;
 	});
 </script>
 
-<Header />
-
-<main class="px-4 py-4 lg:px-40">
-	{@render children?.()}
-</main>
-
-<Footer />
+<LocalizedHead />
+<a class="skip-link" href="#main">{copy.navigation.skip}</a>
+<div class="site-shell" id="top">
+	<Header />
+	<main id="main" tabindex="-1">{@render children?.()}</main>
+	<Footer />
+</div>

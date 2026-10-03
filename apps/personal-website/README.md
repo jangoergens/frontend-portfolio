@@ -1,7 +1,16 @@
 # Personal Website
 
-A SvelteKit personal website scaffold with a demo home page and an about page. The static adapter prerenders both pages into `build/`; hosting needs no Node server.
+A responsive personal website built with SvelteKit, Svelte, and Tailwind.
+Pages are prerendered into `build/` for static hosting.
 
-Install dependencies from the repository root with `pnpm install --frozen-lockfile`, then run `pnpm --filter personal-website start`.
+From the repository root:
 
-For validation, run `pnpm check`, `pnpm lint`, and `pnpm test` from the root. Install Chromium with `pnpm install-test-browser` first. Root browser tests build the app and start its preview server on port 5555.
+```sh
+pnpm install --frozen-lockfile
+pnpm --filter personal-website start
+```
+
+See [site maintenance](../../docs/personal-website.md) for assets and contact form setup,
+[development](../../docs/development.md) for testing, and the
+[design](../../docs/design-guidelines.md) and [copywriting](../../docs/copywriting-style.md)
+guidelines for content changes.
