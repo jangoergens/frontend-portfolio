@@ -2,7 +2,7 @@
 	"name": "top-comment-finder",
 	"version": "0.1.0",
 	"engines": {
-		"node": ">=24.21.0 <25"
+		"node": ">=24.21.0 <27"
 	},
 	"scripts": {
 		"start": "vite dev",
